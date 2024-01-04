@@ -1,1 +1,1 @@
-GitHub pages test
+GitHub Pages integration
