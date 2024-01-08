@@ -4,14 +4,6 @@
    column-gap: 1rem;
    grid-template-columns: repeat(5, 1fr);
    grid-template-rows: repeat(5, 1fr);
-   
-   grid-template-areas:
-      "a a a b c"
-      "a a a d d"
-      "e f g d d"
-      "h h i i k"
-      "h h j j k"
-   ;
 
    width: 100%;
    aspect-ratio: 1/1;
@@ -22,14 +14,68 @@
    border-radius: 1rem;
 }
 
-.a{grid-area:a;}
-.b{grid-area:b;}
-.c{grid-area:c;}
-.d{grid-area:d;}
-.e{grid-area:e;}
-.f{grid-area:f;}
-.g{grid-area:g;}
-.h{grid-area:h;}
-.i{grid-area:i;}
-.j{grid-area:j;}
-.k{grid-area:k;}
+.a {
+   grid-area: a;
+   grid-column: span 3;
+   grid-row: span 2;
+}
+
+.b {
+   grid-area: b;
+   grid-column: 4 / span 1;
+   grid-row: span 1;
+}
+
+.c {
+   grid-area: c;
+   grid-column: 5 / span 1;
+   grid-row: span 1;
+}
+
+.d {
+   grid-area: d;
+   grid-column: 4 / span 2;
+   grid-row: 2 / span 2;
+}
+
+.e {
+   grid-area: e;
+   grid-column: span 1;
+   grid-row: 3 / span 1;
+}
+
+.f {
+   grid-area: f;
+   grid-column: 2 / span 1;
+   grid-row: 3 / span 1;
+}
+
+.g {
+   grid-area: g;
+   grid-column: 3 / span 1;
+   grid-row: 3 / span 1;
+}
+
+.h {
+   grid-area: h;
+   grid-column: span 2;
+   grid-row: 4 / span 2;
+}
+
+.i {
+   grid-area: i;
+   grid-column: 3 / span 2;
+   grid-row: 4 / span 1;
+}
+
+.j {
+   grid-area: j;
+   grid-column: 3 / span 2;
+   grid-row: 5 / span 1;
+}
+
+.k {
+   grid-area: k;
+   grid-column: 5 / span 1;
+   grid-row: 4 / span 2;
+}
