@@ -7,6 +7,11 @@
    margin: 0;
 }
 
+body{
+   background-color: black;
+   color:crimson;
+}
+
 header {
    background-color: transparent;
    backdrop-filter: blur(1rem);
@@ -19,6 +24,7 @@ header {
    transition: all .5s;
 
    z-index: 1;
+
 }
 
 .nav__wrapper {
@@ -37,7 +43,7 @@ header {
 .nav__logo,
 .nav__link {
    text-decoration: none;
-   color: black;
+   color: crimson;
 }
 
 .nav__logo {
