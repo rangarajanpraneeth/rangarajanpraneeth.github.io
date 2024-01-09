@@ -1,9 +1,9 @@
-.landing {
+/* .landing {
    width: 75%;
    margin: 0 auto;
    padding-top: 6rem;
    text-align: center;
-}
+} */
 
 .title {
    font-size: 4rem;
@@ -16,5 +16,6 @@
 }
 
 .pagepiling {
-   padding: 6rem 3rem;
+   padding: 3rem 3rem;
+   height: calc(100vh - 64px);
 }
