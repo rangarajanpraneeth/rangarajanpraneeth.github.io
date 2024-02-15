@@ -8,12 +8,27 @@
    <title>Qubit</title>
 
    <style>
+      /* html {
+         mix-blend-mode: difference;
+      } */
+
       * {
          font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
          box-sizing: border-box;
+         font-weight: 500;
          line-height: 1;
          padding: 0;
          margin: 0;
+
+         scroll-behavior: smooth;
+         text-decoration: none;
+         list-style: none;
+
+         text-align: center;
+      }
+
+      *::-webkit-scrollbar {
+         display: none;
       }
 
       body {
@@ -22,17 +37,26 @@
       }
 
       a {
-         text-decoration: none;
+         /* text-decoration: none; */
          color: white;
+      }
+
+      .header {
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100vw;
+         background-color: rgba(0, 0, 0, .5);
+         backdrop-filter: blur(1rem);
       }
 
       .header__wrapper {
          width: 75%;
          margin: 0 auto;
+         padding: 1rem;
          display: flex;
          justify-content: space-between;
          align-items: center;
-         padding: 1.25rem;
       }
 
       .header__left {
@@ -42,44 +66,83 @@
       }
 
       .header__logo {
-         font-weight: 500;
          font-size: 2rem;
       }
 
       .header__container {
          display: flex;
          align-items: center;
-         gap: 1rem;
+         gap: 2rem;
       }
 
       .header__right {
          display: flex;
          align-items: center;
-
-         font-size: 1rem;
       }
 
       .header__link {
-         font-weight: 500;
+         padding: .5rem;
          transition: .25s;
       }
 
       .header__link:hover {
-         box-shadow: 0 -5rem 10rem 2rem rgba(255, 255, 255, 0.75);
+         text-decoration: underline;
       }
 
       .header__button {
-         font-weight: 500;
-         padding: 1rem;
          background-color: white;
-         border-radius: .5rem;
-
-         transition: .25s;
          color: black;
+         padding: .5rem 1rem;
+         border-radius: 1rem;
+         transition: .25s;
       }
 
       .header__button:hover {
-         box-shadow: 0 -5rem 10rem 2rem rgba(255, 255, 255, 0.5);
+         box-shadow: 0 -5rem 5rem 2rem rgba(255, 255, 255, 0.5);
+      }
+
+      .landing__page {
+         display: flex;
+         flex-direction: column;
+         justify-content: space-between;
+         align-items: center;
+         height: 100vh;
+         width: 100vw;
+         /* padding: 2rem; */
+         padding: 6rem 2rem;
+      }
+
+      .landing__title {
+         margin-top: 10vh;
+         /* margin-bottom: 5vh; */
+         width: 100%;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+
+         /* text-align: center; */
+
+         gap: 2rem;
+         /* font-size: 5rem; */
+      }
+
+      .main {
+         font-size: 4vw;
+      }
+
+      .sub {
+         font-size: 2rem;
+      }
+
+      .landing__button {
+         padding: 1rem;
+         outline: 2px solid white;
+      }
+
+      .content__page {
+         background-color: red;
+         height: 1000vh;
+         width: 100vw;
       }
    </style>
 </head>
@@ -87,18 +150,36 @@
 <body>
    <script defer></script>
 
-   <div class="header__wrapper">
-      <div class="header__left">
-         <a href="" class="header__logo">Qubit</a>
-         <div class="header__container">
-            <a href="" class="header__link">ABOUT</a>
-            <a href="" class="header__link">PROJECTS</a>
+   <div class="header">
+      <div class="header__wrapper">
+         <div class="header__left">
+            <a href="" class="header__logo">Qubit</a>
+            <div class="header__container">
+               <a href="" class="header__link">About</a>
+               <a href="" class="header__link">Projects</a>
+               <a href="" class="header__link">Testimonials</a>
+            </div>
+         </div>
+         <div class="header__right">
+            <a href="" class="header__button">Contact us</a>
          </div>
       </div>
-      <div class="header__right">
-         <a href="" class="header__button">CONTACT</a>
-      </div>
    </div>
+
+   <div class="landing__page">
+      <div class="landing__title">
+         <!-- <br>
+         <br>
+         <br>
+         <br>
+         <br> -->
+         <span class="main">Title / Mission Statement / PLACEHOLDER</span>
+         <span class="sub">subtitle / miscellaneous text</span>
+      </div>
+      <a href="" class="landing__button">GO DOWN</a>
+   </div>
+
+   <div class="content__page" id="content"></div>
 </body>
 
 </html>
