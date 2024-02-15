@@ -24,7 +24,7 @@
          text-decoration: none;
          list-style: none;
 
-         text-align: center;
+         /* text-align: center; */
       }
 
       *::-webkit-scrollbar {
@@ -42,6 +42,10 @@
       }
 
       .header {
+         text-align: center;
+
+
+
          position: fixed;
          top: 0;
          left: 0;
@@ -102,6 +106,10 @@
       }
 
       .landing__page {
+         text-align: center;
+
+
+
          display: flex;
          flex-direction: column;
          justify-content: space-between;
@@ -131,12 +139,19 @@
       }
 
       .sub {
-         font-size: 2rem;
+         font-size: 2vw;
       }
 
       .landing__button {
          padding: 1rem;
          outline: 2px solid white;
+         border-radius: 2rem;
+
+         transition: .25s;
+      }
+
+      .landing__button:hover {
+         transform: translateY(-.5rem);
       }
 
       .content__page {
@@ -155,9 +170,9 @@
          <div class="header__left">
             <a href="" class="header__logo">Qubit</a>
             <div class="header__container">
-               <a href="" class="header__link">About</a>
-               <a href="" class="header__link">Projects</a>
-               <a href="" class="header__link">Testimonials</a>
+               <a href="#" class="header__link">About</a>
+               <a href="#" class="header__link">Projects</a>
+               <a href="#" class="header__link">Testimonials</a>
             </div>
          </div>
          <div class="header__right">
@@ -176,7 +191,7 @@
          <span class="main">Title / Mission Statement / PLACEHOLDER</span>
          <span class="sub">subtitle / miscellaneous text</span>
       </div>
-      <a href="" class="landing__button">GO DOWN</a>
+      <a href="#content" class="landing__button">Check us out</a>
    </div>
 
    <div class="content__page" id="content"></div>
