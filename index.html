@@ -98,50 +98,6 @@
       .header__button:hover {
          box-shadow: 0 -5rem 5rem 2rem rgba(255, 255, 255, 0.5);
       }
-
-      .landing__page {
-         display: flex;
-         flex-direction: column;
-         justify-content: space-between;
-         align-items: center;
-         height: 100vh;
-         width: 100vw;
-         padding: 6rem 2rem;
-      }
-
-      .landing__title {
-         margin-top: 5rem;
-         width: 100%;
-         display: flex;
-         flex-direction: column;
-         align-items: center;
-         gap: 2rem;
-      }
-
-      .main {
-         font-size: 4rem;
-      }
-
-      .sub {
-         font-size: 2rem;
-      }
-
-      .landing__button {
-         padding: 1rem;
-         outline: 2px solid white;
-         border-radius: 2rem;
-         transition: .25s;
-      }
-
-      .landing__button:hover {
-         transform: translateY(-.5rem);
-      }
-
-      .content__page {
-         background-color: black;
-         height: 1000vh;
-         width: 100vw;
-      }
    </style>
 </head>
 
@@ -164,15 +120,11 @@
       </div>
    </div>
 
-   <div class="landing__page">
-      <div class="landing__title">
-         <span class="main">Title / Mission Statement / PLACEHOLDER</span>
-         <span class="sub">subtitle / miscellaneous text</span>
-      </div>
-      <a href="#content" class="landing__button">Check us out</a>
+   <div class="landing__page" id="landing">
    </div>
 
-   <div class="content__page" id="content"></div>
+   <div class="content__page" id="content">
+   </div>
 </body>
 
 </html>
