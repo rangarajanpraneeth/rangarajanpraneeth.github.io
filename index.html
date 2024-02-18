@@ -20,7 +20,7 @@
          font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
          scroll-behavior: smooth;
          box-sizing: border-box;
-         text-align: center;
+         /* text-align: center; */
          font-weight: 500;
          line-height: 1;
          padding: 0;
@@ -42,6 +42,7 @@
       }
 
       .header {
+         text-align: center;
          z-index: 999;
          /* background-color: rgba(0, 0, 0, .5); */
          /* backdrop-filter: blur(1rem); */
@@ -54,7 +55,7 @@
 
       .header__wrapper {
          padding: 1rem;
-         width: 75%;
+         width: 80%;
          margin: 0 auto;
          display: flex;
          justify-content: space-between;
@@ -151,16 +152,35 @@
             display: block;
          }
       }
+
+      @media screen and (min-width: 1080px) {
+         .header__list {
+            display: none;
+         }
+      }
+
+      .content__page {
+         width: 70%;
+         margin: 0 auto;
+         min-height: 100vh;
+         padding: 8rem 0 4rem;
+
+         /* text-align: left; */
+      }
+
+      .title,
+      .shuffle {
+         font-size: 5rem;
+      }
+
+      .dud {
+         /* color: #a6c; */
+         color: #ff0;
+      }
    </style>
 </head>
 
 <body>
-   <script defer>
-      function toggleMenu() {
-         document.querySelector('.header__list').classList.toggle('hidden');
-      }
-   </script>
-
    <div class="header__list hidden">
       <a href="#" class="">About</a>
       <a href="#" class="">Projects</a>
@@ -187,11 +207,105 @@
       </div>
    </div>
 
-   <div class="landing__page" id="landing">
-   </div>
+   <!-- <div class="landing__page" id="landing">
+   </div> -->
 
    <div class="content__page" id="content">
+      <h1 class="title">Do your business with our </h1>
+      <!-- <span class="shuffle__text"></span> -->
+      <!-- <br> -->
+      <h1 class="shuffle"></h1>
+      <!-- TODO FIX SHUFFLE FUNCTION -->
    </div>
+
+
+
+
+
+   <script>
+      function toggleMenu() {
+         document.querySelector('.header__list').classList.toggle('hidden');
+      }
+
+
+
+
+
+      class TextScramble {
+         constructor(el) {
+            this.el = el
+            this.chars = '0123456789'
+            // this.chars = '!<>-_\\/[]{}—=+*^?#________'
+            this.update = this.update.bind(this)
+         }
+         setText(newText) {
+            const oldText = this.el.innerText
+            const length = Math.max(oldText.length, newText.length)
+            const promise = new Promise((resolve) => this.resolve = resolve)
+            this.queue = []
+            for (let i = 0; i < length; i++) {
+               const from = oldText[i] || ''
+               const to = newText[i] || ''
+               const start = Math.floor(Math.random() * 50)
+               const end = start + Math.floor(Math.random() * 50)
+               this.queue.push({ from, to, start, end })
+            }
+            cancelAnimationFrame(this.frameRequest)
+            this.frame = 0
+            this.update()
+            return promise
+         }
+         update() {
+            let output = ''
+            let complete = 0
+            for (let i = 0, n = this.queue.length; i < n; i++) {
+               let { from, to, start, end, char } = this.queue[i]
+               if (this.frame >= end) {
+                  complete++
+                  output += to
+               } else if (this.frame >= start) {
+                  // if (!char || Math.random < 0.28) {
+                  if (!char) {
+                     char = this.randomChar()
+                     this.queue[i].char = char
+                  }
+                  output += `<span class="dud">${char}</span>`
+               } else {
+                  output += from
+               }
+            }
+            this.el.innerHTML = output
+            if (complete === this.queue.length) {
+               this.resolve()
+            } else {
+               this.frameRequest = requestAnimationFrame(this.update)
+               this.frame++
+            }
+         }
+         randomChar() {
+            return this.chars[Math.floor(Math.random() * this.chars.length)]
+         }
+      }
+
+      const phrases = [
+         'hello',
+         'world',
+         'bussiness'
+      ]
+
+      const el = document.querySelector('.shuffle')
+      const fx = new TextScramble(el)
+
+      let counter = 0
+      const next = () => {
+         fx.setText(phrases[counter]).then(() => {
+            setTimeout(next, 2000)
+         })
+         counter = (counter + 1) % phrases.length
+      }
+
+      next()
+   </script>
 </body>
 
 </html>
