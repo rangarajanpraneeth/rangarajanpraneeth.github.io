@@ -174,9 +174,41 @@
       }
 
       .dud {
-         /* color: #a6c; */
-         color: #ff0;
+         color: #555;
       }
+
+
+
+
+
+
+
+      /* .word {
+         font-size: 5rem;
+         position: absolute;
+         opacity: 0;
+      }
+
+      .letter {
+         display: inline-block;
+         position: relative;
+         transform: translateZ(25px);
+         transform-origin: 50% 50% 25px;
+      }
+
+      .letter.out {
+         transform: rotateX(90deg);
+         transition: transform 0.32s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+      }
+
+      .letter.behind {
+         transform: rotateX(-90deg);
+      }
+
+      .letter.in {
+         transform: rotateX(0deg);
+         transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      } */
    </style>
 </head>
 
@@ -215,6 +247,11 @@
       <!-- <span class="shuffle__text"></span> -->
       <!-- <br> -->
       <h1 class="shuffle"></h1>
+
+      <!-- <h1 class="word">business</h1>
+      <h1 class="word">hello</h1>
+      <h1 class="word">world</h1>
+      <h1 class="word">testing</h1> -->
       <!-- TODO FIX SHUFFLE FUNCTION -->
    </div>
 
@@ -234,13 +271,17 @@
       class TextScramble {
          constructor(el) {
             this.el = el
-            this.chars = '0123456789'
+            // this.chars = '● ○ ◯ ◔ ◕ ◶ ◌ ◉ ◎'
+            // this.chars = 'abcdefghijklmnopqrstuvwxyz'
+            // this.chars = '0123456789'
+            this.chars = '01'
             // this.chars = '!<>-_\\/[]{}—=+*^?#________'
             this.update = this.update.bind(this)
          }
          setText(newText) {
             const oldText = this.el.innerText
             const length = Math.max(oldText.length, newText.length)
+            // const length = newText.length
             const promise = new Promise((resolve) => this.resolve = resolve)
             this.queue = []
             for (let i = 0; i < length; i++) {
@@ -288,9 +329,10 @@
       }
 
       const phrases = [
+         'business',
          'hello',
          'world',
-         'bussiness'
+         'test phrase'
       ]
 
       const el = document.querySelector('.shuffle')
@@ -305,6 +347,69 @@
       }
 
       next()
+
+
+
+
+
+
+
+
+
+      // var words = document.getElementsByClassName('word');
+      // var wordArray = [];
+      // var currentWord = 0;
+
+      // words[currentWord].style.opacity = 1;
+      // for (var i = 0; i < words.length; i++) {
+      //    splitLetters(words[i]);
+      // }
+
+      // function changeWord() {
+      //    var cw = wordArray[currentWord];
+      //    var nw = currentWord == words.length - 1 ? wordArray[0] : wordArray[currentWord + 1];
+      //    for (var i = 0; i < cw.length; i++) {
+      //       animateLetterOut(cw, i);
+      //    }
+
+      //    for (var i = 0; i < nw.length; i++) {
+      //       nw[i].className = 'letter behind';
+      //       nw[0].parentElement.style.opacity = 1;
+      //       animateLetterIn(nw, i);
+      //    }
+
+      //    currentWord = (currentWord == wordArray.length - 1) ? 0 : currentWord + 1;
+      // }
+
+      // function animateLetterOut(cw, i) {
+      //    setTimeout(function () {
+      //       cw[i].className = 'letter out';
+      //    }, i * 80);
+      // }
+
+      // function animateLetterIn(nw, i) {
+      //    setTimeout(function () {
+      //       nw[i].className = 'letter in';
+      //    }, 340 + (i * 80));
+      // }
+
+      // function splitLetters(word) {
+      //    var content = word.innerHTML;
+      //    word.innerHTML = '';
+      //    var letters = [];
+      //    for (var i = 0; i < content.length; i++) {
+      //       var letter = document.createElement('span');
+      //       letter.className = 'letter';
+      //       letter.innerHTML = content.charAt(i);
+      //       word.appendChild(letter);
+      //       letters.push(letter);
+      //    }
+
+      //    wordArray.push(letters);
+      // }
+
+      // changeWord();
+      // setInterval(changeWord, 4000);
    </script>
 </body>
 
