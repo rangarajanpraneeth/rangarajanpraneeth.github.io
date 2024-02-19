@@ -18,6 +18,8 @@
 
       * {
          font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+         /* font-family: fantasy; */
          scroll-behavior: smooth;
          box-sizing: border-box;
          /* text-align: center; */
@@ -25,6 +27,8 @@
          line-height: 1;
          padding: 0;
          margin: 0;
+
+         -webkit-font-smoothing: antialiased;
 
          user-select: none;
       }
@@ -182,14 +186,89 @@
          }
       }
 
-      .content__page {
-         width: 85%;
+      .landing__page {
+         /* width: 85%;
          margin: 0 auto;
-         min-height: fit-content;
-         padding: 8rem 0 4rem;
+         height: 100vh;
+         padding: 8rem 0 4rem; */
+         height: 100vh;
+         padding: 16rem 8rem 8rem;
 
+         /* display: flex;
+         flex-direction: column;
+         justify-content: space-between; */
+
+         display: flex;
+         flex-direction: column;
+
+         /* justify-content: space-between; */
+
+         /* align-items: center; */
+
+
+         /* margin-top: auto; */
+         /* padding: 8rem 4rem 4rem; */
+
+         /* min-height: fit-content; */
 
          /* text-align: left; */
+      }
+
+      .down__container {
+         margin-top: 8rem;
+
+
+
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         /* text-align: center; */
+      }
+
+      .go__down {
+         /* position: absolute;
+         left: 50%;
+         transform: translateX(-50%); */
+         /* top: 4rem; */
+
+         transition: .25s;
+
+
+         padding: 1rem 2rem;
+         font-size: 2rem;
+
+         border: 2px solid white;
+         border-radius: 4rem;
+      }
+
+      .go__down:hover {
+         /* transform: translateY(-1rem); */
+         background-color: white;
+         color: black;
+         transform: translateY(1rem);
+         box-shadow: 0 0 5rem 2rem rgba(255, 255, 255, 0.25);
+
+
+         /* text-indent: 100%;
+         white-space: nowrap;
+         overflow: hidden; */
+
+         /* text */
+         /* width: 0%; */
+      }
+
+      .text__container {
+         margin-top: auto;
+      }
+
+      .content__page {
+
+         width: 85%;
+         margin: 0 auto;
+         /* min-height: fit-content; */
+         height: 100vh;
+         /* padding: 0 0 4rem; */
+         padding: 8rem 0 4rem;
       }
 
       /* .text__container {
@@ -215,7 +294,10 @@
 
       .title,
       .shuffle {
-         font-size: 4rem;
+         font-size: 7.5rem;
+         /* font-size: 7.5rem; */
+         /* letter-spacing: .25rem; */
+         font-family: fantasy;
       }
 
       /* .shuffle {
@@ -263,16 +345,29 @@
       </div>
    </div>
 
-   <div class="content__page" id="content">
+   <div class="landing__page" id="landing">
+      
+
+
+
       <div class="text__container">
-         <h1 class="title">Converting your ideas into</h1>
+         <h1 class="title">TRANSFORMING YOUR IDEAS</h1>
          <!-- <br> -->
-         <h1 class="shuffle">tangible reality</h1>
+         <h1 class="shuffle">INTO UNIQUE WEBSITES</h1>
+      </div>
+
+      <div class="down__container">
+         <a href="#content" class="go__down">Check us out</a>
       </div>
 
       <!-- <div class="pics__container">
          <div class="picture"></div>
       </div> -->
+   </div>
+
+
+   <div class="content__page" id="content">
+      <h1 id="subtitle">Hello World!</h1>
    </div>
 
    <script>
