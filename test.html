@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Qubit</title>
+
+   <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,0,0" />
+
+   <style>
+      /* SWITCH BETWEEN DARK AND LIGHT MODE */
+      /* html {
+         mix-blend-mode: difference;
+      } */
+
+      * {
+         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+         /* font-family: fantasy; */
+         scroll-behavior: smooth;
+         box-sizing: border-box;
+         /* text-align: center; */
+         font-weight: 500;
+         line-height: 1;
+         padding: 0;
+         margin: 0;
+
+         -webkit-font-smoothing: antialiased;
+
+         user-select: none;
+      }
+
+      *::-webkit-scrollbar {
+         display: none;
+      }
+
+      body {
+         background-color: black;
+         color: white;
+      }
+
+      a {
+         text-decoration: none;
+         color: white;
+      }
+
+      .header {
+         text-align: center;
+         z-index: 999;
+         background-color: rgba(0, 0, 0, .6);
+         backdrop-filter: blur(1rem);
+         /* background-color: black; */
+         position: fixed;
+         width: 100vw;
+         left: 0;
+         top: 0;
+      }
+
+      .header__wrapper {
+         padding: 1rem;
+         width: 80%;
+         margin: 0 auto;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+      }
+
+      .header__left {
+         display: flex;
+         gap: 8rem;
+         align-items: center;
+      }
+
+      .header__logo {
+         font-size: 2rem;
+      }
+
+      .header__container {
+         display: flex;
+         align-items: center;
+         gap: 2rem;
+      }
+
+      .header__right {
+         display: flex;
+         align-items: center;
+      }
+
+      .header__link {
+         padding: .5rem;
+         transition: .25s;
+      }
+
+      .header__link:hover {
+         text-decoration: underline;
+      }
+
+      .header__button {
+         padding: .5rem 1rem;
+         background-color: white;
+         border-radius: 1rem;
+         transition: .25s;
+         color: black;
+      }
+
+      .header__button:hover {
+         box-shadow: 0 -5rem 5rem 2rem rgba(255, 255, 255, 0.5);
+      }
+
+      /* .header__menu {
+         display: none;
+      } */
+
+      /* .icon {
+         display: flex;
+         align-items: center;
+         font-size: 2rem;
+      } */
+
+      /* .header__list {
+         z-index: 998;
+         background-color: black;
+         display: flex;
+         position: fixed;
+         top: 4rem;
+         left: 0;
+         flex-direction: column;
+         gap: 2rem;
+         font-size: 2rem;
+         padding: 2rem;
+         width: 100vw;
+         height: calc(100vh - 4rem);
+
+         transition: .25s;
+      } */
+
+      /* .hidden {
+         transform: translateX(calc(-100%));
+      } */
+
+      /* @media screen and (max-width: 1079px) {
+         .header__wrapper {
+            width: 100%;
+         }
+
+         .header__container,
+         .header__right {
+            display: none;
+         }
+
+         .header__menu {
+            display: block;
+         }
+      }
+
+      @media screen and (min-width: 1080px) {
+         .header__list {
+            display: none;
+         }
+      } */
+
+      .error__screen {
+         position: fixed;
+         top: 0;
+         left: 0;
+
+         width: 100vw;
+         height: 100vh;
+         background-color: black;
+         color: #f66;
+         padding: 1rem;
+
+         z-index: 9999;
+         display: none;
+
+         font-size: 2rem;
+         /* line-height: 5rem; */
+      }
+
+      @media screen and (max-width: 1079px) {
+         .error__screen {
+            display: block;
+         }
+      }
+
+      .landing__page {
+         /* width: 85%;
+         margin: 0 auto;
+         height: 100vh;
+         padding: 8rem 0 4rem; */
+         height: 100vh;
+         padding: 16rem 8rem 8rem;
+
+         /* display: flex;
+         flex-direction: column;
+         justify-content: space-between; */
+
+         display: flex;
+         flex-direction: column;
+
+         /* justify-content: space-between; */
+
+         /* align-items: center; */
+
+
+         /* margin-top: auto; */
+         /* padding: 8rem 4rem 4rem; */
+
+         /* min-height: fit-content; */
+
+         /* text-align: left; */
+      }
+
+      .down__container {
+         margin-top: 8rem;
+
+
+
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         /* text-align: center; */
+      }
+
+      .go__down {
+         /* position: absolute;
+         left: 50%;
+         transform: translateX(-50%); */
+         /* top: 4rem; */
+
+         transition: .25s;
+
+
+         padding: 1rem 2rem;
+         font-size: 2rem;
+
+         border: 2px solid white;
+         border-radius: 4rem;
+      }
+
+      .go__down:hover {
+         /* transform: translateY(-1rem); */
+         background-color: white;
+         color: black;
+         transform: translateY(1rem);
+         box-shadow: 0 0 5rem 2rem rgba(255, 255, 255, 0.25);
+
+
+         /* text-indent: 100%;
+         white-space: nowrap;
+         overflow: hidden; */
+
+         /* text */
+         /* width: 0%; */
+      }
+
+      .text__container {
+         margin-top: auto;
+      }
+
+      .content__page {
+
+         width: 85%;
+         margin: 0 auto;
+         min-height: fit-content;
+         /* height: 100vh; */
+         /* padding: 0 0 4rem; */
+         padding: 8rem 0;
+      }
+
+      /* .text__container {
+         display: flex;
+         flex-direction: column;
+      } */
+
+      /* .text__container {
+         margin-left: 2rem;
+      } */
+
+      /* .pics__container {
+         margin-top: 4rem;
+      }
+
+      .picture {
+         width: 100%;
+         aspect-ratio: 16/9;
+         background-color: #222;
+
+         border-radius: 1rem;
+      } */
+
+      .title,
+      .shuffle {
+         font-size: 7.5rem;
+         /* font-size: 7.5rem; */
+         /* letter-spacing: .25rem; */
+         font-family: fantasy;
+      }
+
+      /* .shuffle {
+         display: flex;
+      } */
+
+      /* .first__element {
+         padding-top: 8rem;
+         display: flex;
+         flex-direction: column;
+         gap: 1rem;
+      } */
+
+      .center {
+         text-align: center;
+         width: 60%;
+      }
+
+      .subtitle {
+         margin-bottom: 2rem;
+         font-size: 4rem;
+      }
+
+      .sub__content {
+         font-size: 2rem;
+         line-height: 1.25;
+
+         margin-bottom: 12rem;
+      }
+
+      .projects__header {
+         font-size: 4rem;
+      }
+
+      .center {
+         padding-bottom: 2rem;
+      }
+
+      /* .two__top {
+         padding-top: 2rem;
+      } */
+
+      .reel {
+         width: 100%;
+         /* height: 10rem; */
+         aspect-ratio: 2/1;
+         background-color: #222;
+      }
+
+      /* .next__button {
+         position: absolute;
+         bottom: 2rem;
+         right: 2rem;
+      } */
+
+      .contact__title {
+         font-size: 4rem;
+      }
+
+      .info {
+         font-size: 2rem;
+         color: #777;
+      }
+   </style>
+</head>
+
+<body>
+   <div class="error__screen">
+      <p class="error__message">
+         Please view this website on a desktop for the best experience. (Responsiveness not added yet, will come soon)
+      </p>
+   </div>
+   <!-- <div class="header__list hidden">
+      <a href="#" class="">About</a>
+      <a href="#" class="">Projects</a>
+      <a href="#" class="">Testimonials</a>
+      <a href="" class="">Contact us</a>
+   </div> -->
+
+   <div class="header">
+      <div class="header__wrapper">
+         <div class="header__left">
+            <a href="" class="header__logo">Qubit</a>
+            <div class="header__container">
+               <a href="#" class="header__link">About</a>
+               <a href="#" class="header__link">Projects</a>
+               <a href="#" class="header__link">Testimonials</a>
+            </div>
+         </div>
+         <div class="header__right">
+            <a href="" class="header__button">Contact us</a>
+         </div>
+         <!-- <div class="header__menu">
+            <span class="material-symbols-rounded icon" onclick="toggleMenu()">menu</span>
+         </div> -->
+      </div>
+   </div>
+
+   <div class="landing__page" id="landing">
+      
+
+
+
+      <div class="text__container">
+         <h1 class="title">TRANSFORMING YOUR IDEAS</h1>
+         <!-- <br> -->
+         <h1 class="shuffle">INTO UNIQUE WEBSITES</h1>
+      </div>
+
+      <div class="down__container">
+         <a href="#content" class="go__down">Check us out</a>
+      </div>
+
+      <!-- <div class="pics__container">
+         <div class="picture"></div>
+      </div> -->
+   </div>
+
+
+   <div class="content__page center" id="content">
+      <h1 class="subtitle">About us..</h1>
+      <p class="sub__content">we are a Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, fugit. Temporibus iste error perspiciatis! Numquam necessitatibus nisi illo, facilis minus eaque id esse sequi eveniet aut architecto dicta ipsum asperiores!</p>
+      <h1 class="projects__header">Here is some of our works</h1>
+   </div>
+
+   <div class="reel">
+      <!-- <div class="next__button">Next Project</div> -->
+   </div>
+
+   <!-- <div class="content__page two__top" id=""> -->
+   <div class="content__page" id="">
+      <!-- <h1 id="subtitle">Hello World!</h1> -->
+      <!-- Hello World -->
+      <h1 class="contact__title">Contact us</h1>
+      <br><br>
+      <h2 class="info">placeholder@gmail.com</h2>
+      <br>
+      <h2 class="info">+1(470) 123-4567</h2>
+   </div>
+
+   <script>
+      function toggleMenu() {
+         document.querySelector('.header__list').classList.toggle('hidden');
+         // document.querySelector('.header').classList.toggle('opaque');
+      }
+
+      // window.onresize = () => {
+      //    if (window.innerWidth >= 500) document.querySelector('.header').classList.toggle('opaque');
+      // }
+   </script>
+</body>
+
+</html>

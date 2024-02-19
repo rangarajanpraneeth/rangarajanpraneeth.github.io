@@ -1,36 +1,22 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Qubit</title>
-
-   <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,0,0" />
+   <title>Document</title>
 
    <style>
-      /* SWITCH BETWEEN DARK AND LIGHT MODE */
-      /* html {
-         mix-blend-mode: difference;
-      } */
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
       * {
-         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
-         /* font-family: fantasy; */
-         scroll-behavior: smooth;
+         font-family: "Playfair Display", serif;
+         -webkit-font-smoothing: antialiased;
          box-sizing: border-box;
-         /* text-align: center; */
-         font-weight: 500;
+         user-select: none;
          line-height: 1;
          padding: 0;
          margin: 0;
-
-         -webkit-font-smoothing: antialiased;
-
-         user-select: none;
       }
 
       *::-webkit-scrollbar {
@@ -47,406 +33,147 @@
          color: white;
       }
 
-      .header {
+      .logo {
+         font-size: 3rem;
+         position: fixed;
+         top: 1rem;
+         left: 2rem;
+         z-index: 999;
+      }
+
+      .menu {
+         font-size: 3rem;
+         position: fixed;
+         top: 1rem;
+         right: 2rem;
+         z-index: 999;
+      }
+
+      .title {
+         position: absolute;
+         top: 40%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         font-size: 4rem;
          text-align: center;
          z-index: 999;
-         background-color: rgba(0, 0, 0, .6);
-         backdrop-filter: blur(1rem);
-         /* background-color: black; */
-         position: fixed;
-         width: 100vw;
-         left: 0;
-         top: 0;
       }
 
-      .header__wrapper {
-         padding: 1rem;
-         width: 80%;
-         margin: 0 auto;
-         display: flex;
-         justify-content: space-between;
-         align-items: center;
-      }
-
-      .header__left {
-         display: flex;
-         gap: 8rem;
-         align-items: center;
-      }
-
-      .header__logo {
-         font-size: 2rem;
-      }
-
-      .header__container {
-         display: flex;
-         align-items: center;
-         gap: 2rem;
-      }
-
-      .header__right {
-         display: flex;
-         align-items: center;
-      }
-
-      .header__link {
-         padding: .5rem;
-         transition: .25s;
-      }
-
-      .header__link:hover {
-         text-decoration: underline;
-      }
-
-      .header__button {
-         padding: .5rem 1rem;
-         background-color: white;
-         border-radius: 1rem;
-         transition: .25s;
-         color: black;
-      }
-
-      .header__button:hover {
-         box-shadow: 0 -5rem 5rem 2rem rgba(255, 255, 255, 0.5);
-      }
-
-      /* .header__menu {
-         display: none;
-      } */
-
-      /* .icon {
-         display: flex;
-         align-items: center;
-         font-size: 2rem;
-      } */
-
-      /* .header__list {
-         z-index: 998;
-         background-color: black;
-         display: flex;
-         position: fixed;
-         top: 4rem;
-         left: 0;
-         flex-direction: column;
-         gap: 2rem;
-         font-size: 2rem;
-         padding: 2rem;
-         width: 100vw;
-         height: calc(100vh - 4rem);
-
-         transition: .25s;
-      } */
-
-      /* .hidden {
-         transform: translateX(calc(-100%));
-      } */
-
-      /* @media screen and (max-width: 1079px) {
-         .header__wrapper {
-            width: 100%;
-         }
-
-         .header__container,
-         .header__right {
-            display: none;
-         }
-
-         .header__menu {
-            display: block;
-         }
-      }
-
-      @media screen and (min-width: 1080px) {
-         .header__list {
-            display: none;
-         }
-      } */
-
-      .error__screen {
-         position: fixed;
-         top: 0;
-         left: 0;
-
-         width: 100vw;
-         height: 100vh;
-         background-color: black;
-         color: #f66;
-         padding: 1rem;
-
-         z-index: 9999;
-         display: none;
-
-         font-size: 2rem;
-         /* line-height: 5rem; */
-      }
-
-      @media screen and (max-width: 1079px) {
-         .error__screen {
-            display: block;
-         }
-      }
-
-      .landing__page {
-         /* width: 85%;
-         margin: 0 auto;
-         height: 100vh;
-         padding: 8rem 0 4rem; */
-         height: 100vh;
-         padding: 16rem 8rem 8rem;
-
-         /* display: flex;
-         flex-direction: column;
-         justify-content: space-between; */
-
-         display: flex;
-         flex-direction: column;
-
-         /* justify-content: space-between; */
-
-         /* align-items: center; */
-
-
-         /* margin-top: auto; */
-         /* padding: 8rem 4rem 4rem; */
-
-         /* min-height: fit-content; */
-
-         /* text-align: left; */
-      }
-
-      .down__container {
-         margin-top: 8rem;
-
-
-
-         display: flex;
-         flex-direction: column;
-         align-items: center;
-         /* text-align: center; */
-      }
-
-      .go__down {
-         /* position: absolute;
+      .button {
+         position: absolute;
+         top: 60%;
          left: 50%;
-         transform: translateX(-50%); */
-         /* top: 4rem; */
-
-         transition: .25s;
-
-
+         transform: translate(-50%, -50%);
          padding: 1rem 2rem;
          font-size: 2rem;
-
-         border: 2px solid white;
-         border-radius: 4rem;
+         border: 1px solid rgba(255, 255, 255, .25);
+         background-color: rgba(255, 255, 255, .15);
+         backdrop-filter: blur(1rem);
+         border-radius: 2rem;
+         transition: .25s;
+         z-index: 999;
       }
 
-      .go__down:hover {
-         /* transform: translateY(-1rem); */
-         background-color: white;
-         color: black;
-         transform: translateY(1rem);
-         box-shadow: 0 0 5rem 2rem rgba(255, 255, 255, 0.25);
-
-
-         /* text-indent: 100%;
-         white-space: nowrap;
-         overflow: hidden; */
-
-         /* text */
-         /* width: 0%; */
+      .button:hover {
+         box-shadow: 0 0 4rem 2rem rgba(255, 255, 255, .15);
       }
 
-      .text__container {
-         margin-top: auto;
+      .gallery {
+         height: 100vh;
+         width: 100vw;
+      }
+
+      .item {
+         position: absolute;
+         width: 32rem;
+         aspect-ratio: 2/1;
+      }
+
+      img {
+         height: 100%;
+         width: 100%;
+         object-fit: cover;
+         opacity: .25;
+         transition: .25s;
+      }
+
+      img:hover {
+         opacity: .5;
+         box-shadow: 0 0 4rem 2rem rgba(255, 255, 255, .25);
+         backdrop-filter: hue-rotate(90deg);
       }
 
       .content__page {
-
-         width: 85%;
-         margin: 0 auto;
-         min-height: fit-content;
-         /* height: 100vh; */
-         /* padding: 0 0 4rem; */
-         padding: 8rem 0;
-      }
-
-      /* .text__container {
-         display: flex;
-         flex-direction: column;
-      } */
-
-      /* .text__container {
-         margin-left: 2rem;
-      } */
-
-      /* .pics__container {
-         margin-top: 4rem;
-      }
-
-      .picture {
-         width: 100%;
-         aspect-ratio: 16/9;
-         background-color: #222;
-
-         border-radius: 1rem;
-      } */
-
-      .title,
-      .shuffle {
-         font-size: 7.5rem;
-         /* font-size: 7.5rem; */
-         /* letter-spacing: .25rem; */
-         font-family: fantasy;
-      }
-
-      /* .shuffle {
-         display: flex;
-      } */
-
-      /* .first__element {
-         padding-top: 8rem;
-         display: flex;
-         flex-direction: column;
-         gap: 1rem;
-      } */
-
-      .center {
-         text-align: center;
-         width: 60%;
-      }
-
-      .subtitle {
-         margin-bottom: 2rem;
-         font-size: 4rem;
-      }
-
-      .sub__content {
-         font-size: 2rem;
-         line-height: 1.25;
-
-         margin-bottom: 12rem;
-      }
-
-      .projects__header {
-         font-size: 4rem;
-      }
-
-      .center {
-         padding-bottom: 2rem;
-      }
-
-      /* .two__top {
-         padding-top: 2rem;
-      } */
-
-      .reel {
-         width: 100%;
-         /* height: 10rem; */
-         aspect-ratio: 2/1;
-         background-color: #222;
-      }
-
-      /* .next__button {
-         position: absolute;
-         bottom: 2rem;
-         right: 2rem;
-      } */
-
-      .contact__title {
-         font-size: 4rem;
-      }
-
-      .info {
-         font-size: 2rem;
-         color: #777;
+         height: 100vh;
+         width: 100vw;
       }
    </style>
 </head>
 
 <body>
-   <div class="error__screen">
-      <p class="error__message">
-         Please view this website on a desktop for the best experience. (Responsiveness not added yet, will come soon)
-      </p>
-   </div>
-   <!-- <div class="header__list hidden">
-      <a href="#" class="">About</a>
-      <a href="#" class="">Projects</a>
-      <a href="#" class="">Testimonials</a>
-      <a href="" class="">Contact us</a>
-   </div> -->
+   <span class="logo">Qubit</span>
+   <span class="menu">Menu</span>
 
-   <div class="header">
-      <div class="header__wrapper">
-         <div class="header__left">
-            <a href="" class="header__logo">Qubit</a>
-            <div class="header__container">
-               <a href="#" class="header__link">About</a>
-               <a href="#" class="header__link">Projects</a>
-               <a href="#" class="header__link">Testimonials</a>
-            </div>
-         </div>
-         <div class="header__right">
-            <a href="" class="header__button">Contact us</a>
-         </div>
-         <!-- <div class="header__menu">
-            <span class="material-symbols-rounded icon" onclick="toggleMenu()">menu</span>
-         </div> -->
-      </div>
+   <span class="title">Transforming your ideas<br>into unique websites.</span>
+   <a href="" class="button">CONTACT US</a>
+
+   <div class="gallery"></div>
+
+   <div class="content__page">
    </div>
 
-   <div class="landing__page" id="landing">
-      
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+   <script defer>
+      const items = [
+         { img: 'https://i.pinimg.com/474x/de/73/af/de73aff550fbb1673bd2e09503b0a6bd.jpg', speed: .05 },
+         { img: 'https://images.pexels.com/photos/414659/pexels-photo-414659.jpeg?cs=srgb&dl=pexels-pixabay-414659.jpg&fm=jpg', speed: .075 },
+         { img: 'https://i.pinimg.com/1200x/c3/1d/ac/c31dacf64ac2bcadec06203934cbee8b.jpg', speed: .05 },
+         { img: 'https://images.pexels.com/photos/52500/horse-herd-fog-nature-52500.jpeg?cs=srgb&dl=pexels-pixabay-52500.jpg&fm=jpg', speed: .075 },
+         { img: 'https://images.unsplash.com/photo-1521489871110-81dc5a61dbda?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', speed: .1 },
+         { img: 'https://onlinejpgtools.com/images/examples-onlinejpgtools/snowy-mountain-gray-srgb.jpg', speed: .075 },
+         { img: 'https://blogdowallpaper.files.wordpress.com/2008/07/gray-nyc.jpg', speed: .05 },
+         { img: 'https://pikwizard.com/pw/small/4bfac36677c4186f18e35a3b424dcf84.jpg', speed: .075 },
+         { img: 'https://pikwizard.com/pw/small/7cdbfbe71c5fdb3031612bae5acf1b7c.jpg', speed: .05 }
+      ]
 
+      const gallery = document.querySelector('.gallery');
 
+      const itemPositions = [
+         { top: '0%', left: '0%' },
+         { top: '0%', left: 'calc(50% - 16rem)' },
+         { top: '0%', left: 'calc(100% - 32rem)' },
+         { top: 'calc(50% - 8rem)', left: '0%' },
+         { top: 'calc(50% - 8rem)', left: 'calc(50% - 16rem)' },
+         { top: 'calc(50% - 8rem)', left: 'calc(100% - 32rem)' },
+         { top: 'calc(100% - 16rem)', left: '0%' },
+         { top: 'calc(100% - 16rem)', left: 'calc(50% - 16rem)' },
+         { top: 'calc(100% - 16rem)', left: 'calc(100% - 32rem)' },
+      ]
 
-      <div class="text__container">
-         <h1 class="title">TRANSFORMING YOUR IDEAS</h1>
-         <!-- <br> -->
-         <h1 class="shuffle">INTO UNIQUE WEBSITES</h1>
-      </div>
+      items.forEach((itemData, index) => {
+         const item = document.createElement('div');
+         item.classList.add('item');
 
-      <div class="down__container">
-         <a href="#content" class="go__down">Check us out</a>
-      </div>
+         const position = itemPositions[index];
+         item.style.top = position.top;
+         item.style.left = position.left;
 
-      <!-- <div class="pics__container">
-         <div class="picture"></div>
-      </div> -->
-   </div>
+         const img = document.createElement('img');
+         img.src = itemData.img;
+         item.appendChild(img);
 
+         gallery.appendChild(item);
+      });
 
-   <div class="content__page center" id="content">
-      <h1 class="subtitle">About us..</h1>
-      <p class="sub__content">we are a Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, fugit. Temporibus iste error perspiciatis! Numquam necessitatibus nisi illo, facilis minus eaque id esse sequi eveniet aut architecto dicta ipsum asperiores!</p>
-      <h1 class="projects__header">Here is some of our works</h1>
-   </div>
+      document.addEventListener('mousemove', (e) => {
+         gallery.querySelectorAll('.item').forEach((item, index) => {
+            const animationFactor = items[index].speed;
+            const deltaX = (e.clientX - window.innerWidth / 2) * animationFactor;
+            const deltaY = (e.clientY - window.innerHeight / 2) * animationFactor;
 
-   <div class="reel">
-      <!-- <div class="next__button">Next Project</div> -->
-   </div>
-
-   <!-- <div class="content__page two__top" id=""> -->
-   <div class="content__page" id="">
-      <!-- <h1 id="subtitle">Hello World!</h1> -->
-      <!-- Hello World -->
-      <h1 class="contact__title">Contact us</h1>
-      <br><br>
-      <h2 class="info">placeholder@gmail.com</h2>
-      <br>
-      <h2 class="info">+1(470) 123-4567</h2>
-   </div>
-
-   <script>
-      function toggleMenu() {
-         document.querySelector('.header__list').classList.toggle('hidden');
-         // document.querySelector('.header').classList.toggle('opaque');
-      }
-
-      // window.onresize = () => {
-      //    if (window.innerWidth >= 500) document.querySelector('.header').classList.toggle('opaque');
-      // }
+            gsap.to(item, { x: deltaX, y: deltaY, duration: .75 });
+         });
+      });
    </script>
 </body>
 
