@@ -265,10 +265,10 @@
 
          width: 85%;
          margin: 0 auto;
-         /* min-height: fit-content; */
-         height: 100vh;
+         min-height: fit-content;
+         /* height: 100vh; */
          /* padding: 0 0 4rem; */
-         padding: 8rem 0 4rem;
+         padding: 8rem 0;
       }
 
       /* .text__container {
@@ -310,6 +310,42 @@
          flex-direction: column;
          gap: 1rem;
       } */
+
+      .center {
+         text-align: center;
+         width: 60%;
+      }
+
+      .subtitle {
+         margin-bottom: 2rem;
+         font-size: 4rem;
+      }
+
+      .sub__content {
+         font-size: 2rem;
+         line-height: 1.25;
+
+         margin-bottom: 12rem;
+      }
+
+      .projects__header {
+         font-size: 4rem;
+      }
+
+      .center {
+         padding-bottom: 2rem;
+      }
+
+      /* .two__top {
+         padding-top: 2rem;
+      } */
+
+      .reel {
+         width: 100%;
+         /* height: 10rem; */
+         aspect-ratio: 2/1;
+         background-color: #222;
+      }
    </style>
 </head>
 
@@ -366,8 +402,18 @@
    </div>
 
 
-   <div class="content__page" id="content">
-      <h1 id="subtitle">Hello World!</h1>
+   <div class="content__page center" id="content">
+      <h1 class="subtitle">About us..</h1>
+      <p class="sub__content">we are a Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, fugit. Temporibus iste error perspiciatis! Numquam necessitatibus nisi illo, facilis minus eaque id esse sequi eveniet aut architecto dicta ipsum asperiores!</p>
+      <h1 class="projects__header">Here is some of our works</h1>
+   </div>
+
+   <div class="reel"></div>
+
+   <!-- <div class="content__page two__top" id=""> -->
+      <div class="content__page" id="">
+      <!-- <h1 id="subtitle">Hello World!</h1> -->
+      Hello World
    </div>
 
    <script>
