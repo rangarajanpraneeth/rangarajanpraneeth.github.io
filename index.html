@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+
+   <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+      * {
+         font-family: "Playfair Display", serif;
+         -webkit-font-smoothing: antialiased;
+         box-sizing: border-box;
+         user-select: none;
+         cursor: crosshair;
+         line-height: 1;
+         padding: 0;
+         margin: 0;
+      }
+
+      *::-webkit-scrollbar {
+         display: none;
+      }
+
+      body {
+         background-color: black;
+         color: white;
+      }
+
+      a {
+         text-decoration: none;
+         color: white;
+      }
+
+      .logo {
+         font-size: 3rem;
+         position: fixed;
+         top: 1rem;
+         left: 2rem;
+
+         z-index: 1;
+      }
+
+      .menu {
+         font-size: 3rem;
+         position: fixed;
+         top: 1rem;
+         right: 2rem;
+
+         z-index: 1;
+      }
+
+      .title {
+         position: absolute;
+         top: 40%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         font-size: 4rem;
+         text-align: center;
+
+         z-index: 1;
+      }
+
+      .button {
+         position: absolute;
+         top: 60%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         padding: 1rem 2rem;
+         font-size: 2rem;
+         border: 1px solid rgba(255, 255, 255, .25);
+         background-color: rgba(255, 255, 255, .15);
+         backdrop-filter: blur(1rem);
+         border-radius: 2rem;
+         transition: .25s;
+
+         z-index: 1;
+      }
+
+      .button:hover {
+         border: 1px solid rgba(255, 255, 255, .35);
+         background-color: rgba(255, 255, 255, .25);
+         box-shadow: 0 0 4rem 2rem rgba(255, 255, 255, .15);
+      }
+
+      .landing__page {
+         height: 100vh;
+         width: 100vw;
+         overflow-y: hidden;
+      }
+
+      .item {
+         position: absolute;
+         width: 32rem;
+         aspect-ratio: 2/1;
+      }
+
+      img {
+         height: 100%;
+         width: 100%;
+         object-fit: cover;
+         opacity: .25;
+         transition: .25s;
+
+         filter: grayscale();
+      }
+
+      img:hover {
+         opacity: .5;
+         filter: none;
+      }
+
+      .content__page {
+         position: absolute;
+         height: 100vh;
+         width: 100vw;
+
+         background-color: black;
+      }
+   </style>
+</head>
+
+<body>
+   <span class="logo">Qubit</span>
+   <span class="menu" onclick="toggleMenu()">Menu</span>
+
+   <span class="title">Transforming your ideas<br>into unique websites.</span>
+   <a href="" class="button">CONTACT US</a>
+
+   <div class="landing__page">
+   </div>
+
+   <div class="content__page">
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+   <script defer>
+      // function toggleMenu() {
+      //    document.querySelector('.navigation').classList.toggle('show');
+      // }
+
+      const items = [
+         { img: 'https://wallpapercave.com/wp/wp5834973.jpg', speed: .05 },
+         { img: 'https://i.pinimg.com/originals/4f/52/37/4f523760a254fc7f0ef3f8038d1546d5.jpg', speed: .075 },
+         { img: 'https://4kwallpapers.com/images/wallpapers/mountain-range-sunset-purple-sky-foggy-clouds-landscape-2880x1800-4131.jpg', speed: .05 },
+         { img: 'https://wallpapers.com/images/hd/natural-mountain-pink-aesthetic-sky-f0izwp519niix06u.jpg', speed: .075 },
+         { img: 'https://cdn.pixabay.com/photo/2019/03/28/10/19/sunset-4086848_960_720.jpg', speed: .1 },
+         { img: 'https://images.pexels.com/photos/933054/pexels-photo-933054.jpeg?cs=srgb&dl=pexels-joyston-judah-933054.jpg&fm=jpg', speed: .075 },
+         { img: 'https://i.pinimg.com/564x/de/ae/68/deae68529e294c158ef6b98a9a6fb4e8.jpg', speed: .05 },
+         { img: 'https://i.redd.it/meqzlce4wjy91.jpg', speed: .075 },
+         { img: 'https://i.pinimg.com/originals/fd/5f/f9/fd5ff9655b9b8c1fc3b651812b95af02.jpg', speed: .05 }
+      ]
+
+      const gallery = document.querySelector('.landing__page');
+
+      const itemPositions = [
+         { top: '0%', left: '0%' },
+         { top: '0%', left: 'calc(50% - 16rem)' },
+         { top: '0%', left: 'calc(100% - 32rem)' },
+         { top: 'calc(50% - 8rem)', left: '0%' },
+         { top: 'calc(50% - 8rem)', left: 'calc(50% - 16rem)' },
+         { top: 'calc(50% - 8rem)', left: 'calc(100% - 32rem)' },
+         { top: 'calc(100% - 16rem)', left: '0%' },
+         { top: 'calc(100% - 16rem)', left: 'calc(50% - 16rem)' },
+         { top: 'calc(100% - 16rem)', left: 'calc(100% - 32rem)' },
+      ]
+
+      items.forEach((itemData, index) => {
+         const item = document.createElement('div');
+         item.classList.add('item');
+
+         const position = itemPositions[index];
+         item.style.top = position.top;
+         item.style.left = position.left;
+
+         const img = document.createElement('img');
+         img.classList.add(`i${index}`);
+         img.src = itemData.img;
+         item.appendChild(img);
+
+         gallery.appendChild(item);
+      });
+
+      document.addEventListener('mousemove', (e) => {
+         gallery.querySelectorAll('.item').forEach((item, index) => {
+            const animationFactor = items[index].speed;
+            const deltaX = (e.clientX - window.innerWidth / 2) * animationFactor;
+            const deltaY = (e.clientY - window.innerHeight / 2) * animationFactor;
+
+            gsap.to(item, { x: deltaX, y: deltaY, duration: .75 });
+         });
+      });
+   </script>
+</body>
+
+</html>
