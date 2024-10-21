@@ -47,6 +47,15 @@
 
       /* LENIS BOILERPLATE END */
 
+      :root {
+         --theme: #a9f;
+      }
+
+      ::selection {
+         background-color: var(--theme);
+         color: white;
+      }
+
       a {
          text-decoration: none;
          color: white;
@@ -55,6 +64,16 @@
       body {
          background-color: black;
          color: white;
+      }
+
+      .scrollbar {
+         z-index: 999;
+         background-color: var(--theme);
+         height: .25rem;
+         width: 0%;
+         position: fixed;
+         top: 0;
+         left: 0;
       }
 
       section {
@@ -75,8 +94,8 @@
       } */
 
       .contact__button {
-         padding: 1rem;
-         font-size: 1.5rem;
+         padding: 1rem 2rem;
+         font-size: 1rem;
          border: 1px solid white;
          position: absolute;
          bottom: 3rem;
@@ -87,10 +106,17 @@
          height: 100vh;
          width: 100vw;
       }
+
+      .contact {
+         height: 100vh;
+         width: 100vw;
+      }
    </style>
 </head>
 
 <body>
+   <div class="scrollbar"></div>
+
    <section>
       <div class="landing">
          <div class="title__section">
@@ -110,6 +136,8 @@
       </div>
 
       <div class="content"></div>
+
+      <div class="contact"></div>
    </section>
 
    <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
@@ -120,6 +148,12 @@
    <script>
       const lenis = new Lenis();
       requestAnimationFrame(function raf(t) { lenis.raf(t); requestAnimationFrame(raf); });
+
+      let height = document.body.scrollHeight - window.innerHeight;
+      window.addEventListener('scroll', () => {
+         let scroll = window.scrollY;
+         document.querySelector('.scrollbar').style.width = `${scroll / height * 100}%`
+      })
    </script>
 </body>
 
