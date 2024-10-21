@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+
+   <style>
+      * {
+         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+         box-sizing: border-box;
+         user-select: none;
+         font-weight: 500;
+         font-size: 1rem;
+         line-height: 1;
+         padding: 0;
+         margin: 0;
+      }
+
+      *::-webkit-scrollbar {
+         display: none;
+      }
+
+      body {
+         background-color: black;
+         color: white;
+      }
+
+      a {
+         text-decoration: none;
+         color: white;
+      }
+
+      .overlay {
+         width: 100vw;
+         height: 100vh;
+      }
+
+      .block {
+         position: fixed;
+         width: 5%;
+         transform-origin: right;
+         height: 100vh;
+         background-color: black;
+      }
+   </style>
+</head>
+<body>
+   <div class="landing__reveal">
+      <div class="overlay">
+      </div>
+   </div>
+   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+   <script>
+      let overlay = document.querySelector('.overlay');
+      for (let i = 0; i < 20; i++) {
+         let block = document.createElement('div');
+         block.style.right = `${i * 5}%`;
+         block.classList.add('block');
+         overlay.appendChild(block);
+      }
+
+      gsap.to('.block', 1, {
+         width: '0%',
+         // opacity: 0,
+         ease: 'power4.in',
+         delay: 0,
+         duration: 1,
+         stagger: -.05
+      });
+   </script>
+</body>
+</html>

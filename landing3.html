@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+
+   <style>
+      * {
+         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+         box-sizing: border-box;
+         user-select: none;
+         font-weight: 500;
+         font-size: 1rem;
+         line-height: 1;
+         padding: 0;
+         margin: 0;
+      }
+
+      *::-webkit-scrollbar {
+         display: none;
+      }
+
+      body {
+         background-color: black;
+         color: white;
+      }
+
+      img {
+         width: 100%;
+      }
+
+      section {
+         width: 100%;
+         /* min-height: 600px; */
+         display: flex;
+         justify-content: center;
+         padding: 8rem 2rem;
+         /* justify-content: flex-end; */
+      }
+
+      .container {
+         width: 50%;
+      }
+
+      .minimap__container {
+         position: fixed;
+         top: 2rem;
+         left: 2rem;
+         min-width: 1rem;
+         z-index: 99;
+      }
+
+      .minimap {
+         position: relative;
+         z-index: 9;
+      }
+
+      .minimap__window {
+         width: 100%;
+         position: absolute;
+         top: 0;
+         left: 0;
+         transform-origin: 0 0;
+         z-index: 99;
+         border: 1px solid white;
+      }
+
+      .minimap__content {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         z-index: -1;
+         transform-origin: 0 0;
+         border: none;
+      }
+
+      .large {
+         font-size: 2rem;
+      }
+
+      .medium {
+         font-size: 1.5rem;
+         color: #aaa;
+      }
+
+      img {
+         width: 100%;
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+/* .minimap__container {
+   z-index: 99;
+   min-width: 1rem;
+   position: fixed;
+   top: 2rem;
+   left: 2rem;
+}
+
+.minimap {
+   z-index: 9;
+   position: relative;
+}
+
+.minimap__window {
+   z-index: 99;
+   border: 1px solid white;
+   width: 100%;
+   position: absolute;
+   top: 0;
+   left: 0;
+   transform-origin: 0 0;
+}
+
+.minimap__content {
+   border: none;
+   height: 100%;
+   width: 100%;
+   position: absolute;
+   top: 0;
+   left: 0;
+   transform-origin: 0 0;
+} */
+   </style>
+</head>
+
+<body>
+   <section>
+      <div class="container">
+      </div>
+   </section>
+
+
+
+
+   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+
+   <script>
+      class Minimap {
+         constructor() {
+            this.minimapContainer = document.createElement('div');
+            this.minimap = document.createElement('div');
+            this.minimapWindow = document.createElement('div');
+            this.minimapContent = document.createElement('iframe');
+
+            this.scale = .1;
+            this.realScale = null;
+
+            this.initialize();
+            this.render();
+            this.addEventListeners();
+         }
+
+         initialize() {
+            this.minimapContainer.className = 'minimap__container';
+            this.minimap.className = 'minimap';
+            this.minimapWindow.className = 'minimap__window';
+            this.minimapContent.className = 'minimap__content';
+
+            this.minimapContainer.append(this.minimap);
+            this.minimapContainer.append(this.minimapWindow);
+            this.minimapContainer.append(this.minimapContent);
+
+            document.body.appendChild(this.minimapContainer);
+         }
+
+         render() {
+            const html = document.documentElement.outerHTML.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+
+            const iframeDocument = this.minimapContent.contentWindow.document;
+
+            iframeDocument.open();
+            iframeDocument.write(html);
+            iframeDocument.close();
+         }
+
+         handleResize() {
+            const clientWidth = document.body.clientWidth;
+            const clientRatio = document.body.clientHeight / clientWidth;
+            const windowRatio = window.innerHeight / window.innerWidth;
+
+            this.minimapContainer.style.width = '15%';
+            this.realScale = this.minimapContainer.clientWidth / clientWidth;
+
+            this.minimap.style.paddingTop = `${clientRatio * 100}%`;
+            this.minimapWindow.style.paddingTop = `${windowRatio * 100}%`;
+
+            this.minimapContent.style.transform = `scale(${this.realScale})`;
+            this.minimapContent.style.width = `${100 / this.realScale}%`;
+            this.minimapContent.style.height = `${100 / this.realScale}%`;
+         }
+
+         handleScroll() {
+            this.minimapWindow.style.transform = `translateY(${window.scrollY * this.realScale}px)`;
+         }
+
+         addEventListeners() {
+            this.handleResize();
+            window.addEventListener('scroll', () => this.handleScroll());
+            window.addEventListener('resize', () => this.handleResize());
+         }
+      }
+
+      class LenisScroll {
+         constructor() {
+            this.lenis = new Lenis({
+               lerp: .1,
+               smooth: true,
+               direction: 'vertical'
+            });
+            this.initialize();
+         }
+
+         initialize() {
+            this.lenis.on('scroll', ({ scroll, limit }) => {
+               console.log({ scroll, limit });
+            });
+            this.raf();
+         }
+
+         raf(time) {
+            this.lenis.raf(time);
+            requestAnimationFrame((time) => this.raf(time));
+         }
+      }
+
+      const minimap = new Minimap();
+      const lenisScroll = new LenisScroll();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+// class Minimap {
+//    constructor() {
+//       this.minimapContainer = document.createElement('div');
+//       this.minimap = document.createElement('div');
+//       this.minimapWindow = document.createElement('div');
+//       this.minimapContent = document.createElement('iframe');
+
+//       this.scale = .1;
+//       this.realScale = null;
+
+//       this.initialize();
+//       this.render();
+//       this.addEventListeners();
+//    }
+
+//    initialize() {
+//       this.minimapContainer.className = 'minimap__container';
+//       this.minimap.className = 'minimap';
+//       this.minimapWindow.className = 'minimap__window';
+//       this.minimapContent.className = 'minimap__content';
+
+//       this.minimapContainer.append(this.minimap);
+//       this.minimapContainer.append(this.minimapWindow);
+//       this.minimapContainer.append(this.minimapContent);
+
+//       document.querySelector('.about').appendChild(this.minimapContainer);
+//    }
+
+//    render() {
+//       const html = document.documentElement.outerHTML.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+
+//       // const about = document.querySelector('.about').replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+
+//       const about = document.documentElement.outerHTML.replace(/<div\b[^<]*\bclass="about"[^<]*(?:(?!<\/div>)<[^<]*)*<\/div>/gi, '');
+
+
+//       const iframeDocument = this.minimapContent.contentWindow.document;
+
+//       iframeDocument.open();
+//       iframeDocument.write(about);
+//       // iframeDocument.write(document.querySelector('.about'));
+//       iframeDocument.close();
+//    }
+
+//    handleResize() {
+//       const clientWidth = document.body.clientWidth;
+//       const clientRatio = document.body.clientHeight / clientWidth;
+//       const windowRatio = window.innerHeight / window.innerWidth;
+
+//       this.minimapContainer.style.width = '15%';
+//       this.realScale = this.minimapContainer.clientWidth / clientWidth;
+
+//       this.minimap.style.paddingTop = `${clientRatio * 100}%`;
+//       this.minimapWindow.style.paddingTop = `${windowRatio * 100}%`;
+
+//       this.minimapContent.style.transform = `scale(${this.realScale})`;
+//       this.minimapContent.style.width = `${100 / this.realScale}%`;
+//       this.minimapContent.style.height = `${100 / this.realScale}%`;
+//    }
+
+//    handleScroll() {
+//       this.minimapWindow.style.transform = `translateY(${window.scrollY * this.realScale}px)`;
+//    }
+
+//    addEventListeners() {
+//       this.handleResize();
+//       window.addEventListener('scroll', () => this.handleScroll());
+//       window.addEventListener('resize', () => this.handleResize());
+//    }
+// }
+
+// class LenisScroll {
+//    constructor() {
+//       this.lenis = new Lenis({
+//          lerp: .1,
+//          smooth: true,
+//          direction: 'vertical'
+//       });
+//       this.initialize();
+//    }
+
+//    initialize() {
+//       this.lenis.on('scroll', ({ scroll, limit }) => {
+//          console.log({ scroll, limit });
+//       });
+//       this.raf();
+//    }
+
+//    raf(time) {
+//       this.lenis.raf(time);
+//       requestAnimationFrame((time) => this.raf(time));
+//    }
+// }
+
+// const minimap = new Minimap();
+// const lenisScroll = new LenisScroll();
+   </script>
+</body>
+
+</html>
