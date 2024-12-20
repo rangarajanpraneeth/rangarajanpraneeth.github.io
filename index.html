@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Qubit</title>
+
+   <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.17/dist/lenis.css">
+   <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,700,0,200" />
+
+   <style>
+      @font-face {
+         font-family: 'Rigel Bold';
+         src: url('./font/Rigel\ Bold.ttf');
+      }
+
+      @font-face {
+         font-family: 'Rigel Extrabold';
+         src: url('./font/Rigel\ Extrabold.ttf');
+      }
+
+      @font-face {
+         font-family: 'Rigel Light';
+         src: url('./font/Rigel\ Light.ttf');
+      }
+
+      @font-face {
+         font-family: 'Rigel Medium';
+         src: url('./font/Rigel\ Medium.ttf');
+      }
+
+      @font-face {
+         font-family: 'Rigel Regular';
+         src: url('./font/Rigel\ Regular.ttf');
+      }
+
+      @font-face {
+         font-family: 'Rigel Semibold';
+         src: url('./font/Rigel\ Semibold.ttf');
+      }
+
+      * {
+         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+         -webkit-font-smoothing: antialiased;
+         box-sizing: border-box;
+         font-size: 1rem;
+         line-height: 1;
+         padding: 0;
+         margin: 0;
+      }
+
+      *::-webkit-scrollbar {
+         display: none;
+      }
+
+      :root {
+         --theme: #f40;
+         --text-dark: #ccc;
+         --text-darker: #777;
+      }
+
+      ::selection {
+         background-color: var(--theme);
+         color: black;
+      }
+
+      a {
+         text-decoration: none;
+         color: white;
+      }
+
+      body {
+         background-color: #111;
+         color: white;
+      }
+
+      .scrollbar {
+         z-index: 999;
+         background-color: var(--theme);
+         width: 0%;
+         height: .25rem;
+         position: fixed;
+         top: 0;
+         left: 0;
+      }
+
+      #canvas {
+         z-index: -1;
+         width: 100vw;
+         height: 100vh;
+         position: fixed;
+         top: 0;
+         left: 0;
+      }
+
+      header {
+         z-index: 999;
+         padding: 2rem 4rem;
+         width: 100vw;
+         position: fixed;
+         top: 0;
+         left: 0;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         mix-blend-mode: difference;
+         user-select: none;
+         font-weight: 500;
+      }
+
+      .header__logo {
+         font-size: 2rem;
+      }
+
+      .header__section {
+         display: flex;
+         gap: 2rem;
+      }
+
+      .header__link {
+         height: 16px;
+         overflow: hidden;
+      }
+
+      .header__text {
+         transition: .25s ease;
+      }
+
+      .header__link:hover .header__text {
+         transform: translateY(-16px);
+         color: rgba(255, 255, 255, .75);
+      }
+
+      .landing {
+         padding: 0 4rem 2rem;
+         width: 100vw;
+         height: 100vh;
+      }
+
+      .landing__container {
+         width: 100%;
+         height: 100%;
+         display: flex;
+         flex-direction: column;
+         justify-content: flex-end;
+      }
+
+      .content {
+         margin-top: 50vh;
+         width: 100vw;
+         padding: 0 4rem;
+      }
+
+      .content__section {
+         display: flex;
+         flex-direction: column;
+         gap: 2rem;
+      }
+
+      .content__title {
+         font-size: 5rem;
+         color: #333;
+      }
+
+      .content__description {
+         font-size: 3rem;
+         /* font-size: 3vw; */
+         color: #fff;
+         line-height: 1.5;
+      }
+
+      .contact {
+         width: 100vw;
+         height: 100vh;
+      }
+   </style>
+</head>
+
+<body>
+   <!-- <span class="material-symbols-rounded">search</span> -->
+   <div class="scrollbar"></div>
+
+   <header>
+      <div class="header__logo">Qubit.</div>
+      <div class="header__section">
+         <div class="header__link">
+            <div class="header__text">
+               <div>Home</div>
+               <div>Home</div>
+            </div>
+         </div>
+         <div class="header__link">
+            <div class="header__text">
+               <div>About</div>
+               <div>About</div>
+            </div>
+         </div>
+         <div class="header__link">
+            <div class="header__text">
+               <div>Work</div>
+               <div>Work</div>
+            </div>
+         </div>
+         <div class="header__link">
+            <div class="header__text">
+               <div>Testimonials</div>
+               <div>Testimonials</div>
+            </div>
+         </div>
+         <div class="header__link">
+            <div class="header__text">
+               <div>Contact</div>
+               <div>Contact</div>
+            </div>
+         </div>
+      </div>
+   </header>
+
+   <section>
+      <div class="landing">
+         <div class="landing__container">
+            <div class="landing__logo">
+               <svg width="100%" height="100%" viewBox="0 0 247.7 76.8" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                     <linearGradient id="wb" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#ccc;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#333;stop-opacity:1" />
+                     </linearGradient>
+                     <linearGradient id="bw" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#333;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#ccc;stop-opacity:1" />
+                     </linearGradient>
+                  </defs>
+                  <g id="svgGroup" stroke-linecap="round" fill-rule="evenodd" font-size="9pt" stroke="#fff"
+                     stroke-width="0mm" fill="#fff" style="stroke:#fff;stroke-width:0mm;fill:#fff">
+                     <path
+                        d="M 35.9 64.3 A 18.902 18.902 0 0 1 37.426 65.716 A 15.062 15.062 0 0 1 39.65 68.65 A 11.232 11.232 0 0 1 40.155 69.632 Q 40.755 70.964 40.755 72.06 A 3.675 3.675 0 0 1 40.7 72.7 L 57.4 58.7 A 30.473 30.473 0 0 1 56.767 59.183 Q 54.552 60.826 52.338 61.829 A 16.694 16.694 0 0 1 45.4 63.4 A 14.326 14.326 0 0 1 43.944 63.323 Q 41.486 63.072 38.5 62 A 91.048 91.048 0 0 0 44.196 56.416 Q 49.741 50.461 53.165 44.381 A 40.291 40.291 0 0 0 58.7 24.4 A 36.774 36.774 0 0 0 58.518 20.658 Q 57.564 11.34 51.6 7.35 A 27.125 27.125 0 0 0 43.132 3.609 A 34.53 34.53 0 0 0 34.6 2.6 L 29.3 7 A 4.104 4.104 0 0 1 29.341 6.967 Q 30.486 6.061 32.478 5.803 A 13.437 13.437 0 0 1 34.2 5.7 A 18.82 18.82 0 0 1 38.683 6.264 A 25.367 25.367 0 0 1 42.85 7.7 A 20.703 20.703 0 0 1 44.379 8.448 A 21.572 21.572 0 0 1 50.75 13.75 A 15.823 15.823 0 0 1 53.318 18.122 A 18.528 18.528 0 0 1 54.5 23.6 A 51.551 51.551 0 0 1 54.612 26.973 Q 54.612 28.722 54.488 30.414 A 38.882 38.882 0 0 1 50.4 45.4 A 72.123 72.123 0 0 1 48.978 48.049 A 62.729 62.729 0 0 1 38.4 62 A 42.156 42.156 0 0 1 38.271 61.948 Q 37.298 61.555 36.231 61.069 A 69.35 69.35 0 0 1 34 60 A 67.231 67.231 0 0 0 32.293 59.175 Q 31.484 58.798 30.761 58.494 A 29.899 29.899 0 0 0 29.25 57.9 A 12.889 12.889 0 0 0 27.927 57.501 A 10.303 10.303 0 0 0 25.5 57.2 Q 22.9 57.2 20.9 58.7 L 20.9 14.1 L 17.9 16.7 A 61.507 61.507 0 0 0 10.925 23.507 A 42.059 42.059 0 0 0 0 51.8 A 26.464 26.464 0 0 0 0.12 54.346 Q 0.549 58.786 2.51 62.476 A 20.477 20.477 0 0 0 2.55 62.55 A 22.347 22.347 0 0 0 2.711 62.845 A 18.89 18.89 0 0 0 9.45 69.95 Q 13.8 72.6 18.9 72.6 A 17.736 17.736 0 0 0 21.614 72.389 A 20.559 20.559 0 0 0 26.2 71.1 A 21.358 21.358 0 0 0 29.436 69.447 A 26.432 26.432 0 0 0 33.3 66.5 A 22.087 22.087 0 0 1 31.745 67.76 A 16.754 16.754 0 0 1 21.6 71.2 Q 16.7 71.2 12.35 68.45 Q 8 65.7 5.3 60.95 Q 2.6 56.2 2.4 50.7 A 50.562 50.562 0 0 1 2.364 48.793 Q 2.364 39.364 6 32 A 46.459 46.459 0 0 1 8.98 26.835 A 52.769 52.769 0 0 1 17.3 17.2 L 17.3 61.6 L 14.2 64.2 A 15.015 15.015 0 0 1 14.801 63.726 Q 15.334 63.326 15.973 62.911 A 30.699 30.699 0 0 1 17.3 62.1 L 12 67 L 17.3 62.6 L 18.8 61.4 Q 21.8 60.1 25 60.1 Q 28 60.1 30.85 61.25 Q 33.7 62.4 35.9 64.3 L 33.3 66.5 L 35.9 64.3 Q 33.7 62.4 30.85 61.25"
+                        id="0" vector-effect="non-scaling-stroke" fill="url(#wb)" />
+                     <path
+                        d="M 87.4 54.1 L 87.4 6.7 Q 83.045 11.148 79.849 13.149 A 18.124 18.124 0 0 1 79.35 13.45 Q 76 15.4 73.4 15.4 Q 71.981 15.4 69.618 14.613 A 30.182 30.182 0 0 1 69 14.4 Q 66.303 13.501 65.102 13.5 A 1.886 1.886 0 0 0 65.1 13.5 A 6.906 6.906 0 0 0 62.576 14.011 Q 61.569 14.406 60.508 15.105 A 17.442 17.442 0 0 0 58.8 16.4 L 75.1 2.7 Q 70.73 6.973 70.604 9.548 A 3.099 3.099 0 0 0 70.6 9.7 Q 70.6 12.1 73.9 12.1 A 10.782 10.782 0 0 0 76.137 11.845 Q 78.166 11.413 80.65 10.25 A 28.249 28.249 0 0 0 84.302 8.173 Q 85.987 7.052 87.731 5.603 A 50.666 50.666 0 0 0 88.9 4.6 L 91 2.7 L 91 51.6 L 80.6 60.3 A 0.025 0.025 0 0 0 80.597 60.303 Q 80.606 60.303 83.674 57.498 A 6652.993 6652.993 0 0 0 84 57.2 A 48.712 48.712 0 0 1 85.814 55.481 A 61.677 61.677 0 0 1 87.4 54.1 Z M 100.9 56.3 L 81.7 72.4 L 80.3 72.5 A 22.624 22.624 0 0 1 76.752 72.202 Q 75.058 71.933 73.204 71.419 A 40.711 40.711 0 0 1 71.95 71.05 A 21.561 21.561 0 0 1 65.576 67.777 A 26.793 26.793 0 0 1 63.25 65.85 A 16.058 16.058 0 0 1 59.029 59.31 A 21.865 21.865 0 0 1 58.1 55.7 Q 57.7 52.9 57.7 51.6 Q 57.7 45.4 60.65 40 Q 63.6 34.6 67.35 30.85 Q 71.1 27.1 75.9 23.2 L 77.8 21.6 Q 69.4 29.4 65.1 35.4 A 22.923 22.923 0 0 0 61.537 42.74 A 21.032 21.032 0 0 0 60.8 48.3 A 20.153 20.153 0 0 0 61.506 53.463 Q 62.128 55.816 63.3 58.3 Q 65.2 62.2 68.95 64.3 A 16.425 16.425 0 0 0 74.935 66.234 A 20.814 20.814 0 0 0 77.6 66.4 A 25.101 25.101 0 0 0 83.768 65.593 A 34.285 34.285 0 0 0 88.85 63.85 A 44.18 44.18 0 0 0 95.214 60.449 A 59.646 59.646 0 0 0 100.9 56.3 Z M 105.3 52.6 L 101.7 55.7 L 101.7 5.8 L 105.3 2.7 L 105.3 52.6 Z"
+                        id="1" vector-effect="non-scaling-stroke" fill="url(#bw)" />
+                     <path
+                        d="M 158.9 5.2 L 143.2 17.7 Q 152.5 17.8 159.25 21.6 A 12.477 12.477 0 0 1 165.7 30.523 A 18.116 18.116 0 0 1 166 33.9 A 16.198 16.198 0 0 1 164.45 40.723 A 21.114 21.114 0 0 1 163 43.35 A 44.174 44.174 0 0 1 156.454 51.244 A 49.52 49.52 0 0 1 155.65 52 Q 151.3 56 143.6 62.4 Q 134.6 69.7 131.2 73 Q 134.5 69.8 140.7 64.4 Q 146.882 58.878 150.754 55.054 A 120.231 120.231 0 0 0 152.3 53.5 Q 156.4 49.3 159.1 44.3 Q 161.8 39.3 161.8 33.5 Q 161.8 27.6 157.9 24.55 A 13.962 13.962 0 0 0 152.186 21.933 A 20.097 20.097 0 0 0 147.9 21.5 A 26.564 26.564 0 0 0 141.172 22.392 A 30.677 30.677 0 0 0 139.75 22.8 Q 135.6 24.1 132.1 26.6 L 132.1 68.1 L 128.5 71.1 L 121.9 76.7 L 124.8 74 A 53.957 53.957 0 0 1 125.131 73.672 Q 125.505 73.304 126.012 72.817 A 199.725 199.725 0 0 1 126.5 72.35 A 34.708 34.708 0 0 1 127.297 71.612 Q 127.737 71.217 128.141 70.887 A 18.615 18.615 0 0 1 128.5 70.6 L 128.5 8 A 29.224 29.224 0 0 0 124.745 9.833 Q 121.488 11.7 117.8 14.7 L 128.5 5.7 L 129.9 4.6 L 134.7 0.5 Q 135.4 0 135.9 0 Q 136.504 0 137.183 0.372 A 4.447 4.447 0 0 1 137.4 0.5 A 11.793 11.793 0 0 1 138.475 1.262 A 14.131 14.131 0 0 1 139 1.7 Q 139.69 2.304 140.008 2.536 A 2.713 2.713 0 0 0 140.1 2.6 Q 142.426 4.747 144.552 6.094 A 21.346 21.346 0 0 0 145.05 6.4 A 9.996 9.996 0 0 0 149.478 7.766 A 12.244 12.244 0 0 0 150.4 7.8 A 12.806 12.806 0 0 0 155.359 6.727 Q 159.046 5.183 163.076 1.416 A 44.122 44.122 0 0 0 163.2 1.3 Q 161.822 2.678 159.975 4.291 A 100.176 100.176 0 0 1 158.8 5.3 L 158.9 5.2 Z M 114.2 5.8 L 117.8 2.8 L 117.8 67.9 L 107.4 76.6 A 0.025 0.025 0 0 0 107.397 76.603 Q 107.406 76.603 110.8 73.5 A 48.712 48.712 0 0 1 112.614 71.781 A 61.677 61.677 0 0 1 114.2 70.4 L 114.2 6.3 L 106.8 12 L 114.2 5.8 Z M 132.1 6.9 L 132.1 26.5 L 136.1 23 A 1519.756 1519.756 0 0 0 141.545 18.399 Q 147.777 13.106 151.122 10.115 A 129.136 129.136 0 0 0 152.9 8.5 A 10.212 10.212 0 0 1 150.891 8.977 A 13.863 13.863 0 0 1 149 9.1 A 11.441 11.441 0 0 1 147.535 8.994 Q 145.613 8.744 142.8 7.9 A 27.022 27.022 0 0 1 142.585 7.845 Q 141.978 7.688 140.15 7.2 Q 137.9 6.6 135.4 6.6 Q 133.9 6.6 132.1 6.9 Z M 121.9 76.7 L 121.7 76.8 L 121.9 76.7 Z"
+                        id="2" vector-effect="non-scaling-stroke" fill="url(#wb)" />
+                     <path
+                        d="M 177.2 16.1 L 177.2 60.9 A 18.675 18.675 0 0 0 177.429 63.967 Q 178.372 69.6 183.2 69.6 A 12.67 12.67 0 0 0 187.246 68.824 Q 192.907 66.886 201.604 60.107 A 134.635 134.635 0 0 0 203.5 58.6 L 186.4 72.7 A 43.476 43.476 0 0 1 185.28 72.729 Q 179.79 72.798 177.21 71.331 A 5.174 5.174 0 0 1 176.1 70.5 Q 173.6 68 173.6 64 L 173.6 19.7 L 166.2 25.4 L 173.6 19.2 L 177.2 16.1 Z M 187.7 64.5 L 187.7 6.1 A 47.726 47.726 0 0 1 185.296 8.165 Q 181.244 11.4 178.9 11.4 A 3.605 3.605 0 0 1 177.681 11.174 Q 177.206 11.004 176.707 10.705 A 7.87 7.87 0 0 1 176.1 10.3 Q 175.5 9.9 174.75 9.55 Q 174 9.2 173.2 9.2 A 5.369 5.369 0 0 0 171.469 9.532 Q 168.813 10.448 164.7 13.9 L 176.4 4.1 A 6.608 6.608 0 0 1 176.731 3.866 Q 177.288 3.5 177.6 3.5 Q 178.036 3.5 178.244 4.033 A 1.885 1.885 0 0 1 178.3 4.2 Q 178.5 4.9 178.6 5.8 Q 178.9 7.6 179.4 8.65 A 1.781 1.781 0 0 0 180.004 9.377 Q 180.479 9.7 181.2 9.7 Q 183.3 9.7 187.7 6 L 187.7 5.9 L 189.8 4.1 L 189.9 4 L 189.8 4.1 L 191.3 2.8 L 191.3 61.5 L 187.7 64.5 Z M 164.7 13.9 L 164.5 14.1 L 164.7 13.9 Z"
+                        id="3" vector-effect="non-scaling-stroke" fill="url(#bw)" />
+                     <path
+                        d="M 208.5 23.2 Q 213.1 14.5 221.8 7.4 L 225.8 7.4 L 224.5 8.5 L 224.5 62.2 L 228.1 59.1 L 228.1 7.4 L 242.1 7.4 L 245.6 4.7 L 212.1 4.7 A 1.667 1.667 0 0 1 211.767 5.207 Q 210.909 6.135 208.286 6.939 A 30.512 30.512 0 0 1 206.6 7.4 L 221.8 7.4 Q 213.1 14.5 208.5 23.2 Q 205.481 28.909 204.444 36.815 A 68.388 68.388 0 0 0 203.9 45.7 A 35.009 35.009 0 0 0 204.453 52.064 A 25.751 25.751 0 0 0 207.25 60 Q 210.6 66 216.4 69.2 Q 222.2 72.4 229.3 72.5 L 247.7 57.1 A 56.838 56.838 0 0 1 243.186 60.457 Q 239.482 62.924 235.918 64.332 A 25.016 25.016 0 0 1 226.7 66.2 Q 219 66.2 213.65 61 Q 208.3 55.8 206.9 48.1 Q 206 43 206 38.6 A 42.478 42.478 0 0 1 206.431 32.45 A 32.691 32.691 0 0 1 210.2 21.1 A 44.941 44.941 0 0 1 214.141 15.221 A 53.297 53.297 0 0 1 221.8 7.4"
+                        id="4" vector-effect="non-scaling-stroke" fill="url(#wb)" />
+                  </g>
+               </svg>
+            </div>
+         </div>
+      </div>
+
+      <div class="content">
+         <div class="content__section">
+            <div class="content__title">Learn more about us</div>
+            <div class="content__description">
+               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione corporis nostrum sunt totam quaerat.
+               Temporibus tempora omnis incidunt adipisci libero aliquid, fugiat iure. Corporis consectetur, quibusdam
+               incidunt placeat ea commodi!
+            </div>
+         </div>
+
+         <div class="gallery">
+            <div class="project"></div>
+            <div class="project"></div>
+            <div class="project"></div>
+            <div class="project"></div>
+            <div class="project"></div>
+            <div class="project"></div>
+            <div class="project"></div>
+            <div class="project"></div>
+         </div>
+         <!-- <div class="content__section">
+            <div class="content__title">Learn more about us</div>
+            <div class="content__description">
+               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione corporis nostrum sunt totam quaerat.
+               Temporibus tempora omnis incidunt adipisci libero aliquid, fugiat iure. Corporis consectetur, quibusdam
+               incidunt placeat ea commodi!
+            </div>
+         </div> -->
+      </div>
+
+      <div class="contact">
+      </div>
+   </section>
+
+   <script src="https://unpkg.com/shader-doodle@alpha"></script>
+   <script src="https://unpkg.com/lenis@1.1.17/dist/lenis.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
+
+   <script>
+      const lenis = new Lenis();
+      requestAnimationFrame(function raf(t) { lenis.raf(t); requestAnimationFrame(raf); });
+
+      let height = document.body.scrollHeight - window.innerHeight;
+      window.addEventListener('scroll', () => {
+         let scroll = window.scrollY;
+         document.querySelector('.scrollbar').style.width = `${scroll / height * 100}%`;
+      });
+   </script>
+</body>
+
+</html>
