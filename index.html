@@ -57,8 +57,8 @@
 
       :root {
          --theme: #f40;
-         --text-dark: #ccc;
-         --text-darker: #777;
+         --text-light: #ccc;
+         --text-dark: #333;
       }
 
       ::selection {
@@ -134,7 +134,8 @@
       }
 
       .landing {
-         padding: 0 4rem 2rem;
+         padding: 6rem 4rem 2rem;
+
          width: 100vw;
          height: 100vh;
       }
@@ -148,12 +149,13 @@
       }
 
       .content {
-         margin-top: 50vh;
+         margin-top: calc(25vh - 2rem);
          width: 100vw;
          padding: 0 4rem;
       }
 
       .content__section {
+         /* margin-top: 25vh; */
          display: flex;
          flex-direction: column;
          gap: 2rem;
@@ -161,19 +163,57 @@
 
       .content__title {
          font-size: 5rem;
-         color: #333;
+         color: var(--text-dark);
       }
 
       .content__description {
          font-size: 3rem;
-         /* font-size: 3vw; */
-         color: #fff;
+         color: var(--text-light);
          line-height: 1.5;
       }
 
+      /* .projects__section {
+         margin-top: 25vh;
+         display: flex;
+         flex-direction: column;
+         gap: 2rem;
+      } */
+
+      .gallery {
+         margin-top: 25vh;
+         display: grid;
+         grid-template-columns: 1fr 1fr 1fr 1fr;
+         gap: 1rem;
+      }
+
+      .project {
+         width: 100%;
+         aspect-ratio: 2/3;
+         background-color: #222;
+         border-radius: .5rem;
+      }
+
+      .project img {
+         object-fit: cover;
+         width: 100%;
+         height: 100%;
+         vertical-align: middle;
+         border-radius: .5rem;
+      }
+
+      .more__content {
+         margin-top: 25vh;
+         display: flex;
+         flex-direction: column;
+         gap: 2rem;
+      }
+
       .contact {
+         margin-top: calc(25vh - 6rem);
          width: 100vw;
          height: 100vh;
+
+         padding: 6rem 4rem 2rem;
       }
    </style>
 </head>
@@ -266,16 +306,44 @@
             </div>
          </div>
 
+         <!-- <div class="projects__section"> -->
+         <!-- <div class="content__title">Check out our work</div> -->
          <div class="gallery">
-            <div class="project"></div>
-            <div class="project"></div>
-            <div class="project"></div>
-            <div class="project"></div>
-            <div class="project"></div>
-            <div class="project"></div>
-            <div class="project"></div>
-            <div class="project"></div>
+            <div class="project">
+               <img src="https://i.etsystatic.com/18242346/r/il/7ad080/4580913585/il_fullxfull.4580913585_3yhu.jpg"
+                  alt="">
+            </div>
+            <div class="project">
+               <img
+                  src="https://preview.redd.it/alternative-poster-for-ripley-2024-2592-x-3840-by-me-v0-vci84a83nz0d1.png?auto=webp&s=aa69dd0cfa6d0937ca8c89ecd93a178c080761db"
+                  alt="">
+            </div>
+            <div class="project">
+               <img
+                  src="https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2015%2F06%2Fhollywood-movie-posters-redesigned-1.jpg?q=75&w=800&cbr=1&fit=max"
+                  alt="">
+            </div>
+            <div class="project">
+               <img src="https://i.pinimg.com/564x/3c/b1/9b/3cb19b81b335250c77ac874f45ec5da0.jpg" alt="">
+            </div>
+            <div class="project">
+               <img
+                  src="https://www.huntlancer.com/wp-content/uploads/2020/08/Grzegorz-Domaradzki-First-Blood-Movie-Poster-Art.jpg"
+                  alt="">
+            </div>
+            <div class="project">
+               <img src="https://i.pinimg.com/736x/5c/fa/9c/5cfa9c0b57b48147fbb22a3e4147adae.jpg" alt="">
+            </div>
+            <div class="project">
+               <img src="https://www.cinelinx.com/wp-content/uploads/2020/12/the-green-knight-poster.jpeg" alt="">
+            </div>
+            <div class="project">
+               <img
+                  src="https://s3-eu-west-1.amazonaws.com/entertainmentie/uploads/2016/04/03144947/the-rocketeer-md-web-e1549205396733.jpg"
+                  alt="">
+            </div>
          </div>
+         <!-- </div> -->
          <!-- <div class="content__section">
             <div class="content__title">Learn more about us</div>
             <div class="content__description">
@@ -284,6 +352,15 @@
                incidunt placeat ea commodi!
             </div>
          </div> -->
+
+         <div class="more__content">
+            <div class="content__title">Learn more about us</div>
+            <div class="content__description">
+               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione corporis nostrum sunt totam quaerat.
+               Temporibus tempora omnis incidunt adipisci libero aliquid, fugiat iure. Corporis consectetur, quibusdam
+               incidunt placeat ea commodi!
+            </div>
+         </div>
       </div>
 
       <div class="contact">
