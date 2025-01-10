@@ -151,6 +151,103 @@
          width: 100vw;
       }
 
+      .projects {
+         position: relative;
+         overflow: hidden;
+         width: 100vw;
+         height: 100vh;
+      }
+
+      .text__block {
+         width: 100vw;
+         height: 100vh;
+         background-color: #222;
+      }
+
+      .cards {
+         position: absolute;
+         top: 25%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         width: 150vw;
+         height: 600px;
+         will-change: transform;
+      }
+
+      .card {
+         position: absolute;
+         width: 500px;
+         height: 500px;
+         top: 50%;
+         left: 50%;
+         transform-origin: center center;
+         margin-left: -250px;
+         display: flex;
+         flex-direction: column;
+         gap: 1em;
+         will-change: transform;
+      }
+
+      .card__image {
+         flex: 1
+      }
+
+      /* global */
+      img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+      }
+
+      .card__image {
+         flex: 1;
+         border-radius: .5em;
+         overflow: hidden;
+      }
+
+      .card__content {
+         width: 100%;
+         height: 60px;
+
+         text-align: left;
+         color: #fff;
+         font-weight: 500;
+      }
+
+      .project__counter {
+         position: absolute;
+         display: flex;
+         flex-direction: column;
+         margin: 2em;
+      }
+
+      .counter__title .count {
+         position: relative;
+         width: 1200px;
+         height: 150px;
+         clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+         overflow: hidden;
+      }
+
+      .count {
+         top: -10px;
+      }
+
+      .count__container {
+         width: 100%;
+         position: relative;
+         transform: translateY(150px);
+         will-change: transform;
+      }
+
+      .project__counter h1 {
+         width: 100%;
+         position: relative;
+         color: #fff;
+         text-transform: uppercase;
+         /* font-size: 10rem; */
+      }
+
       .contact {
          width: 100vw;
          height: 100vh;
@@ -237,6 +334,79 @@
       </div>
 
       <div class="content">
+         <div class="text__block">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque quia reiciendis dicta nostrum nesciunt! Obcaecati velit facere rerum odio veniam cumque iure dicta quis ex quam corrupti, beatae neque porro?
+         </div>
+
+         <div class="projects">
+            <div class="project__counter">
+               <div class="counter__title">
+                  <h1 class="counter__title__text">Projects</h1>
+               </div>
+               <div class="count">
+                  <div class="count__container">
+                     <h1 class="count__container__text">01</h1>
+                     <h1 class="count__container__text">02</h1>
+                     <h1 class="count__container__text">03</h1>
+                     <h1 class="count__container__text">04</h1>
+                     <h1 class="count__container__text">05</h1>
+                  </div>
+               </div>
+            </div>
+
+            <div class="cards">
+               <div class="card">
+                  <div class="card__image">
+                     <img src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" alt="">
+                  </div>
+                  <div class="card__content">
+                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, eos explicabo. Accusamus totam voluptatibus ipsa aut maiores odit! Animi quas voluptatibus nesciunt vero repellat minima accusantium nihil alias, ipsa at?
+                  </div>
+               </div>
+               
+               <div class="card">
+                  <div class="card__image">
+                     <img src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" alt="">
+                  </div>
+                  <div class="card__content">
+                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, eos explicabo. Accusamus totam voluptatibus ipsa aut maiores odit! Animi quas voluptatibus nesciunt vero repellat minima accusantium nihil alias, ipsa at?
+                  </div>
+               </div>
+               
+               <div class="card">
+                  <div class="card__image">
+                     <img src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" alt="">
+                  </div>
+                  <div class="card__content">
+                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, eos explicabo. Accusamus totam voluptatibus ipsa aut maiores odit! Animi quas voluptatibus nesciunt vero repellat minima accusantium nihil alias, ipsa at?
+                  </div>
+               </div>
+               
+               <div class="card">
+                  <div class="card__image">
+                     <img src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" alt="">
+                  </div>
+                  <div class="card__content">
+                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, eos explicabo. Accusamus totam voluptatibus ipsa aut maiores odit! Animi quas voluptatibus nesciunt vero repellat minima accusantium nihil alias, ipsa at?
+                  </div>
+               </div>
+               
+               <div class="card">
+                  <div class="card__image">
+                     <img src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" alt="">
+                  </div>
+                  <div class="card__content">
+                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, eos explicabo. Accusamus totam voluptatibus ipsa aut maiores odit! Animi quas voluptatibus nesciunt vero repellat minima accusantium nihil alias, ipsa at?
+                  </div>
+               </div>
+
+               <!-- <div class="card empty"></div> -->
+            </div>
+         </div>
+
+         <div class="text__block">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet nostrum tempore corporis fugit! Illo amet, ullam laudantium adipisci unde neque corrupti, quisquam quam minima molestias, blanditiis ratione totam cum architecto!
+         </div>
       </div>
 
       <div class="contact">
@@ -250,14 +420,24 @@
    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
 
    <script>
-      const lenis = new Lenis();
-      requestAnimationFrame(function raf(t) { lenis.raf(t); requestAnimationFrame(raf); });
+      // const lenis = new Lenis();
+      // requestAnimationFrame(function raf(t) { lenis.raf(t); requestAnimationFrame(raf); });
 
-      let height = document.body.scrollHeight - window.innerHeight;
-      window.addEventListener('scroll', () => {
-         let scroll = window.scrollY;
-         document.querySelector('.scrollbar').style.width = `${scroll / height * 100}%`;
-      });
+      // let height = document.body.scrollHeight - window.innerHeight;
+      // window.addEventListener('scroll', () => {
+      //    let scroll = window.scrollY;
+      //    document.querySelector('.scrollbar').style.width = `${scroll / height * 100}%`;
+      // });
+
+
+      document.addEventListener('DOMContentLoaded', () => {
+         gsap.registerPlugin(ScrollTrigger);
+         const lenis = new Lenis();
+         lenis.on('scroll', ScrollTrigger.update);
+         gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+         })
+      })
    </script>
 </body>
 
