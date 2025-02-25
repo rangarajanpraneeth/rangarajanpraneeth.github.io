@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Portfolio</title>
+
+   <link rel="stylesheet" href="./src/css/style.css">
+   <link rel="stylesheet" href="./src/css/theme.css">
+</head>
+
+<body>
+   <!-- add background image link here -->
+   <!-- <img src="https://wallpapershome.com/images/pages/pic_h/864.jpg" alt="" class="background__image"> -->
+
+   <!-- <div class="watermark"></div> -->
+
+   <div class="container">
+      <!-- SIDEBAR LEFT -->
+      <!-- make sure sidebar links are in same order as content pages -->
+      <div class="sidebar__left">
+         <div class="sidebar__left__content">
+            <div class="title__3">Portfolio</div>
+
+            <div class="sidebar__dropdown">
+               <div class="dropdown__link" data-page-id="introduction">Introduction</div>
+               <div class="dropdown__link" data-page-id="help">Help</div>
+
+               <div class="dropdown__list">
+                  <div class="dropdown__title">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 8L12 16L20 8"></path>
+                     </svg>
+                     Documentation
+                  </div>
+                  <div class="dropdown__links">
+                     <div class="dropdown__link" data-page-id="license">License</div>
+                     <div class="dropdown__link" data-page-id="contributing">Contributing</div>
+                     <div class="dropdown__link" data-page-id="local-development">Local Development</div>
+                     <div class="dropdown__link" data-page-id="block-types">Block Types</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- CONTENT SECTION -->
+      <!-- make sure content pages are in same order as sidebar links -->
+      <div class="content__section scroll">
+         <div class="content__page active">
+            <div class="title__1">Introduction</div>
+
+            <!-- <div class="block__tags">
+               <div class="block__tag">#introduction</div>
+            </div> -->
+
+            <div class="block__text">
+               My name is Praneeth. I am a sophomore at Georgia State University.
+               <br>
+               Here are some important links!
+            </div>
+
+            <ul class="block__ul">
+               <li class="block__li"><a href="https://github.com/rangarajanpraneeth">GitHub</a></li>
+               <li class="block__li"><a href="https://www.linkedin.com/in/rangarajanpraneeth/">LinkedIn</a></li>
+            </ul>
+
+            <div class="title__2 hierarchy__parent__link">About this site</div>
+            <div class="block__text">
+               This site is fully custom made using vanilla HTML and JS.
+               <br>
+               Find this project on <a
+                  href="https://github.com/rangarajanpraneeth/rangarajanpraneeth.github.io">GitHub</a>
+            </div>
+         </div>
+
+         <div class="content__page">
+            <div class="title__1">Help</div>
+
+            <div class="title__2 hierarchy__parent__link">
+               Bug Reports
+            </div>
+
+            <!-- <div class="block__text">
+               Submit new issues on the <a href="">GitHub repository</a>. Before you submit a bug report please follow the following steps:
+            </div> -->
+
+            <!-- <ol class="block__ol">
+               <li class="block__li">Make sure the bug can be consistently reproduced</li>
+               <li class="block__li">Search <a href="">open issues</a> to make sure the bug hasn't been reported before</li>
+               <li class="block__li">Attach the error message from inspect element console if possible.</li>
+            </ol> -->
+
+            <div class="title__2 hierarchy__parent__link">Feature Requests</div>
+
+            <!-- <div class="block__text">
+               Submit new requests on the <a href="">GitHub repository</a>. Before you request a feature, search <a href="">open issues</a> to make sure it hasn't been requested before.
+            </div> -->
+         </div>
+
+         <div class="content__page">
+            <div class="title__1">License</div>
+
+            <div class="block__text">
+               This project is licensed under the <a
+                  href="https://github.com/rangarajanpraneeth/rangarajanpraneeth.github.io/blob/main/LICENSE">MIT
+                  License</a> which allows you to modify and redistribute
+               the code, however you must preserve the copuright and license notice in your CSS file.
+            </div>
+         </div>
+
+         <div class="content__page">
+            <div class="title__1">Contributing</div>
+         </div>
+
+         <div class="content__page">
+            <div class="title__1">Local Development</div>
+            <div class="block__tags">
+               <div class="block__tag">#contributing</div>
+            </div>
+
+            <div class="block__text">
+               To set up local development, follow the instructions below. This project was designed specifically to be
+               completely independent and dependency free. Refer to the guide below to learn how to set up your own
+               personal copy.
+            </div>
+
+            <div class="block__text">
+               This project is regularly updated. Use <a
+                  href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo">GitHub's
+                  fork feature</a> to merge the latest changes into your fork.
+               If you have not changed any of the code other than the contents of the HTML file, the updates should
+               gracefully merge into your existing fork. On the contrary, if any changes were made to the CSS or JS, you
+               might need to carefully merge the updates yourself.
+            </div>
+
+
+
+            <div class="title__2 hierarchy__parent__link">Getting started</div>
+
+            <div class="title__3 hierarchy__child__link">Set up</div>
+            <div class="block__text">Clone the repository</div>
+
+            <pre><code class="block__code language-plaintext">
+               git clone link
+            </code></pre>
+
+            <div class="title__3 hierarchy__child__link">Getting started</div>
+         </div>
+
+         <!-- CONTENT PAGE -->
+         <div class="content__page">
+            <div class="title__1">Block Types</div>
+         </div>
+      </div>
+
+      <!-- SIDEBAR RIGHT -->
+      <!-- no need to populate -->
+      <!-- this section automatically populates -->
+      <div class="sidebar__right scroll">
+         <div class="sidebar__right__content">
+            <div class="title__3">Table of Contents</div>
+            <div class="hierarchy__container"></div>
+         </div>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="./src/js/script.js"></script>
+</body>
+
+</html>

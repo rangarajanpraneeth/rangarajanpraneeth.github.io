@@ -1,0 +1,12 @@
+/* FORMAT FROM HERE */
+.hljs {
+   background-color: var(--element-background);
+   /* border: 1px solid var(--element-border); */
+   border-radius: .25rem;
+   color: #ccc;
+
+   white-space: pre-wrap;
+   padding: 1rem;
+   display: block;
+   font-family: "JetBrains Mono", serif;
+}
