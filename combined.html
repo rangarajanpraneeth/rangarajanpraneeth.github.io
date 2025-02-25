@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Portfolio</title>
+
+   <style>
+      /* FORMAT FROM HERE */
+      .hljs {
+         background-color: var(--element-background);
+         /* border: 1px solid var(--element-border); */
+         border-radius: .25rem;
+         color: #ccc;
+
+         white-space: pre-wrap;
+         padding: 1rem;
+         display: block;
+         font-family: "JetBrains Mono", serif;
+      }
+   </style>
+
+   <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+      :root {
+         --theme: #97f;
+         --theme-dark: #64c;
+         --theme-light: #b9f;
+         --selection: #97f7;
+
+         /* dark theme */
+         /* --background: #222;
+
+         --element-background: #333;
+         --element-border: #444;
+         --element-highlight: #555;
+
+         --text-dark: #bbb;
+         --text-darker: #999;
+
+         --text-light: #ddd;
+         --text-lighter: #fff; */
+
+         /* dark theme */
+         --background: #000;
+
+         --element-background: #111;
+         --element-border: #222;
+         --element-highlight: #444;
+
+         --text-dark: #bbb;
+         --text-darker: #999;
+         --text-light: #ddd;
+         --text-lighter: #fff;
+
+
+
+         /* light theme */
+         /* --background: #000;
+
+         --element-background: #111;
+         --element-border: #222;
+         --element-highlight: #444;
+
+         --text-dark: #bbb;
+         --text-darker: #999;
+         --text-light: #ddd;
+         --text-lighter: #fff; */
+      }
+
+      * {
+         box-sizing: border-box;
+         margin: 0;
+         padding: 0;
+         -webkit-font-smoothing: antialiased;
+         font-family: "Roboto", serif;
+         font-size: 16px;
+         line-height: 1;
+      }
+
+      ::-webkit-scrollbar {
+         display: none;
+      }
+
+      ::selection {
+         background-color: var(--selection);
+      }
+
+      body {
+         background-color: var(--background);
+         color: var(--text-light);
+      }
+
+      /* link */
+      a {
+         color: var(--theme);
+      }
+
+      /* link text modifier */
+      /* a::after {
+   content: " ↗";
+} */
+
+      /* a:hover {
+         color: var(--theme-light);
+      } */
+
+      /* background image */
+      .background__image {
+         position: fixed;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         width: 100vw;
+         height: 100vh;
+         filter: brightness(50%) blur(1rem);
+         clip-path: inset(0);
+         z-index: -1;
+      }
+
+      /* CONTAINER */
+      .container {
+         max-width: 1400px;
+         height: 100vh;
+         margin: 0 auto;
+         display: flex;
+      }
+
+      .scroll {
+         overflow: scroll;
+      }
+
+      .title__1 {
+         font-size: 2.5rem;
+         font-weight: 500;
+
+         display: flex;
+         align-items: center;
+         gap: .5rem;
+      }
+
+      .title__2 {
+         font-size: 2rem;
+         font-weight: 500;
+
+         display: flex;
+         align-items: center;
+         gap: .5rem;
+      }
+
+      .title__3 {
+         font-size: 1.5rem;
+         font-weight: 500;
+
+         display: flex;
+         align-items: center;
+         gap: .5rem;
+      }
+
+      .hierarchy__parent__link {
+         margin: 3rem 0 1rem;
+         padding-bottom: 1rem;
+         border-bottom: 1px solid var(--element-border);
+
+         /* added code */
+         /* width: fit-content; */
+      }
+
+      .hierarchy__child__link {
+         margin: 2rem 0 1rem;
+
+         /* added code */
+         /* width: fit-content; */
+      }
+
+      .copy__link {
+         width: 1.25rem;
+         height: 1.25rem;
+         color: var(--element-highlight);
+         display: none;
+         /* transition: display .25s; */
+      }
+
+      .copy__link:hover {
+         color: var(--theme);
+      }
+
+      .hierarchy__parent__link:hover .copy__link {
+         display: block;
+      }
+
+      .hierarchy__child__link:hover .copy__link {
+         display: block;
+      }
+
+      /* SIDEBAR LEFT */
+      .sidebar__left {
+         user-select: none;
+         height: 100vh;
+         border-right: 1px solid var(--element-border);
+      }
+
+      .sidebar__left__content {
+         width: 16rem;
+         padding: 3rem 1rem;
+      }
+
+      .sidebar__dropdown {
+         margin-top: 1.5rem;
+         display: flex;
+         flex-direction: column;
+      }
+
+      /* all width fit content were added later */
+      /* FORMAT FROM HERE */
+
+      /* dropdown link */
+      .dropdown__link {
+         cursor: pointer;
+         padding: .5rem 0;
+         /* added later */
+         width: fit-content;
+      }
+
+      .dropdown__link:hover {
+         color: var(--text-dark);
+      }
+
+      .dropdown__link.active {
+         color: var(--theme);
+      }
+
+      /* .dropdown__link.active:hover {
+         color: var(--theme);
+      } */
+
+      /* dropdown list */
+      .dropdown__list {
+         display: flex;
+         flex-direction: column;
+      }
+
+      /* dropdown title */
+      .dropdown__title {
+         cursor: pointer;
+         color: var(--text-light);
+         padding: .5rem 0;
+         display: flex;
+         align-items: center;
+         gap: .5rem;
+         /* added later */
+         width: fit-content;
+      }
+
+      .dropdown__title>svg {
+         width: 1rem;
+         height: 1rem;
+         transform: rotate(-90deg);
+      }
+
+      .dropdown__title:hover {
+         color: var(--text-dark);
+      }
+
+      .dropdown__title:hover>svg {
+         color: var(--text-dark);
+      }
+
+      /* dropdown links */
+      .dropdown__links {
+         margin-left: .5rem;
+         padding-left: 1rem;
+         display: none;
+         flex-direction: column;
+         border-left: 1px solid var(--element-border);
+      }
+
+      /* dropdown extra */
+      .dropdown__list .dropdown__link {
+         cursor: pointer;
+         color: var(--text-dark);
+         padding: .5rem 0 .5rem 1rem;
+         border-left: 1px solid var(--element-border);
+      }
+
+      .dropdown__list .dropdown__link:hover {
+         color: var(--text-light);
+         border-left: 1px solid var(--text-light);
+      }
+
+      .dropdown__list .dropdown__link.active {
+         color: var(--theme);
+         border-left: 1px solid var(--theme);
+      }
+
+      /* .dropdown__list .dropdown__list.active:hover {
+         color: var(--theme);
+      } */
+
+      .sidebar__dropdown>.dropdown__list>.dropdown__links {
+         border-left: none;
+      }
+
+      /* SIDEBAR RIGHT */
+      .sidebar__right {
+         user-select: none;
+         height: 100vh;
+      }
+
+      .sidebar__right__content {
+         width: 24rem;
+         padding: 3rem 1rem;
+      }
+
+      /* format this later */
+      /* hierarchy */
+      .hierarchy__container {
+         margin-top: 2rem;
+         display: flex;
+         flex-direction: column;
+      }
+
+      .hierarchy__title {
+         /* cursor: pointer; */
+         padding-bottom: .5rem;
+         width: fit-content;
+      }
+
+      /* .hierarchy__title:hover {
+         color: var(--theme);
+      } */
+
+      .hierarchy__parent__title {
+         cursor: pointer;
+         padding: .5rem 0;
+         width: fit-content;
+      }
+
+      .hierarchy__parent__title:hover {
+         color: var(--text-dark);
+      }
+
+      /* .hierarchy__children {
+         padding-left: 1rem;
+         border-left: 1px solid var(--element-border);
+      } */
+
+      .hierarchy__child {
+         cursor: pointer;
+         width: fit-content;
+
+         /* added code */
+         padding: .5rem 0 .5rem 1rem;
+         border-left: 1px solid var(--element-border);
+         color: var(--text-dark);
+      }
+
+      .hierarchy__child:hover {
+         color: var(--text-light);
+         border-left: 1px solid var(--text-light);
+      }
+
+      /* hierarchy link highlight */
+      .hierarchy__parent__title.active {
+         color: var(--theme);
+      }
+
+      /* .hierarchy__parent__title.active:hover {
+         color: var(--theme);
+      } */
+
+      .hierarchy__child.active {
+         color: var(--theme);
+         border-left: 1px solid var(--theme);
+      }
+
+      /* .hierarchy__child.active:hover {
+         color: var(--theme);
+      } */
+
+      /* HIERARCHY STYLES END HERE */
+
+      /* hierarchy highlight */
+
+      /* .temporary__highlight {
+         background-color: var(--selection);
+         transition: .25s ease-in-out;
+      } */
+
+      /* @keyframes highlight-pulse {
+         0% {
+            background-color: var(--theme);
+            color: white;
+         }
+
+         100% {
+            background-color: transparent;
+         }
+      } */
+
+      /* CONTENT SECTION */
+      .content__section {
+         width: calc(100% - 40rem);
+         height: 100vh;
+      }
+
+      .content__page {
+         margin: 3rem 0;
+         padding: 0 2rem;
+         display: none;
+      }
+
+      .content__page.active {
+         display: block;
+      }
+
+      /* BLOCKS */
+      /* BLOCKS */
+      /* BLOCKS */
+
+      .block__code {
+         margin: 1rem 0;
+      }
+
+      /* .block__inline__code {
+         background-color: var(--element-border);
+         border-radius: .25rem;
+         padding: .1rem .25rem;
+      } */
+
+      /* .block__image {
+         margin: 1rem 0;
+      } */
+
+      /* .block__image__source { */
+      .block__image {
+         width: 100%;
+         border-radius: 1rem;
+         margin: 1rem 0;
+      }
+
+      .block__text {
+         margin: 1rem 0;
+         line-height: 1.5;
+      }
+
+      .block__tags {
+         margin: 1rem 0;
+         display: flex;
+         flex-wrap: wrap;
+         gap: 1rem;
+      }
+
+      .block__tag {
+         background-color: var(--element-background);
+         border: 1px solid var(--element-border);
+         border-radius: .5rem;
+         /* width: fit-content; */
+         padding: .5rem 1rem;
+
+         cursor: pointer;
+      }
+
+      .block__ul {
+         /* margin-block-start: 0 2rem 0 2rem; */
+         list-style-type: disc;
+         display: flex;
+         flex-direction: column;
+         gap: .5rem;
+
+         margin: 1rem 0;
+      }
+
+      .block__ol {
+         /* list-style-type: disc; */
+         display: flex;
+         flex-direction: column;
+         gap: .5rem;
+         margin: 1rem 0;
+      }
+
+      .block__li {
+         /* margin-left: 1rem; */
+         /* margin-inline-start: 3ch; */
+         /* padding-left: .5rem; */
+         /* margin-inline-start: 1.8rem; */
+         /* margin-inline-start: 29px; */
+         margin-inline-start: 1.5rem;
+      }
+
+      .block__li::marker {
+         color: var(--element-highlight);
+      }
+   </style>
+</head>
+
+<body>
+   <!-- add background image link here -->
+   <!-- <img src="https://wallpapershome.com/images/pages/pic_h/864.jpg" alt="" class="background__image"> -->
+
+   <!-- <div class="watermark"></div> -->
+
+   <div class="container">
+      <!-- SIDEBAR LEFT -->
+      <!-- make sure sidebar links are in same order as content pages -->
+      <div class="sidebar__left">
+         <div class="sidebar__left__content">
+            <div class="title__3">Portfolio</div>
+
+            <div class="sidebar__dropdown">
+               <div class="dropdown__link" data-page-id="introduction">Introduction</div>
+               <div class="dropdown__link" data-page-id="help">Help</div>
+
+               <div class="dropdown__list">
+                  <div class="dropdown__title">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 8L12 16L20 8"></path>
+                     </svg>
+                     Documentation
+                  </div>
+                  <div class="dropdown__links">
+                     <div class="dropdown__link" data-page-id="license">License</div>
+                     <div class="dropdown__link" data-page-id="contributing">Contributing</div>
+                     <div class="dropdown__link" data-page-id="local-development">Local Development</div>
+                     <div class="dropdown__link" data-page-id="block-types">Block Types</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- CONTENT SECTION -->
+      <!-- make sure content pages are in same order as sidebar links -->
+      <div class="content__section scroll">
+         <!-- CONTENT PAGE -->
+         <div class="content__page active">
+            <div class="title__1">Introduction</div>
+
+            <div class="block__text">
+               My name is Praneeth. I am a sophomore at Georgia State University.
+               <br>
+               Here are some important links!
+            </div>
+
+            <ul class="block__ul">
+               <li class="block__li"><a href="https://github.com/rangarajanpraneeth">GitHub</a></li>
+               <li class="block__li"><a href="https://www.linkedin.com/in/rangarajanpraneeth/">LinkedIn</a></li>
+            </ul>
+
+            <div class="title__2 hierarchy__parent__link">About this site</div>
+            <div class="block__text">
+               This site is fully custom made using vanilla HTML and JS.
+               <br>
+               Find this project on <a
+                  href="https://github.com/rangarajanpraneeth/rangarajanpraneeth.github.io">GitHub</a>
+            </div>
+         </div>
+
+
+
+         <!-- CONTENT PAGE -->
+         <div class="content__page">
+            <div class="title__1">Help</div>
+
+            <div class="title__2 hierarchy__parent__link">Bug Reports</div>
+
+            <div class="block__text">
+               Submit new issues on the <a href="">GitHub repository</a>. Before you submit a bug report please follow
+               the following steps:
+            </div>
+
+            <ol class="block__ol">
+               <li class="block__li">Make sure the bug can be consistently reproduced</li>
+               <li class="block__li">Search <a href="">open issues</a> to make sure the bug hasn't been reported before
+               </li>
+               <li class="block__li">Attach the error message from inspect element console if possible.</li>
+            </ol>
+
+            <div class="title__2 hierarchy__parent__link">Feature Requests</div>
+
+            <div class="block__text">
+               Submit new requests on the <a href="">GitHub repository</a>. Before you request a feature, search <a
+                  href="">open issues</a> to make sure it hasn't been requested before.
+            </div>
+         </div>
+
+
+
+         <!-- CONTENT PAGE -->
+         <div class="content__page">
+            <div class="title__1">License</div>
+
+            <div class="block__text">
+               This project is licensed under the <a
+                  href="https://github.com/rangarajanpraneeth/rangarajanpraneeth.github.io/blob/main/LICENSE">MIT
+                  License</a> which allows you to modify and redistribute
+               the code, however you must preserve the copuright and license notice in your CSS file.
+            </div>
+         </div>
+
+         <div class="content__page">
+            <div class="title__1">Contributing</div>
+         </div>
+
+
+
+         <!-- CONTENT PAGE -->
+         <div class="content__page">
+            <div class="title__1">Local Development</div>
+            <div class="block__tags">
+               <div class="block__tag">#contributing</div>
+            </div>
+
+            <div class="block__text">
+               To set up local development, follow the instructions below. This project was designed specifically to be
+               completely independent and dependency free. Refer to the guide below to learn how to set up your own
+               personal copy.
+            </div>
+
+            <div class="block__text">
+               This project is regularly updated. Use <a
+                  href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo">GitHub's
+                  fork feature</a> to merge the latest changes into your fork.
+               If you have not changed any of the code other than the contents of the HTML file, the updates should
+               gracefully merge into your existing fork. On the contrary, if any changes were made to the CSS or JS, you
+               might need to carefully merge the updates yourself.
+            </div>
+
+            <div class="title__2 hierarchy__parent__link">Getting started</div>
+
+            <div class="title__3 hierarchy__child__link">Set up</div>
+            <div class="block__text">Clone the repository</div>
+
+            <pre><code class="block__code language-plaintext">
+               git clone link
+            </code></pre>
+
+            <div class="title__3 hierarchy__child__link">Getting started</div>
+         </div>
+
+
+
+         <!-- CONTENT PAGE -->
+         <div class="content__page">
+            <div class="title__1">Block Types</div>
+         </div>
+      </div>
+
+      <!-- SIDEBAR RIGHT -->
+      <!-- no need to populate -->
+      <!-- this section automatically populates -->
+      <div class="sidebar__right scroll">
+         <div class="sidebar__right__content">
+            <div class="title__3">Table of Contents</div>
+            <div class="hierarchy__container"></div>
+         </div>
+      </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
+   <script>
+      window.history.scrollRestoration = 'manual';
+
+      const dropdownLinksGlobal = document.querySelectorAll('.dropdown__link');
+      const contentPagesGlobal = document.querySelectorAll('.content__page');
+
+      // look for dropdown link named introduction otherwise return 0
+      const getIntroductionIndex = () => {
+         for (let i = 0; i < dropdownLinksGlobal.length; i++) {
+            if (dropdownLinksGlobal[i].textContent.trim().toLowerCase() === 'introduction' ||
+               dropdownLinksGlobal[i].dataset.pageId === 'introduction') {
+               return i;
+            }
+         }
+         return 0;
+      }
+
+      const restoreState = () => {
+         const hash = window.location.hash.substring(1);
+         let selectedIndex = null;
+
+         if (hash) {
+            const targetLink = Array.from(dropdownLinksGlobal).find(link => link.dataset.pageId === hash);
+            if (targetLink) {
+               selectedIndex = Array.from(dropdownLinksGlobal).indexOf(targetLink);
+            }
+         } else {
+            selectedIndex = getIntroductionIndex();
+            const introductionLink = dropdownLinksGlobal[selectedIndex];
+            if (introductionLink) {
+               history.replaceState(null, null, `#${introductionLink.dataset.pageId}`);
+            }
+         }
+
+         if (selectedIndex !== null) {
+            const selectedLink = dropdownLinksGlobal[selectedIndex];
+            if (selectedLink) {
+               const dropdownList = selectedLink.closest('.dropdown__list');
+
+               if (dropdownList) {
+                  const dropdownLinks = dropdownList.querySelector('.dropdown__links');
+                  const arrow = dropdownList.querySelector('.dropdown__title svg');
+
+                  if (dropdownLinks) {
+                     dropdownLinks.style.display = 'flex';
+                  }
+                  if (arrow) {
+                     arrow.style.transform = 'rotate(0deg)';
+                  }
+               }
+
+               dropdownLinksGlobal.forEach(link => link.classList.remove('active'));
+               selectedLink.classList.add('active');
+               contentPagesGlobal.forEach(page => page.classList.remove('active'));
+               if (contentPagesGlobal[selectedIndex]) {
+                  contentPagesGlobal[selectedIndex].classList.add('active')
+               }
+            }
+         }
+         setTimeout(handlePathNavigation, 100);
+      }
+
+      const getPageTitle = (pageId) => {
+         const matchingDropdownItem = document.querySelector(`.dropdown__link[data-page-id="${pageId}"]`);
+         if (matchingDropdownItem) {
+            return matchingDropdownItem.textContent.trim();
+         }
+
+         return pageId
+            .split('-')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+      }
+
+      const updateURL = path => {
+         history.pushState(null, null, `#${path}`);
+      }
+
+      const handlePathNavigation = () => {
+         const pathFromURL = window.location.hash.substring(1);
+
+         if (pathFromURL) {
+            const targetElement = document.querySelector(`[data-nav-path="${pathFromURL}"]`);
+            if (targetElement) {
+               setTimeout(() => {
+                  targetElement.scrollIntoView({ behavior: 'instant', block: 'start' });
+
+                  const selection = window.getSelection();
+                  const range = document.createRange();
+                  range.selectNodeContents(targetElement);
+                  selection.removeAllRanges();
+                  selection.addRange(range);
+
+                  setTimeout(() => {
+                     selection.removeAllRanges();
+                  }, 1000);
+               }, 100);
+               return;
+            }
+            if (pathFromURL.includes('/')) {
+               const pathParts = pathFromURL.split('/');
+               const pageId = 0;
+
+               const pageLinkElement = document.querySelector(`.dropdown__link[data-page-id="${pageId}"]`);
+               if (pageLinkElement) {
+                  pageLinkElement.click();
+
+                  setTimeout(() => {
+                     const sectionElement = document.querySelector(`[data-nav-path="${pathFromURL}"]`);
+                     if (sectionElement) {
+                        sectionElement.scrollIntoView({ behavior: 'instant', block: 'start' });
+
+                        const selection = window.getSelection();
+                        const range = document.createRange();
+                        range.selectNodeContents(sectionElement);
+                        selection.removeAllRanges();
+                        selection.addRange(range);
+
+                        setTimeout(() => {
+                           selection.removeAllRanges();
+                        }, 1000);
+                     }
+                  }, 100);
+               }
+            }
+         } else {
+            const lastScrollPosition = localStorage.getItem('lastScrollPosition');
+            if (lastScrollPosition) {
+               window.scrollTo(0, parseInt(lastScrollPosition));
+            }
+         }
+      }
+
+      const setupCopyLinks = () => {
+         document.querySelectorAll('.copy__link').forEach(icon => {
+            icon.addEventListener('click', e => {
+               e.stopPropagation();
+
+               const parentLink = icon.closest('.hierarchy__parent__link, .hierarchy__child__link');
+               if (!parentLink) {
+                  return;
+               }
+
+               const navPath = parentLink.dataset.navPath;
+               if (!navPath) {
+                  return
+               }
+
+               history.pushState(null, null, `#${navPath}`);
+               const fullURL = window.location.origin + window.location.pathname + window.location.hash;
+               navigator.clipboard.writeText(fullURL);
+            });
+         });
+      }
+
+      const setupScrollSpy = () => {
+         const activePage = document.querySelector('.content__page.active');
+         if (!activePage) return;
+
+         const navElements = activePage.querySelectorAll('[data-nav-path]');
+         const hierarchyElements = document.querySelectorAll('.hierarchy__parent__title, .hierarchy__child');
+
+         const pathToHierarchyMap = {};
+         hierarchyElements.forEach(element => {
+            if (element.dataset.path) {
+               pathToHierarchyMap[element.dataset.path] = element;
+            }
+         });
+
+         const options = {
+            root: null,
+            // rootMargin: '-100px 0px -70% 0px',
+            // rootMargin: '0px 0px -75% 0px',
+            // rootMargin: '48px 0px 96px 0px',
+            rootMargin: '0px 0px 48px 0px',
+            threshold: 0
+         }
+
+         const clearActiveElements = () => {
+            hierarchyElements.forEach(element => element.classList.remove('hierarchy__highlight'));
+         }
+         const handleIntersect = entries => {
+            const visibleEntries = entries.filter(entry => entry.isIntersecting);
+            if (visibleEntries.length > 0) {
+               clearActiveElements();
+
+               const targetElement = visibleEntries[0].target;
+               const navPath = targetElement.dataset.navPath;
+
+               if (navPath && pathToHierarchyMap[navPath]) {
+                  pathToHierarchyMap[navPath].classList.add('hierarchy__highlight');
+               }
+            }
+         }
+         const observer = new IntersectionObserver(handleIntersect, options);
+
+         navElements.forEach(element => {
+            observer.observe(element);
+         });
+
+         return observer;
+      }
+
+      // const updateActiveHierarchyLink = element => {
+      //    document.querySelectorAll('.hierarchy__parent__title, .hierarchy__child').forEach(item => {
+      //       item.classList.remove('active');
+      //    });
+
+      //    element.classList.add('active');
+      // }
+
+      const buildHierarchy = () => {
+         const activePage = document.querySelector('.content__page.active');
+         const activePageId = activePage && activePage.id ? activePage.id : 'page';
+
+         const parentLinks = activePage.querySelectorAll('.hierarchy__parent__link');
+         const childLinks = activePage.querySelectorAll('.hierarchy__child__link');
+
+         const hierarchy = document.createElement('div');
+         hierarchy.className = 'hierarchy';
+         hierarchy.dataset.parentPage = activePageId;
+
+         const hierarchyTitle = document.createElement('div');
+         hierarchyTitle.className = 'hierarchy__title';
+         hierarchyTitle.textContent = getPageTitle(activePageId);
+         hierarchy.appendChild(hierarchyTitle);
+
+         let currentParent = null;
+         let currentChildren = null;
+         let currentParentPath = '';
+
+         const allElements = [...activePage.querySelectorAll('.hierarchy__parent__link, .hierarchy__child__link')];
+         allElements.sort((a, b) => {
+            const position = a.compareDocumentPosition(b);
+            return position & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1;
+         });
+         allElements.forEach((element, index) => {
+            if (element.classList.contains('hierarchy__parent__link')) {
+               const slug = element.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+               const path = `${activePageId}/${slug}`;
+               currentParentPath = path;
+
+               const hierarchyParent = document.createElement('div');
+               hierarchyParent.className = 'hierarchy__parent';
+
+               const hierarchyParentTitle = document.createElement('div');
+               hierarchyParentTitle.className = 'hierarchy__parent__title';
+               hierarchyParentTitle.textContent = element.textContent.trim();
+               hierarchyParentTitle.dataset.path = path;
+
+               const hierarchyChildren = document.createElement('div');
+               hierarchyChildren.className = 'hierarchy__children';
+
+               hierarchyParent.appendChild(hierarchyParentTitle);
+               hierarchyParent.appendChild(hierarchyChildren);
+               hierarchy.appendChild(hierarchyParent);
+
+               currentParent = hierarchyParent;
+               currentChildren = hierarchyChildren;
+
+               element.dataset.navPath = path;
+
+               hierarchyParentTitle.addEventListener('click', e => {
+                  element.scrollIntoView({ behavior: 'instant', block: 'start' });
+                  updateURL(path);
+                  localStorage.setItem('lastScrollPosition', window.scrollY);
+
+                  // added code
+                  const selection = window.getSelection();
+                  const range = document.createRange();
+                  range.selectNodeContents(element);
+                  selection.removeAllRanges();
+                  selection.addRange(range);
+
+                  // added code
+                  // updateActiveHierarchyLink(hierarchyParentTitle);
+
+                  setTimeout(() => {
+                     selection.removeAllRanges();
+                  }, 1000);
+               });
+            } else if (element.classList.contains('hierarchy__child__link') && currentChildren) {
+               const slug = element.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+               const path = `${currentParentPath}/${slug}`;
+
+               const hierarchyChild = document.createElement('div');
+               hierarchyChild.className = 'hierarchy__child';
+               hierarchyChild.textContent = element.textContent.trim();
+               hierarchyChild.dataset.path = path;
+
+               currentChildren.appendChild(hierarchyChild);
+
+               element.dataset.navPath = path;
+
+               hierarchyChild.addEventListener('click', e => {
+                  element.scrollIntoView({ behavior: 'instant', block: 'start' });
+                  updateURL(path);
+                  localStorage.setItem('lastScrollPosition', window.scrollY);
+
+                  // added code
+                  const selection = window.getSelection();
+                  const range = document.createRange();
+                  range.selectNodeContents(element);
+                  selection.removeAllRanges();
+                  selection.addRange(range);
+
+                  // added code
+                  // updateActiveHierarchyLink(hierarchyChild);
+
+                  setTimeout(() => {
+                     selection.removeAllRanges();
+                  }, 1000);
+               });
+            }
+         });
+
+         const hierarchyContainer = document.querySelector('.hierarchy__container');
+
+         if (hierarchyContainer) {
+            hierarchyContainer.innerHTML = '';
+            hierarchyContainer.appendChild(hierarchy);
+         } else {
+            const newHierarchyContainer = document.createElement('div');
+            newHierarchyContainer.className = 'hierarchy__container';
+            newHierarchyContainer.appendChild(hierarchyContainer);
+
+            const dropdown = document.querySelector('.sidebar__dropdown');
+            if (dropdown && dropdown.parentNode) {
+               dropdown.parentNode.insertBefore(newHierarchyContainer, dropdown.nextSibling);
+            } else {
+               document.body.insertBefore(newHierarchyContainer, document.body.firstChild);
+            }
+         }
+         handlePathNavigation();
+
+         // added code
+         setupCopyLinks();
+
+         // added code
+         setTimeout(() => {
+            setupScrollSpy();
+         }, 200);
+      }
+
+      // check and format foreach iterator name
+      const connectWithDropdown = () => {
+         document.querySelectorAll('.dropdown__link').forEach(link => {
+            link.addEventListener('click', () => {
+               setTimeout(buildHierarchy, 100);
+            });
+         });
+         window.addEventListener('popstate', () => {
+            setTimeout(handlePathNavigation, 100);
+         });
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+         const search = initializeSearch();
+
+         // added code
+         if (!window.location.hash) {
+            introductionIndex = getIntroductionIndex();
+            const introductionPageId = dropdownLinksGlobal[introductionIndex].dataset.pageId;
+            history.replaceState(null, null, `#${introductionPageId}`);
+         }
+         // the above code makes it so empty links default to #introduction
+
+         restoreState();
+         window.addEventListener('popstate', restoreState());
+
+         // added code
+         document.querySelectorAll('a').forEach(link => {
+            link.setAttribute('target', '_blank');
+         });
+
+         // added code
+         svgLinkIcon = `
+         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="copy__link">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+         </svg>
+         `
+         const allHierarchyLinks = document.querySelectorAll('.hierarchy__parent__link, .hierarchy__child__link');
+         allHierarchyLinks.forEach(hierarchyLink => {
+            hierarchyLink.insertAdjacentHTML('beforeend', svgLinkIcon);
+         });
+
+         // pre code formatting
+         document.querySelectorAll('pre code').forEach(element => {
+            const lines = element.textContent.split('\n')
+               // l: line, i: index, a: array (lines)
+               .filter((l, i, a) =>
+                  !(i === 0 && !l.trim()) &&
+                  !(i === a.length - 1 && !l.trim()));
+
+            const indent = (lines.find(line => line.trim())?.match(/^\s+/) || [''])[0];
+            if (indent) {
+               const regex = new RegExp(`^${indent.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'gm');
+               element.textContent = lines.map(line => line.replace(regex, '')).join('\n');
+            }
+            hljs.highlightElement(element);
+         });
+
+         // dropdown toggle logic
+         document.querySelectorAll('.dropdown__title').forEach(title => {
+            title.addEventListener('click', () => {
+               const arrow = title.querySelector('svg');
+               const links = title.nextElementSibling;
+               const list = title.closest('.dropdown__list');
+               if (links) {
+                  const open = links.style.display === 'flex';
+                  links.style.display = open ? 'none' : 'flex';
+                  arrow.style.transform = open ? 'rotate(-90deg)' : 'rotate(0deg)';
+                  if (list) {
+                     const listId = list.dataset.id ||
+                        Array.from(document.querySelectorAll('.dropdown__list')).indexOf(list);
+                     localStorage.setItem(`dropdown_${listId}_open`, !open);
+                  }
+               }
+            });
+         });
+
+         // selected link highlight logic
+         dropdownLinksGlobal.forEach((link, index) => {
+            const pageId = link.dataset.pageId ||
+               link.textContent.trim().toLowerCase().replace(/\s+/g, '-') ||
+               `page-${index}`;
+            if (!link.dataset.pageId) {
+               link.dataset.pageId = pageId;
+            }
+            if (contentPagesGlobal[index] && !contentPagesGlobal[index].id) {
+               contentPagesGlobal[index].id = pageId;
+            }
+            link.addEventListener('click', function () {
+               dropdownLinksGlobal.forEach(l => l.classList.remove('active'));
+               this.classList.add('active');
+               contentPagesGlobal.forEach(page => page.classList.remove('active'));
+               contentPagesGlobal[index].classList.add('active');
+               const pageId = this.dataset.pageId;
+               history.pushState(null, null, `#${pageId}`);
+               localStorage.setItem('selectedIndex', index);
+            });
+         });
+
+         buildHierarchy();
+         connectWithDropdown();
+
+         // expose to window for potential use in other functions
+         window.obsidianSearch = search;
+      });
+   </script>
+</body>
+
+</html>
