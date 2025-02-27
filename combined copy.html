@@ -489,133 +489,89 @@
       .block__li::marker {
          color: var(--element-highlight);
       }
+   </style>
 
+   <style>
+      /* SEARCH STYLES */
+.search__container {
+   margin-top: 1.5rem;
+   position: relative;
+   width: 100%;
+}
 
+.search__input {
+   width: 100%;
+   padding: 0.5rem;
+   background-color: var(--element-background);
+   border: 1px solid var(--element-border);
+   border-radius: 0.25rem;
+   color: var(--text-light);
+   outline: none;
+}
 
+.search__input:focus {
+   border-color: var(--theme);
+}
 
+.search__results {
+   position: absolute;
+   top: calc(100% + 0.5rem);
+   left: 0;
+   width: 100%;
+   max-height: 20rem;
+   background-color: var(--element-background);
+   border: 1px solid var(--element-border);
+   border-radius: 0.25rem;
+   overflow-y: auto;
+   z-index: 10;
+   display: none;
+}
 
+.search__result {
+   padding: 0.75rem;
+   cursor: pointer;
+   border-bottom: 1px solid var(--element-border);
+}
 
+.search__result:last-child {
+   border-bottom: none;
+}
 
+.search__result:hover {
+   background-color: var(--element-highlight);
+}
 
+.search__result-title {
+   font-weight: 500;
+   margin-bottom: 0.25rem;
+   color: var(--text-lighter);
+}
 
+.search__result-context {
+   font-size: 0.9rem;
+   color: var(--text-dark);
+}
 
+.search__result-match {
+   color: var(--theme);
+   font-weight: 500;
+}
 
+.search__result-tag {
+   display: inline-block;
+   background-color: var(--theme-dark);
+   color: var(--text-lighter);
+   padding: 0.2rem 0.5rem;
+   border-radius: 0.25rem;
+   font-size: 0.8rem;
+   margin-left: 0.5rem;
+}
 
-
-
-      /* Search styles */
-  .search__container {
-    margin-top: 2rem;
-    position: relative;
-  }
-
-  .search__input {
-    width: 100%;
-    padding: 0.5rem;
-    background-color: var(--element-background);
-    border: 1px solid var(--element-border);
-    border-radius: 0.25rem;
-    color: var(--text-light);
-    font-size: 0.875rem;
-  }
-
-  .search__input:focus {
-    border-color: var(--theme);
-    outline: none;
-  }
-
-  .search__results {
-    position: absolute;
-    width: 100%;
-    max-height: 50vh;
-    background-color: var(--element-background);
-    border: 1px solid var(--element-border);
-    border-radius: 0.25rem;
-    margin-top: 0.5rem;
-    z-index: 10;
-    overflow-y: auto;
-    display: none;
-  }
-
-  .search__result {
-    padding: 0.75rem;
-    cursor: pointer;
-    border-bottom: 1px solid var(--element-border);
-  }
-
-  .search__result:hover {
-    background-color: var(--element-highlight);
-  }
-
-  .search__result:last-child {
-    border-bottom: none;
-  }
-
-  .search__result-title {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--text-light);
-    margin-bottom: 0.25rem;
-  }
-
-  .search__result-context {
-    font-size: 0.75rem;
-    color: var(--text-dark);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .search__result-path {
-    font-size: 0.75rem;
-    color: var(--theme);
-    margin-top: 0.25rem;
-  }
-
-  .search__tag {
-    background-color: var(--theme-dark);
-    color: var(--text-lighter);
-    padding: 0.125rem 0.375rem;
-    border-radius: 0.25rem;
-    font-size: 0.75rem;
-    margin-right: 0.375rem;
-  }
-
-  .search__empty {
-    padding: 1rem;
-    text-align: center;
-    color: var(--text-dark);
-  }
-
-  .search__highlight {
-    background-color: var(--theme);
-    color: var(--text-lighter);
-    padding: 0 0.125rem;
-  }
-
-  .search__icon {
-    position: absolute;
-    right: 0.5rem;
-    top: 0.5rem;
-    color: var(--text-dark);
-    width: 1rem;
-    height: 1rem;
-  }
-
-  .highlight-animation {
-    animation: highlight-pulse 1s ease-in-out;
-  }
-
-  @keyframes highlight-pulse {
-    0% {
-      background-color: var(--theme);
-      color: var(--text-lighter);
-    }
-    100% {
-      background-color: transparent;
-      color: inherit;
-    }
-  }
+.search__no-results {
+   padding: 0.75rem;
+   color: var(--text-dark);
+   text-align: center;
+}
    </style>
 </head>
 
@@ -633,15 +589,11 @@
             <div class="title__3">Portfolio</div>
 
 
+
             <div class="search__container">
                <input type="text" class="search__input" placeholder="Search...">
-               <svg xmlns="http://www.w3.org/2000/svg" class="search__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                 <circle cx="11" cy="11" r="8"></circle>
-                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-               </svg>
-               <div class="search__results"></div>
-             </div>
-
+               <div class="search__results scroll"></div>
+            </div>
 
 
 
@@ -1199,243 +1151,246 @@
       });
    </script>
 
+   <script>
+      // SEARCH FUNCTIONALITY
+const searchElements = {
+   input: document.querySelector('.search__input'),
+   results: document.querySelector('.search__results')
+};
 
-
-
-
-<script>
-   // Search functionality
-   const searchElements = {
-     input: document.querySelector('.search__input'),
-     results: document.querySelector('.search__results')
-   };
+// Helper function to get all searchable content from the page
+const getSearchableContent = () => {
+   const searchItems = [];
    
-   let searchIndex = [];
-   let tagIndex = [];
+   elements.contentPages.forEach((page, pageIndex) => {
+      const pageId = page.id || `page-${pageIndex}`;
+      const pageTitle = getPageTitle(pageId);
+      
+      // Get all text blocks
+      const textBlocks = page.querySelectorAll('.block__text, .block__li, .title__1, .title__2, .title__3');
+      
+      textBlocks.forEach(block => {
+         // Skip empty blocks
+         if (!block.textContent.trim()) return;
+         
+         // Create a search item
+         const item = {
+            pageId,
+            pageTitle,
+            element: block,
+            text: block.textContent.trim(),
+            isTitle: block.classList.contains('title__1') || 
+                     block.classList.contains('title__2') || 
+                     block.classList.contains('title__3'),
+            isTag: false,
+            navPath: block.dataset?.navPath || null
+         };
+         
+         searchItems.push(item);
+      });
+      
+      // Get all tags
+      const tags = page.querySelectorAll('.block__tag');
+      
+      tags.forEach(tag => {
+         const tagText = tag.textContent.trim();
+         
+         searchItems.push({
+            pageId,
+            pageTitle,
+            element: tag,
+            text: tagText,
+            isTitle: false,
+            isTag: true,
+            navPath: null
+         });
+      });
+   });
    
-   // Build search index from all pages and their content
-   function buildSearchIndex() {
-     searchIndex = [];
-     tagIndex = [];
-     
-     elements.contentPages.forEach((page, pageIndex) => {
-       const pageId = page.id || `page-${pageIndex}`;
-       const pageTitle = getPageTitle(pageId);
-       
-       // Index page title
-       searchIndex.push({
-         type: 'title',
-         text: pageTitle,
-         path: pageId,
-         element: page,
-         pageIndex: pageIndex
-       });
-       
-       // Index headings and text blocks
-       page.querySelectorAll('.hierarchy__parent__link, .hierarchy__child__link, .block__text').forEach(element => {
-         const text = element.textContent.trim();
-         const path = element.dataset.navPath || pageId;
-         
-         searchIndex.push({
-           type: element.classList.contains('block__text') ? 'text' : 'heading',
-           text: text,
-           path: path,
-           element: element,
-           pageIndex: pageIndex
-         });
-       });
-       
-       // Index tags
-       page.querySelectorAll('.block__tag').forEach(tag => {
-         const text = tag.textContent.trim();
-         const parentBlock = tag.closest('.block__tags');
-         const path = parentBlock ? 
-           (parentBlock.previousElementSibling?.dataset.navPath || pageId) : 
-           pageId;
-         
-         searchIndex.push({
-           type: 'tag',
-           text: text,
-           path: path,
-           element: tag,
-           pageIndex: pageIndex
-         });
-         
-         // Add to tag index
-         if (!tagIndex.includes(text)) {
-           tagIndex.push(text);
-         }
-       });
-     });
+   return searchItems;
+};
+
+// Function to perform search
+const performSearch = (query) => {
+   // Clear previous results
+   searchElements.results.innerHTML = '';
+   
+   // If empty query, hide results
+   if (!query.trim()) {
+      searchElements.results.style.display = 'none';
+      return;
    }
    
-   // Perform search
-   function performSearch(query) {
-     if (!query.trim()) {
-       searchElements.results.style.display = 'none';
-       return;
-     }
-     
-     const results = [];
-     const searchTerms = query.toLowerCase().trim();
-     
-     // Check if searching for tag
-     if (searchTerms.startsWith('#')) {
-       const tagQuery = searchTerms.substring(1);
-       
-       searchIndex.filter(item => item.type === 'tag' && 
-                      item.text.toLowerCase().includes(tagQuery))
-                 .forEach(item => {
-                   results.push(item);
-                 });
-     } else {
-       // Regular search
-       searchIndex.forEach(item => {
-         if (item.text.toLowerCase().includes(searchTerms)) {
-           results.push(item);
+   // Get all searchable content
+   const searchItems = getSearchableContent();
+   const results = [];
+   
+   // Check if it's a tag search
+   const isTagSearch = query.startsWith('#');
+   const searchQuery = isTagSearch ? query.substring(1).toLowerCase() : query.toLowerCase();
+   
+   // Filter items based on search query
+   searchItems.forEach(item => {
+      // For tag search, only include tags
+      if (isTagSearch) {
+         if (item.isTag && item.text.toLowerCase().includes(searchQuery)) {
+            results.push(item);
          }
-       });
-     }
-     
-     // Display results
-     if (results.length === 0) {
-       searchElements.results.innerHTML = `<div class="search__empty">No results found</div>`;
-     } else {
-       searchElements.results.innerHTML = results.map(result => {
-         const resultText = result.text;
-         const highlightedText = highlightMatch(resultText, searchTerms);
-         const contextPreview = truncateText(resultText, 100);
-         const highlightedPreview = highlightMatch(contextPreview, searchTerms);
+         return;
+      }
+      
+      // For regular search, include all items
+      if (item.text.toLowerCase().includes(searchQuery)) {
+         results.push(item);
+      }
+   });
+   
+   // Display results
+   if (results.length === 0) {
+      searchElements.results.innerHTML = `<div class="search__no-results">No results found for "${query}"</div>`;
+   } else {
+      results.forEach(result => {
+         const isTag = result.isTag;
+         const text = result.text;
+         const searchQuery = isTagSearch ? query.substring(1) : query;
          
-         return `
-           <div class="search__result" data-path="${result.path}" data-page-index="${result.pageIndex}">
-             <div class="search__result-title">
-               ${result.type === 'tag' ? `<span class="search__tag">#tag</span>` : ''}
-               ${highlightedText}
-             </div>
-             <div class="search__result-context">${highlightedPreview}</div>
-             <div class="search__result-path">${result.path}</div>
-           </div>
+         // Highlight matching text
+         const regex = new RegExp(`(${searchQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+         const highlightedText = text.replace(regex, '<span class="search__result-match">$1</span>');
+         
+         // Create result element
+         const resultElement = document.createElement('div');
+         resultElement.className = 'search__result';
+         
+         resultElement.innerHTML = `
+            <div class="search__result-title">${result.pageTitle}${isTag ? `<span class="search__result-tag">Tag</span>` : ''}</div>
+            <div class="search__result-context">${highlightedText}</div>
          `;
-       }).join('');
-     }
-     
-     searchElements.results.style.display = 'block';
-     
-     // Add click handlers to results
-     document.querySelectorAll('.search__result').forEach(result => {
-       result.addEventListener('click', () => {
-         const path = result.dataset.path;
-         const pageIndex = parseInt(result.dataset.pageIndex);
          
-         // Navigate to the page
-         activatePage(pageIndex);
+         // Add click event to navigate to the result
+         resultElement.addEventListener('click', () => {
+            // Navigate to the page
+            const pageLink = document.querySelector(`.dropdown__link[data-page-id="${result.pageId}"]`);
+            if (pageLink) {
+               const pageIndex = Array.from(elements.dropdownLinks).indexOf(pageLink);
+               activatePage(pageIndex);
+               
+               // After page is loaded, scroll to the element and highlight it
+               setTimeout(() => {
+                  const element = result.element;
+                  
+                  if (element) {
+                     element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                     
+                     // Update URL if it has a navPath
+                     if (result.navPath) {
+                        updateURL(result.navPath);
+                     } else {
+                        updateURL(result.pageId);
+                     }
+                     
+                     // Find the exact text match and highlight it
+                     const textNodes = getTextNodesIn(element);
+                     let found = false;
+                     
+                     for (let node of textNodes) {
+                        if (found) break;
+                        
+                        const nodeText = node.nodeValue;
+                        const searchTermIndex = nodeText.toLowerCase().indexOf(searchQuery.toLowerCase());
+                        
+                        if (searchTermIndex >= 0) {
+                           // Create a range for the search term
+                           const range = document.createRange();
+                           range.setStart(node, searchTermIndex);
+                           range.setEnd(node, searchTermIndex + searchQuery.length);
+                           
+                           // Create a selection
+                           const selection = window.getSelection();
+                           selection.removeAllRanges();
+                           selection.addRange(range);
+                           
+                           // Clear selection after 1 second
+                           setTimeout(() => {
+                              selection.removeAllRanges();
+                           }, 1000);
+                           
+                           found = true;
+                        }
+                     }
+                     
+                     // If no specific text found, highlight the entire element
+                     if (!found) {
+                        highlightElement(element);
+                     }
+                  }
+               }, 200);
+               
+               // Hide search results
+               searchElements.results.style.display = 'none';
+            }
+         });
          
-         // Close search results
+         searchElements.results.appendChild(resultElement);
+      });
+   }
+   
+   // Show results
+   searchElements.results.style.display = 'block';
+};
+
+// Helper function to get all text nodes within an element
+const getTextNodesIn = (element) => {
+   const textNodes = [];
+   const walk = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+   let node;
+   
+   while (node = walk.nextNode()) {
+      textNodes.push(node);
+   }
+   
+   return textNodes;
+};
+
+// Add event listeners for search
+const setupSearch = () => {
+   // Search input event
+   searchElements.input.addEventListener('input', (e) => {
+      performSearch(e.target.value);
+   });
+   
+   // Hide results when clicking outside
+   document.addEventListener('click', (e) => {
+      if (!e.target.closest('.search__container')) {
          searchElements.results.style.display = 'none';
-         searchElements.input.value = '';
-         
-         // Scroll to the element and highlight it
-         setTimeout(() => {
-           const targetElement = document.querySelector(`[data-nav-path="${path}"]`);
-           
-           if (targetElement) {
-             targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-             
-             // Highlight the element temporarily
-             targetElement.classList.add('highlight-animation');
-             setTimeout(() => {
-               targetElement.classList.remove('highlight-animation');
-             }, 1000);
-           } else {
-             // If specific element not found, just navigate to the page
-             updateURL(path);
-           }
-         }, 100);
-       });
-     });
-   }
+      }
+   });
    
-   // Helper functions
-   function highlightMatch(text, searchTerms) {
-     if (!searchTerms) return text;
-     
-     // Escape special characters in the search terms
-     const escapedSearchTerms = searchTerms.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-     
-     // Create regex with word boundaries if possible
-     const regex = new RegExp(`(${escapedSearchTerms})`, 'gi');
-     return text.replace(regex, '<span class="search__highlight">$1</span>');
-   }
+   // Prevent clicks within results from bubbling
+   searchElements.results.addEventListener('click', (e) => {
+      e.stopPropagation();
+   });
    
-   function truncateText(text, maxLength) {
-     if (text.length <= maxLength) return text;
-     
-     // Try to truncate at a word boundary
-     const truncated = text.substring(0, maxLength);
-     const lastSpaceIndex = truncated.lastIndexOf(' ');
-     
-     if (lastSpaceIndex !== -1) {
-       return truncated.substring(0, lastSpaceIndex) + '...';
-     } else {
-       return truncated + '...';
-     }
-   }
-   
-   // Set up event listeners
-   function initializeSearch() {
-     buildSearchIndex();
-     
-     searchElements.input.addEventListener('input', () => {
-       performSearch(searchElements.input.value);
-     });
-     
-     searchElements.input.addEventListener('focus', () => {
-       if (searchElements.input.value.trim()) {
-         performSearch(searchElements.input.value);
-       }
-     });
-     
-     // Close search results when clicking outside
-     document.addEventListener('click', (e) => {
-       if (!searchElements.input.contains(e.target) && 
-           !searchElements.results.contains(e.target)) {
-         searchElements.results.style.display = 'none';
-       }
-     });
-     
-     // Handle keyboard navigation
-     searchElements.input.addEventListener('keydown', (e) => {
-       const results = document.querySelectorAll('.search__result');
-       
-       if (e.key === 'Escape') {
+   // Handle keyboard navigation
+   searchElements.input.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
          searchElements.results.style.display = 'none';
          searchElements.input.blur();
-       } else if (e.key === 'ArrowDown' && results.length > 0) {
+      } else if (e.key === 'ArrowDown') {
          e.preventDefault();
-         results[0].focus();
-       }
-     });
-     
-     // Rebuild search index when content changes
-     const observer = new MutationObserver(() => {
-       buildSearchIndex();
-     });
-     
-     observer.observe(document.querySelector('.content__section'), {
-       childList: true,
-       subtree: true
-     });
-   }
-   
-   // Add to the existing DOMContentLoaded event
-   document.addEventListener('DOMContentLoaded', () => {
-     // ... existing code ...
-     
-     // Initialize search
-     initializeSearch();
+         const firstResult = searchElements.results.querySelector('.search__result');
+         if (firstResult) firstResult.focus();
+      }
    });
- </script>
+};
+
+// Add setupSearch to the DOMContentLoaded event
+document.addEventListener('DOMContentLoaded', () => {
+   // ... [your existing code]
+   
+   setupSearch();
+});
+   </script>
 </body>
 
 </html>
