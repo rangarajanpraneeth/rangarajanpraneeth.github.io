@@ -77,7 +77,7 @@ a {
    color: var(--theme-light);
 } */
 
-.watermark {
+.wm {
    position: fixed;
    bottom: 1rem;
    right: 1rem;
