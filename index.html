@@ -5,185 +5,1310 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Portfolio</title>
+   <style>
+      /* Global styles and variables */
+      :root {
+         --background: #111;
+         --element-background: #222;
+         --element-border: #222;
+         --element-highlight: #444;
+         --text-dark: #bbb;
+         --text-darker: #999;
+         --text-light: #ddd;
+         --text-lighter: #fff;
+         --theme: #97f;
+         --selection: #97f7;
+      }
 
-   <link rel="stylesheet" href="./src/css/style.css">
-   <link rel="stylesheet" href="./src/css/theme.css">
+      * {
+         box-sizing: border-box;
+         margin: 0;
+         padding: 0;
+         -webkit-font-smoothing: antialiased;
+         font-family: "Roboto", sans-serif;
+         font-size: 16px;
+         line-height: 1;
+      }
+
+      ::-webkit-scrollbar {
+         display: none;
+      }
+
+      ::selection {
+         background-color: var(--selection);
+      }
+
+      body {
+         background-color: var(--background);
+         color: var(--text-light);
+         font-family: 'Roboto', sans-serif;
+      }
+
+      a {
+         color: var(--theme);
+         text-decoration: none;
+      }
+
+      .content__page a {
+         text-decoration: underline;
+      }
+
+      .internal-link {
+         color: var(--theme);
+         cursor: pointer;
+         text-decoration: underline;
+      }
+
+      /* Layout */
+      .page-container {
+         max-width: 1400px;
+         height: 100vh;
+         margin: 0 auto;
+         display: flex;
+      }
+
+      .utility-scroll {
+         overflow-y: auto;
+      }
+
+      /* Content Block */
+      .content__page h1,
+      .content__page h2,
+      .content__page h3,
+      .content__page h4,
+      .content__page h5,
+      .content__page h6 {
+         scroll-margin-top: 4rem;
+         display: flex;
+         align-items: center;
+         gap: .5rem;
+      }
+
+      .content__page h1 {
+         font-size: 2.5rem;
+         font-weight: 500;
+         margin: 3rem 0 1rem;
+      }
+
+      .content__page h2 {
+         font-size: 2rem;
+         font-weight: 500;
+         margin: 3rem 0 1rem;
+         padding-bottom: 1rem;
+         border-bottom: 1px solid var(--element-border);
+      }
+
+      .content__page h3 {
+         font-size: 1.5rem;
+         font-weight: 500;
+         margin: 2rem 0 1rem;
+      }
+
+      .content__page h4 {
+         font-size: 1.25rem;
+         margin: 2rem 0 1rem;
+      }
+
+      .content__page h5 {
+         font-size: 1rem;
+         margin: 2rem 0 1rem;
+      }
+
+      .content__page h6 {
+         font-size: 0.875rem;
+         margin: 2rem 0 1rem;
+      }
+
+      .content__page p {
+         color: var(--text-dark);
+         line-height: 1.5;
+         margin: 1rem 0;
+      }
+
+      .content__page ul,
+      .content__page ol {
+         display: flex;
+         flex-direction: column;
+         gap: .5rem;
+         margin: 1rem 0;
+      }
+
+      .content__page ul {
+         list-style-type: disc;
+      }
+
+      .content__page li {
+         margin-inline-start: 1.5rem;
+         line-height: 1.5;
+         color: var(--text-dark);
+      }
+
+      .content__page li::marker {
+         color: var(--element-highlight);
+      }
+
+      .content__page pre {
+         background-color: var(--element-background);
+         border: 1px solid var(--element-border);
+         border-radius: 0.5rem;
+         overflow-x: auto;
+         margin: 1rem 0;
+         position: relative;
+         /* Added for positioning the copy button */
+      }
+
+      .content__page code {
+         font-family: 'JetBrains Mono', monospace;
+         color: var(--text-light);
+      }
+
+      .content__page p>code,
+      .content__page li>code {
+         background-color: var(--element-background);
+         border-radius: .25rem;
+         padding: .1rem .25rem;
+      }
+
+      .content__page pre code {
+         background: none;
+      }
+
+      .content__page img {
+         max-width: 100%;
+         height: auto;
+         display: block;
+         margin: 1rem 0;
+         border-radius: 0.5rem;
+      }
+
+      /* New Table Styles */
+      .content__page table {
+         width: 100%;
+         border-collapse: collapse;
+         margin: 1.5rem 0;
+         border-radius: 0.5rem;
+         overflow: hidden;
+         /* Ensures border-radius is respected by children */
+      }
+
+      .content__page th,
+      .content__page td {
+         border: 1px solid var(--element-border);
+         padding: 0.75rem 1rem;
+         text-align: left;
+      }
+
+      .content__page th {
+         background-color: var(--element-background);
+         color: var(--text-lighter);
+         font-weight: 500;
+      }
+
+      .content__page td {
+         color: var(--text-dark);
+      }
+
+      .content__page tr:nth-child(even) {
+         background-color: #282828;
+         /* Slightly different background for even rows */
+      }
+
+      .content__page tr:hover {
+         background-color: var(--element-highlight);
+      }
+
+
+      .content__copy-link {
+         width: 1.25rem;
+         height: 1.25rem;
+         color: var(--element-highlight);
+         display: none;
+         cursor: pointer;
+      }
+
+      .content__copy-link:hover {
+         color: var(--theme);
+      }
+
+      .content__page h1:hover .content__copy-link,
+      .content__page h2:hover .content__copy-link,
+      .content__page h3:hover .content__copy-link,
+      .content__page h4:hover .content__copy-link,
+      .content__page h5:hover .content__copy-link,
+      .content__page h6:hover .content__copy-link {
+         display: block;
+      }
+
+      /* New styles for the code copy button */
+      .copy-code-button {
+         position: absolute;
+         top: 0.5rem;
+         right: 0.5rem;
+         background-color: var(--element-highlight);
+         color: var(--text-light);
+         border: none;
+         padding: 0.35rem;
+         border-radius: 0.25rem;
+         cursor: pointer;
+         opacity: 0;
+         transition: opacity 0.2s ease-in-out, background-color 0.2s ease-in-out;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+      }
+
+      .content__page pre:hover .copy-code-button {
+         opacity: 1;
+      }
+
+      .copy-code-button:hover {
+         background-color: #555;
+      }
+
+      .copy-code-button .copy-icon,
+      .copy-code-button .copied-icon {
+         width: 1rem;
+         height: 1rem;
+      }
+
+      .copy-code-button .copied-icon {
+         display: none;
+      }
+
+      /* Links Block */
+      .links {
+         margin-top: 4rem;
+         padding-top: 2rem;
+         border-top: 1px solid var(--element-border);
+      }
+
+      .links__title {
+         font-size: 1.25rem;
+         font-weight: 500;
+         margin-bottom: 1rem;
+      }
+
+      .links__list {
+         list-style-type: none;
+         padding-left: 0;
+         display: flex;
+         flex-direction: column;
+         gap: .5rem;
+      }
+
+      .links__list li {
+         color: var(--text-dark);
+         line-height: 1.5;
+         margin-inline-start: 0;
+      }
+
+      .links__list li::marker {
+         color: var(--element-highlight);
+      }
+
+      .links__list-item {
+         display: flex;
+         align-items: center;
+         gap: 0.5rem;
+      }
+
+      .links__goto-icon {
+         cursor: pointer;
+         color: var(--text-darker);
+         transition: color 0.2s ease-in-out;
+      }
+
+      .links__goto-icon:hover {
+         color: var(--theme);
+      }
+
+
+      /* Sidebar Block */
+      .sidebar {
+         user-select: none;
+         height: 100vh;
+         border-right: 1px solid var(--element-border);
+         flex-shrink: 0;
+      }
+
+      .sidebar--right {
+         border-right: none;
+      }
+
+      .sidebar__content {
+         width: 16rem;
+         padding: 3rem 1rem;
+         display: flex;
+         flex-direction: column;
+         height: 100%;
+      }
+
+      .sidebar__title {
+         font-size: 1.5rem;
+         font-weight: 500;
+         margin-bottom: 1.5rem;
+      }
+
+      .sidebar--right .sidebar__content {
+         width: 16rem;
+      }
+
+      .sidebar--right .sidebar__title {
+         margin-bottom: 2rem;
+      }
+
+      /* Search Block */
+      .search {
+         position: relative;
+         margin-bottom: 1.5rem;
+      }
+
+      .search__input {
+         width: 100%;
+         background-color: var(--element-background);
+         border: 1px solid var(--element-border);
+         color: var(--text-light);
+         border-radius: .5rem;
+         outline: none;
+         height: 36px;
+         padding: 0 0.75rem;
+         line-height: 36px;
+      }
+
+      .search__input:focus {
+         border-color: var(--theme);
+      }
+
+      .search__results {
+         position: absolute;
+         width: 100%;
+         top: calc(100% + .5rem);
+         left: 0;
+         background-color: var(--element-background);
+         border: 1px solid var(--element-border);
+         border-radius: .5rem;
+         max-height: 40vh;
+         overflow-y: auto;
+         z-index: 10;
+         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+         display: none;
+      }
+
+      .search__result-item {
+         padding: .75rem;
+         border-bottom: 1px solid var(--element-border);
+         cursor: pointer;
+      }
+
+      .search__result-item:last-child {
+         border-bottom: none;
+      }
+
+      .search__result-item:hover {
+         background-color: var(--element-highlight);
+      }
+
+      .search__result-path {
+         font-size: 0.75rem;
+         color: var(--text-darker);
+         margin-top: 0.25rem;
+         text-transform: capitalize;
+      }
+
+      .search__result-title {
+         font-weight: 500;
+         color: var(--text-lighter);
+         margin-bottom: .25rem;
+      }
+
+      .search__result-title mark {
+         background-color: transparent;
+         color: var(--theme);
+         font-weight: bold;
+      }
+
+      .search__result-snippet {
+         font-size: 0.875rem;
+         color: var(--text-dark);
+         line-height: 1.4;
+      }
+
+      .search__result-snippet mark {
+         background-color: var(--selection);
+         color: var(--text-lighter);
+         font-weight: 500;
+         border-radius: 2px;
+      }
+
+      .utility-search-highlight {
+         background-color: var(--selection);
+         transition: background-color 0.3s ease-in-out;
+         animation: fadeOutHighlight 2s forwards;
+      }
+
+      @keyframes fadeOutHighlight {
+         from {
+            background-color: var(--selection);
+         }
+
+         to {
+            background-color: transparent;
+         }
+      }
+
+      /* Nav Block (in Sidebar) */
+      .nav {
+         flex-grow: 1;
+         overflow-y: auto;
+         display: flex;
+         flex-direction: column;
+         gap: 0.25rem;
+      }
+
+      .nav__list {
+         display: flex;
+         flex-direction: column;
+         gap: .25rem;
+      }
+
+      .nav__title {
+         cursor: pointer;
+         color: var(--text-light);
+         padding: .5rem 0;
+         display: flex;
+         align-items: center;
+         gap: .5rem;
+         border-radius: .25rem;
+      }
+
+      .nav__title>svg {
+         width: 1rem;
+         height: 1rem;
+         transform: rotate(-90deg);
+         transition: transform 0.2s ease-in-out;
+         flex-shrink: 0;
+      }
+
+      .nav__title:hover {
+         color: var(--text-dark);
+      }
+
+      .nav__title.is-open>svg {
+         transform: rotate(0deg);
+      }
+
+      .nav__links {
+         margin-left: .5rem;
+         padding-left: .5rem;
+         display: none;
+         flex-direction: column;
+         border-left: 1px solid var(--element-border);
+         gap: .25rem;
+      }
+
+      .nav__title.is-open+.nav__links {
+         display: flex;
+      }
+
+      .nav__link {
+         cursor: pointer;
+         padding: .5rem 0;
+         border-radius: .25rem;
+         color: var(--text-dark);
+      }
+
+      .nav__links>.nav__link {
+         padding: .5rem;
+      }
+
+      .nav__link:hover {
+         color: var(--text-light);
+      }
+
+      .nav__link.is-active {
+         color: var(--theme);
+      }
+
+      /* Hierarchy Block (in Right Sidebar) */
+      .hierarchy {
+         display: flex;
+         flex-direction: column;
+      }
+
+      .hierarchy__name {
+         padding-bottom: .5rem;
+         width: fit-content;
+         font-weight: 500;
+      }
+
+      .hierarchy__list {
+         padding-left: 1rem;
+         border-left: 1px solid var(--element-border);
+      }
+
+      .hierarchy__item>.hierarchy__title {
+         padding: .5rem 0;
+         width: fit-content;
+         cursor: pointer;
+         color: var(--text-dark);
+      }
+
+      .hierarchy__item>.hierarchy__title:hover {
+         color: var(--text-light);
+      }
+
+      /* Main Content Block */
+      .content {
+         flex-grow: 1;
+         height: 100vh;
+      }
+
+      .content__pages-container {
+         width: 100%;
+         height: 100%;
+      }
+
+      .content__page {
+         padding: 0 3rem 3rem 3rem;
+         margin-top: 3rem;
+         display: none;
+      }
+
+      .content__page.is-active {
+         display: block;
+      }
+
+      /* Highlight.js theme override */
+      pre code.hljs {
+         display: block;
+         overflow-x: auto;
+         padding: 1rem;
+      }
+
+      .hljs {
+         color: #abb2bf;
+         background: #282c34;
+         font-family: "JetBrains Mono", monospace;
+         line-height: 1.25;
+      }
+
+      .hljs-comment,
+      .hljs-quote {
+         color: #5c6370;
+         font-family: "JetBrains Mono", monospace;
+      }
+
+      .hljs-doctag,
+      .hljs-keyword,
+      .hljs-formula {
+         color: #c678dd;
+         font-family: "JetBrains Mono", monospace;
+      }
+
+      .hljs-deletion,
+      .hljs-name,
+      .hljs-section,
+      .hljs-selector-tag,
+      .hljs-subst {
+         color: #e06c75;
+         font-family: "JetBrains Mono", monospace;
+      }
+
+      .hljs-literal {
+         color: #56b6c2;
+         font-family: "JetBrains Mono", monospace;
+      }
+
+      .hljs-addition,
+      .hljs-attribute,
+      .hljs-meta .hljs-string,
+      .hljs-regexp,
+      .hljs-string {
+         color: #98c379;
+         font-family: "JetBrains Mono", monospace;
+      }
+
+      .hljs-attr,
+      .hljs-number,
+      .hljs-selector-attr,
+      .hljs-selector-class,
+      .hljs-selector-pseudo,
+      .hljs-template-variable,
+      .hljs-type,
+      .hljs-variable {
+         color: #d19a66;
+         font-family: "JetBrains Mono", monospace;
+      }
+
+      .hljs-bullet,
+      .hljs-link,
+      .hljs-meta,
+      .hljs-selector-id,
+      .hljs-symbol,
+      .hljs-title {
+         color: #61aeee;
+         font-family: "JetBrains Mono", monospace;
+      }
+
+      .hljs-built_in,
+      .hljs-class .hljs-title,
+      .hljs-title.class_ {
+         color: #e6c07b;
+         font-family: "JetBrains Mono", monospace;
+      }
+
+      .hljs-emphasis {
+         font-family: "JetBrains Mono", monospace;
+      }
+
+      .hljs-strong {
+         font-family: "JetBrains Mono", monospace;
+      }
+
+      .hljs-params {
+         font-family: "JetBrains Mono", monospace;
+      }
+
+      .hljs-tag {
+         font-family: "JetBrains Mono", monospace;
+      }
+
+      .language-javascript {
+         font-family: "JetBrains Mono", monospace;
+      }
+
+      .hljs-property {
+         font-family: "JetBrains Mono", monospace;
+      }
+
+      /* Make content images interactive */
+      .content__page img {
+         cursor: zoom-in;
+      }
+
+      /* Image Preview Modal */
+      .image-preview-overlay {
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background-color: rgba(0, 0, 0, 0.75);
+         display: none;
+         justify-content: center;
+         align-items: center;
+         z-index: 1000;
+      }
+
+      .image-preview-overlay.is-visible {
+         display: flex;
+      }
+
+      .image-preview-img {
+         max-width: 90vw;
+         max-height: 90vh;
+         border-radius: .5rem;
+         cursor: zoom-out;
+      }
+
+      /* Utility to prevent body scrolling when modal is open */
+      .utility-no-scroll {
+         overflow: hidden;
+      }
+   </style>
 </head>
 
 <body>
-   <!-- add background image link here -->
-   <!-- <img src="https://wallpapershome.com/images/pages/pic_h/864.jpg" alt="" class="background__image"> -->
-   <!-- uncomment this watermark if you wish to use this for your own site (change the color to be visible if needed)-->
-   <!-- <div class="watermark">Powered by Slate</div> -->
-   <!-- <a href="https://github.com/rangarajanpraneeth/rangarajanpraneeth.github.io" class="wm">Powered by Slate</a> -->
-
-   <div class="container">
-      <!-- SIDEBAR LEFT -->
-      <!-- make sure sidebar links are in same order as content pages -->
-      <div class="sidebar__left">
-         <div class="sidebar__left__content">
-            <div class="title__3">Portfolio</div>
-
-            <div class="sidebar__dropdown">
-               <div class="dropdown__link" data-page-id="introduction">Introduction</div>
-               <div class="dropdown__link" data-page-id="help">Help</div>
-
-               <div class="dropdown__list">
-                  <div class="dropdown__title">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 8L12 16L20 8"></path>
-                     </svg>
-                     Documentation
-                  </div>
-                  <div class="dropdown__links">
-                     <div class="dropdown__link" data-page-id="license">License</div>
-                     <div class="dropdown__link" data-page-id="contributing">Contributing</div>
-                     <div class="dropdown__link" data-page-id="local-development">Local Development</div>
-                     <div class="dropdown__link" data-page-id="block-types">Block Types</div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-
-
-
-      <!-- CONTENT SECTION -->
-      <!-- make sure content pages are in same order as sidebar links -->
-      <div class="content__section scroll">
-         <!-- CONTENT PAGE -->
-         <div class="content__page active">
-            <div class="title__1">Introduction</div>
-
-            <div class="block__text">
-               My name is Praneeth. I am a sophomore at Georgia State University.
-               <br>
-               Here are some important links!
-            </div>
-
-            <ul class="block__ul">
-               <li class="block__li"><a href="https://github.com/rangarajanpraneeth">GitHub</a></li>
-               <li class="block__li"><a href="https://www.linkedin.com/in/rangarajanpraneeth/">LinkedIn</a></li>
+   <!-- 
+      This hidden div defines the navigation structure.
+    -->
+   <div id="nav-structure" style="display: none;">
+      <ul>
+         <li data-page-id="introduction">Introduction</li>
+         <li>
+            Blog
+            <ul>
+               <li data-page-id="tables">Unit 2 Assignment 2</li>
             </ul>
-
-            <div class="title__2 hierarchy__parent__link">About this site</div>
-            <div class="block__text">
-               This site is fully custom made using vanilla HTML and JS.
-               <br>
-               Find this project on <a
-                  href="https://github.com/rangarajanpraneeth/rangarajanpraneeth.github.io">GitHub</a>
-            </div>
-         </div>
-
-
-
-         <!-- CONTENT PAGE -->
-         <div class="content__page">
-            <div class="title__1">Help</div>
-
-            <div class="title__2 hierarchy__parent__link">Bug Reports</div>
-
-            <div class="block__text">
-               Submit new issues on the <a href="">GitHub repository</a>. Before you submit a bug report please follow
-               the following steps:
-            </div>
-
-            <ol class="block__ol">
-               <li class="block__li">Make sure the bug can be consistently reproduced</li>
-               <li class="block__li">Search <a href="">open issues</a> to make sure the bug hasn't been reported before
-               </li>
-               <li class="block__li">Attach the error message from inspect element console if possible.</li>
-            </ol>
-
-            <div class="title__2 hierarchy__parent__link">Feature Requests</div>
-
-            <div class="block__text">
-               Submit new requests on the <a href="">GitHub repository</a>. Before you request a feature, search <a
-                  href="">open issues</a> to make sure it hasn't been requested before.
-            </div>
-         </div>
-
-
-
-         <!-- CONTENT PAGE -->
-         <div class="content__page">
-            <div class="title__1">License</div>
-
-            <div class="block__text">
-               This project is licensed under the <a
-                  href="https://github.com/rangarajanpraneeth/rangarajanpraneeth.github.io/blob/main/LICENSE">MIT
-                  License</a> which allows you to modify and redistribute
-               the code, however you must preserve the copuright and license notice in your CSS file.
-            </div>
-         </div>
-
-         <div class="content__page">
-            <div class="title__1">Contributing</div>
-         </div>
-
-
-
-         <!-- CONTENT PAGE -->
-         <div class="content__page">
-            <div class="title__1">Local Development</div>
-            <div class="block__tags">
-               <div class="block__tag">#contributing</div>
-            </div>
-
-            <div class="block__text">
-               To set up local development, follow the instructions below. This project was designed specifically to be
-               completely independent and dependency free. Refer to the guide below to learn how to set up your own
-               personal copy.
-            </div>
-
-            <div class="block__text">
-               This project is regularly updated. Use <a
-                  href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo">GitHub's
-                  fork feature</a> to merge the latest changes into your fork.
-               If you have not changed any of the code other than the contents of the HTML file, the updates should
-               gracefully merge into your existing fork. On the contrary, if any changes were made to the CSS or JS, you
-               might need to carefully merge the updates yourself.
-            </div>
-
-            <div class="title__2 hierarchy__parent__link">Getting started</div>
-
-            <div class="title__3 hierarchy__child__link">Set up</div>
-            <div class="block__text">Clone the repository</div>
-
-            <pre><code class="block__code language-plaintext">
-               git clone link
-            </code></pre>
-
-            <div class="title__3 hierarchy__child__link">Getting started</div>
-         </div>
-
-
-
-         <!-- CONTENT PAGE -->
-         <div class="content__page">
-            <div class="title__1">Block Types</div>
-         </div>
-
-
-
-         <!-- CONTENT PAGE -->
-         <!-- testing -->
-      </div>
-
-
-
-      <!-- SIDEBAR RIGHT -->
-      <div class="sidebar__right scroll">
-         <div class="sidebar__right__content">
-            <div class="title__3">Table of Contents</div>
-            <div class="hierarchy__container"></div>
-         </div>
-      </div>
+         </li>
+      </ul>
    </div>
 
+   <div class="page-container">
+      <!-- Left sidebar for navigation and search -->
+      <aside class="sidebar sidebar--left">
+         <div class="sidebar__content">
+            <h3 class="sidebar__title">Portfolio</h3>
+            <div class="search">
+               <input type="text" class="search__input" placeholder="Search...">
+               <div class="search__results"></div>
+            </div>
+            <nav class="nav utility-scroll"></nav>
+         </div>
+      </aside>
+
+      <!-- Main content area where pages are displayed -->
+      <main class="content utility-scroll">
+         <div class="content__pages-container"></div>
+      </main>
+
+      <!-- Right sidebar for the table of contents -->
+      <aside class="sidebar sidebar--right utility-scroll">
+         <div class="sidebar__content">
+            <h3 class="sidebar__title">Table of Contents</h3>
+            <div class="hierarchy"></div>
+         </div>
+      </aside>
+   </div>
+
+   <div id="image-preview-overlay" class="image-preview-overlay">
+      <img id="image-preview-img" class="image-preview-img">
+   </div>
+
+   <!-- 
+      Markdown content for each page is stored in templates.
+    -->
+   <template id="template__introduction">
+      # Introduction
+      My name is Praneeth. I am a sophomore at Georgia State University.
+      This site is fully custom made using vanilla HTML, CSS, and JavaScript. It features a dynamic, nested
+      sidebar navigation system.
+      Check out the [[block-types]] page for a demo of content features.
+      Here are some important links!
+      * [GitHub](https://github.com/rangarajanpraneeth)
+      * [LinkedIn](https://www.linkedin.com/in/rangarajanpraneeth/)
+      ## About this site
+      Find this project on [GitHub](https://github.com/rangarajanpraneeth/rangarajanpraneeth.github.io).
+   </template>
+
+   <!-- New Template for Tables -->
+   <template id="template__tables">
+      | Task | Tools | Reason |
+      |---------------|------------|--------------|
+      | You have to lead an online presentation on the contents of your history term paper. | Prezi, Zoom | Prezi allows you to create dynamic, interactive multimedia presentations with images, text, and links. Zoom allows real time screen sharing and face to face presentation to people. |
+      | The final exam for your economics course is coming up, and you need to collect all of your (and hopefully your classmates') online resources for a study guide. | Google Docs, Zoho Docs | Both tools allow collaborative editing and real time file sharing so that classmates can easily contribute and access shared notes and lectures. |
+      | You need to create an interactive tour of Berlin as an assignment for your study abroad program. | Google Earth, YouTube | Google Earth can create guided map tours and YouTube can be used to host and shared videos or interactive tour for a wide range of people easily. |
+      | You and a group of your classmates have been asked to do a collaborative research project on how Facebook has affected the social habits of young adults. | Slac, Google Drive | Slack provides messaging, file sharing, and organization features for team projects. Google drive supports collaborative document sharing, editing, and storage. |
+   </template>
+
+
+   <!-- External libraries for Markdown parsing and syntax highlighting -->
+   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-   <script src="./src/js/script.js"></script>
+
+   <script>
+      document.addEventListener('DOMContentLoaded', () => {
+         // Application state and element cache
+         const linkIndex = {};
+         const elements = {
+            content: document.querySelector('.content'),
+            sidebarNav: document.querySelector('.nav'),
+            contentPagesContainer: document.querySelector('.content__pages-container'),
+            hierarchyContainer: document.querySelector('.hierarchy'),
+            searchInput: document.querySelector('.search__input'),
+            searchResults: document.querySelector('.search__results'),
+            dropdownLinks: [],
+            contentPages: [],
+            imagePreviewOverlay: document.getElementById('image-preview-overlay'),
+            imagePreviewImg: document.getElementById('image-preview-img'),
+         };
+
+         // --- UTILITY FUNCTIONS ---
+
+         const debounce = (func, delay) => {
+            let timeoutId;
+            return (...args) => {
+               clearTimeout(timeoutId);
+               timeoutId = setTimeout(() => {
+                  func.apply(this, args);
+               }, delay);
+            };
+         };
+
+         const getPageTitle = pageId => {
+            const match = document.querySelector(`.nav__link[data-page-id="${pageId}"]`);
+            return match ? match.textContent.trim() : pageId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+         };
+
+         const dedent = text => {
+            const lines = text.split('\n');
+            if (lines.length > 0 && lines[0].trim() === '') lines.shift();
+            if (lines.length > 0 && lines[lines.length - 1].trim() === '') lines.pop();
+            if (lines.length === 0) return '';
+            const indent = lines[0].match(/^\s*/)[0];
+            return lines.map(line => line.startsWith(indent) ? line.substring(indent.length) : line).join('\n');
+         };
+
+         const highlightElement = element => {
+            if (!element) return;
+            document.querySelector('.utility-search-highlight')?.classList.remove('utility-search-highlight');
+            element.classList.add('utility-search-highlight');
+            customScrollTo(element);
+         };
+
+         const extractSlug = text => text.trim().toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-');
+         const updateURL = path => history.pushState(null, null, `#${path}`);
+         const customScrollTo = element => element?.scrollIntoView({ behavior: 'instant', block: 'start' });
+
+         const openParentDropdowns = link => {
+            let current = link?.parentElement;
+            while (current && current !== elements.sidebarNav) {
+               if (current.classList.contains('nav__links')) {
+                  current.previousElementSibling?.classList.add('is-open');
+               }
+               current = current.parentElement;
+            }
+         };
+
+         // --- NEW: Function to add copy buttons to code blocks ---
+         const setupCodeBlockCopy = (page) => {
+            const codeBlocks = page.querySelectorAll('pre');
+            const copyIconSVG = `<svg class="copy-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
+            const copiedIconSVG = `<svg class="copied-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+
+            codeBlocks.forEach(block => {
+               // Prevent adding multiple buttons
+               if (block.querySelector('.copy-code-button')) return;
+
+               const button = document.createElement('button');
+               button.className = 'copy-code-button';
+               button.innerHTML = copyIconSVG + copiedIconSVG;
+               button.setAttribute('aria-label', 'Copy code to clipboard');
+               block.prepend(button);
+
+               button.addEventListener('click', () => {
+                  const code = block.querySelector('code')?.innerText || '';
+                  navigator.clipboard.writeText(code).then(() => {
+                     button.querySelector('.copy-icon').style.display = 'none';
+                     button.querySelector('.copied-icon').style.display = 'inline-block';
+                     button.setAttribute('aria-label', 'Copied!');
+
+                     setTimeout(() => {
+                        button.querySelector('.copy-icon').style.display = 'inline-block';
+                        button.querySelector('.copied-icon').style.display = 'none';
+                        button.setAttribute('aria-label', 'Copy code to clipboard');
+                     }, 2000);
+                  }).catch(err => {
+                     console.error('Failed to copy text: ', err);
+                  });
+               });
+            });
+         };
+
+         // --- CORE APPLICATION LOGIC ---
+
+         const buildSidebarAndPages = () => {
+            const sourceNav = document.querySelector('#nav-structure > ul');
+            const allPageIds = [];
+
+            function buildLevel(target, source) {
+               source.childNodes.forEach(node => {
+                  if (node.nodeName !== 'LI') return;
+                  const pageId = node.dataset.pageId;
+                  const nestedList = node.querySelector('ul');
+
+                  if (nestedList) {
+                     const list = document.createElement('div');
+                     list.className = 'nav__list';
+                     const titleText = Array.from(node.childNodes).find(child => child.nodeType === Node.TEXT_NODE)?.textContent.trim() || 'Dropdown';
+                     list.innerHTML = `
+                                <div class="nav__title">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8L12 16L20 8"></path></svg>
+                                    <span>${titleText}</span>
+                                </div>
+                                <div class="nav__links"></div>`;
+                     target.appendChild(list);
+                     buildLevel(list.querySelector('.nav__links'), nestedList);
+                  } else if (pageId) {
+                     const link = document.createElement('a');
+                     link.className = 'nav__link';
+                     link.textContent = node.textContent.trim();
+                     link.dataset.pageId = pageId;
+                     target.appendChild(link);
+                     allPageIds.push(pageId);
+                  }
+               });
+            }
+
+            if (sourceNav) buildLevel(elements.sidebarNav, sourceNav);
+
+            allPageIds.forEach(pageId => {
+               const page = document.createElement('div');
+               page.className = 'content__page';
+               page.dataset.pageId = pageId;
+               elements.contentPagesContainer.appendChild(page);
+            });
+
+            elements.dropdownLinks = document.querySelectorAll('.nav__link');
+            elements.contentPages = document.querySelectorAll('.content__page');
+         };
+
+         const buildLinkIndex = () => {
+            const allPageIds = Array.from(elements.dropdownLinks).map(link => link.dataset.pageId);
+            allPageIds.forEach(pageId => {
+               linkIndex[pageId] = { outgoing: [], incoming: [] };
+               const template = document.getElementById(`template__${pageId}`);
+               if (!template) return;
+               const matches = template.innerHTML.match(/\[\[(.*?)\]\]/g) || [];
+               matches.forEach(match => {
+                  const targetId = match.slice(2, -2);
+                  if (allPageIds.includes(targetId)) {
+                     linkIndex[pageId].outgoing.push({ target: targetId });
+                     if (!linkIndex[targetId]) linkIndex[targetId] = { outgoing: [], incoming: [] };
+                     if (!linkIndex[targetId].incoming.some(l => l.source === pageId)) {
+                        linkIndex[targetId].incoming.push({ source: pageId });
+                     }
+                  }
+               });
+            });
+         };
+
+         const renderLinks = (pageId) => {
+            const page = document.querySelector(`.content__page[data-page-id="${pageId}"]`);
+            if (!page) return;
+
+            const contentInternalLinks = Array.from(page.querySelectorAll('.internal-link')).filter(el => !el.closest('.links'));
+            contentInternalLinks.forEach((linkEl, i) => {
+               linkEl.id = `outgoing-link-ref-${pageId}-${i}`;
+            });
+
+            const linksData = linkIndex[pageId];
+            if (!linksData || (!linksData.incoming.length && !linksData.outgoing.length)) {
+               page.querySelector('.links')?.remove();
+               return;
+            }
+
+            let container = page.querySelector('.links');
+            if (!container) {
+               container = document.createElement('div');
+               container.className = 'links';
+               page.appendChild(container);
+            }
+            container.innerHTML = '';
+
+            let html = '';
+            if (linksData.outgoing.length > 0) {
+               html += `<div class="links__title">Outgoing Links</div><ul class="links__list">`;
+               linksData.outgoing.forEach((link, i) => {
+                  const linkId = `outgoing-link-ref-${pageId}-${i}`;
+                  html += `
+                        <li class="links__list-item">
+                            <span class="internal-link" data-target-page="${link.target}">${getPageTitle(link.target)}</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="links__goto-icon" data-scroll-to-id="${linkId}">
+                               <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </li>`;
+               });
+               html += `</ul>`;
+            }
+            if (linksData.incoming.length > 0) {
+               html += `<div class="links__title" style="margin-top: ${linksData.outgoing.length > 0 ? '2rem' : '0'};">Linked Mentions</div><ul class="links__list">${linksData.incoming.map(link => `<li class="links__list-item"><span class="internal-link" data-target-page="${link.source}">${getPageTitle(link.source)}</span></li>`).join('')}</ul>`;
+            }
+            if (html) container.innerHTML = html;
+         };
+
+         const activatePage = (pageId, callback) => {
+            elements.content.scrollTop = 0;
+
+            const link = document.querySelector(`.nav__link[data-page-id="${pageId}"]`);
+            const page = document.querySelector(`.content__page[data-page-id="${pageId}"]`);
+
+            if (!link || !page) {
+               const firstLink = elements.dropdownLinks[0];
+               if (firstLink) activatePage(firstLink.dataset.pageId);
+               return;
+            }
+
+            const template = document.getElementById(`template__${pageId}`);
+            if (template && window.marked) {
+               let markdownContent = dedent(template.innerHTML).replace(/\[\[(.*?)\]\]/g, (_, targetId) => `<span class="internal-link" data-target-page="${targetId}">${getPageTitle(targetId)}</span>`);
+               page.innerHTML = marked.parse(markdownContent);
+               page.querySelectorAll('a:not(.internal-link)').forEach(a => a.setAttribute('target', '_blank'));
+               page.querySelectorAll('pre code').forEach(el => hljs.highlightElement(el));
+
+               // NEW: Add copy buttons after content is rendered
+               setupCodeBlockCopy(page);
+            }
+
+            elements.dropdownLinks.forEach(l => l.classList.remove('is-active'));
+            elements.contentPages.forEach(p => p.classList.remove('is-active'));
+            link.classList.add('is-active');
+            page.classList.add('is-active');
+
+            if (!window.location.hash.startsWith(`#${pageId}`)) updateURL(pageId);
+            openParentDropdowns(link);
+            renderLinks(pageId);
+            setTimeout(() => {
+               buildHierarchy();
+               callback?.();
+            }, 50);
+         };
+
+         const restoreState = () => {
+            const hash = window.location.hash.substring(1);
+            const firstPageId = elements.dropdownLinks[0]?.dataset.pageId || '';
+
+            if (!hash) {
+               if (firstPageId) history.replaceState(null, null, `#${firstPageId}`);
+               activatePage(firstPageId);
+               return;
+            }
+
+            if (hash.includes('/')) {
+               const [pageId, elementId] = hash.split('/');
+               if (document.querySelector(`.nav__link[data-page-id="${pageId}"]`)) {
+                  activatePage(pageId, () => {
+                     const targetElement = document.getElementById(elementId);
+                     if (targetElement) {
+                        highlightElement(targetElement);
+                        history.replaceState(null, null, `#${pageId}`);
+                     }
+                  });
+               } else {
+                  activatePage(firstPageId);
+               }
+               return;
+            }
+
+            const pageIdToLoad = document.querySelector(`.nav__link[data-page-id="${hash}"]`) ? hash : firstPageId;
+            activatePage(pageIdToLoad);
+         };
+
+         const buildHierarchy = () => {
+            const activePage = document.querySelector('.content__page.is-active');
+            if (!activePage) return;
+            elements.hierarchyContainer.innerHTML = '';
+            const activePageId = activePage.dataset.pageId;
+            const headings = activePage.querySelectorAll('h1, h2, h3, h4, h5, h6');
+
+            const hierarchyRoot = document.createElement('div');
+            hierarchyRoot.className = 'hierarchy';
+            hierarchyRoot.innerHTML = `<div class="hierarchy__name">${getPageTitle(activePageId)}</div>`;
+            elements.hierarchyContainer.appendChild(hierarchyRoot);
+
+            if (headings.length === 0) return;
+
+            const listStack = [hierarchyRoot];
+            headings.forEach((heading, i) => {
+               if (!heading.querySelector('.content__copy-link')) {
+                  heading.insertAdjacentHTML('beforeend', `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="content__copy-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>`);
+               }
+
+               heading.id = heading.id || `${activePageId}-${extractSlug(heading.textContent)}-${i}`;
+               const path = `${activePageId}/${heading.id}`;
+               heading.dataset.navPath = path;
+
+               const hierarchyItem = document.createElement('div');
+               hierarchyItem.className = 'hierarchy__item';
+               const hierarchyTitle = document.createElement('div');
+               hierarchyTitle.className = 'hierarchy__title';
+               hierarchyTitle.textContent = heading.textContent.trim();
+               hierarchyTitle.onclick = () => {
+                  customScrollTo(heading);
+                  updateURL(path);
+                  highlightElement(heading);
+               };
+               hierarchyItem.appendChild(hierarchyTitle);
+
+               const level = parseInt(heading.tagName.substring(1), 10);
+               while (level < listStack.length) listStack.pop();
+               let parent = listStack[listStack.length - 1];
+               let listContainer = parent.querySelector('.hierarchy__list');
+               if (!listContainer) {
+                  listContainer = document.createElement('div');
+                  listContainer.className = 'hierarchy__list';
+                  parent.appendChild(listContainer);
+               }
+               listContainer.appendChild(hierarchyItem);
+               listStack.push(hierarchyItem);
+            });
+            setupCopyLinks();
+         };
+
+         const setupCopyLinks = () => {
+            document.querySelectorAll('.content__copy-link').forEach(icon => {
+               icon.onclick = e => {
+                  e.stopPropagation();
+                  const path = icon.closest('[data-nav-path]')?.dataset.navPath;
+                  if (path) {
+                     const urlToCopy = new URL(`#${path}`, window.location.href).href;
+                     // Using execCommand as a fallback for iFrame environments
+                     try {
+                        navigator.clipboard.writeText(urlToCopy);
+                     } catch (err) {
+                        const textArea = document.createElement("textarea");
+                        textArea.value = urlToCopy;
+                        document.body.appendChild(textArea);
+                        textArea.focus();
+                        textArea.select();
+                        try {
+                           document.execCommand('copy');
+                        } catch (execErr) {
+                           console.error('Fallback copy failed', execErr);
+                        }
+                        document.body.removeChild(textArea);
+                     }
+                  }
+               };
+            });
+         };
+
+         const getBreadcrumbPath = (linkElement) => {
+            if (!linkElement) return '';
+            const parts = [linkElement.textContent.trim()];
+            let current = linkElement.parentElement;
+            while (current && current !== elements.sidebarNav) {
+               if (current.classList.contains('nav__links')) {
+                  const titleEl = current.previousElementSibling?.querySelector('span');
+                  if (titleEl) parts.unshift(titleEl.textContent.trim());
+               }
+               current = current.parentElement;
+            }
+            return parts.join(' / ');
+         };
+
+         const performSearch = (query) => {
+            query = query.trim().toLowerCase();
+            elements.searchResults.innerHTML = '';
+            elements.searchResults.style.display = query ? 'block' : 'none';
+            if (!query) return;
+
+            let resultsFound = false;
+            const regex = new RegExp(query.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'gi');
+
+            if (query.length === 1) {
+               elements.dropdownLinks.forEach(link => {
+                  const pageId = link.dataset.pageId;
+                  const pageTitle = getPageTitle(pageId);
+                  if (pageTitle.toLowerCase().includes(query)) {
+                     resultsFound = true;
+                     const resultItem = document.createElement('div');
+                     resultItem.className = 'search__result-item';
+                     resultItem.dataset.pageId = pageId;
+                     resultItem.innerHTML = `
+                                <div class="search__result-title">${pageTitle.replace(regex, m => `<mark>${m}</mark>`)}</div>
+                                <div class="search__result-path">${getBreadcrumbPath(link)}</div>`;
+                     resultItem.onclick = () => {
+                        activatePage(pageId);
+                        elements.searchInput.value = '';
+                        performSearch('');
+                     };
+                     elements.searchResults.appendChild(resultItem);
+                  }
+               });
+            } else {
+               const contentTags = 'h1, h2, h3, h4, h5, h6, p, li, td';
+               elements.dropdownLinks.forEach(link => {
+                  const pageId = link.dataset.pageId;
+                  const template = document.getElementById(`template__${pageId}`);
+                  if (!template) return;
+
+                  const tempDiv = document.createElement('div');
+                  tempDiv.innerHTML = marked.parse(dedent(template.innerHTML));
+                  const pageElements = tempDiv.querySelectorAll(contentTags);
+
+                  pageElements.forEach((el, elIndex) => {
+                     if (el.textContent.toLowerCase().includes(query) && !elements.searchResults.querySelector(`[data-page-id="${pageId}"][data-el-index="${elIndex}"]`)) {
+                        resultsFound = true;
+                        const isHeading = el.tagName.toLowerCase().startsWith('h');
+                        let parentHeadingText = getPageTitle(pageId);
+
+                        for (let i = elIndex; i >= 0; i--) {
+                           // Check if the element or its parent is part of a table header
+                           if (pageElements[i].closest('thead')) continue;
+
+                           if (pageElements[i].tagName.toLowerCase().startsWith('h')) {
+                              parentHeadingText = pageElements[i].textContent.trim();
+                              break;
+                           }
+                        }
+
+                        const resultItem = document.createElement('div');
+                        resultItem.className = 'search__result-item';
+                        resultItem.dataset.pageId = pageId;
+                        resultItem.dataset.elIndex = elIndex;
+                        resultItem.innerHTML = `<div class="search__result-title">${parentHeadingText.replace(regex, m => `<mark>${m}</mark>`)}</div>
+                                    ${!isHeading ? `<div class="search__result-snippet">${el.textContent.replace(regex, m => `<mark>${m}</mark>`)}</div>` : ''}
+                                    <div class="search__result-path">${getBreadcrumbPath(link)}</div>`;
+
+                        resultItem.onclick = () => {
+                           activatePage(pageId, () => {
+                              const targetElement = document.querySelector('.content__page.is-active').querySelectorAll(contentTags)[elIndex];
+                              highlightElement(targetElement);
+                           });
+                           elements.searchInput.value = '';
+                           performSearch('');
+                        };
+                        elements.searchResults.appendChild(resultItem);
+                     }
+                  });
+               });
+            }
+
+            if (!resultsFound) {
+               elements.searchResults.innerHTML = `<div class="search__result-snippet" style="padding: .75rem .5rem">No results found.</div>`;
+            }
+         };
+
+         // --- INITIALIZATION & EVENT LISTENERS ---
+
+         buildSidebarAndPages();
+         buildLinkIndex();
+
+         elements.sidebarNav.addEventListener('click', e => {
+            const link = e.target.closest('.nav__link');
+            if (link) activatePage(link.dataset.pageId);
+            const title = e.target.closest('.nav__title');
+            if (title) title.classList.toggle('is-open');
+         });
+
+         elements.content.addEventListener('click', e => {
+            const internalLink = e.target.closest('.internal-link');
+            if (internalLink) {
+               e.preventDefault();
+               activatePage(internalLink.dataset.targetPage);
+               return;
+            }
+
+            const gotoIcon = e.target.closest('.links__goto-icon');
+            if (gotoIcon) {
+               const targetId = gotoIcon.dataset.scrollToId;
+               const targetElement = document.getElementById(targetId);
+               if (targetElement) {
+                  highlightElement(targetElement);
+               }
+               return;
+            }
+
+            if (e.target.tagName === 'IMG') {
+               elements.imagePreviewImg.src = e.target.src;
+               elements.imagePreviewOverlay.classList.add('is-visible');
+               document.body.classList.add('utility-no-scroll');
+            }
+         });
+
+         elements.imagePreviewOverlay.addEventListener('click', () => {
+            elements.imagePreviewOverlay.classList.remove('is-visible');
+            document.body.classList.remove('utility-no-scroll');
+         });
+
+         window.addEventListener('popstate', restoreState);
+
+         const debouncedSearch = debounce((value) => performSearch(value), 300);
+         elements.searchInput.addEventListener('keyup', e => {
+            debouncedSearch(e.target.value);
+         });
+
+         elements.searchInput.addEventListener('focus', () => { if (elements.searchInput.value) elements.searchResults.style.display = 'block'; });
+         document.addEventListener('click', e => {
+            if (!e.target.closest('.search')) {
+               elements.searchResults.style.display = 'none';
+            }
+         });
+
+         restoreState();
+      });
+   </script>
 </body>
 
 </html>
