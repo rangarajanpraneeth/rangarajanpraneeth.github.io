@@ -1,1 +1,277 @@
-Hello World!
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Portfolio</title>
+
+   <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.15/dist/lenis.css">
+
+   <style>
+      * {
+         box-sizing: border-box;
+         margin: 0;
+         padding: 0;
+         -webkit-font-smoothing: antialiased;
+         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+         line-height: 1;
+         user-select: none;
+      }
+
+      ::-webkit-scrollbar {
+         display: none;
+      }
+
+      html {
+         min-height: 100%;
+         background: radial-gradient(ellipse at top right,
+               black 52%,
+               #217 68%,
+               #83d 84%,
+               #edf 100%);
+         background-attachment: fixed;
+      }
+
+      body {
+         color: white;
+      }
+
+      .landing {
+         padding: 2rem;
+
+         width: 100vw;
+         height: 100vh;
+
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         gap: 2rem;
+      }
+
+      .landing__title {
+         width: 75%;
+
+         color: rgba(255, 255, 255, 0.5);
+         font-size: 4rem;
+         font-weight: 300;
+         line-height: 1.25;
+         text-align: center;
+         text-wrap: balance;
+      }
+
+      .landing__subtitle {
+         width: 50%;
+
+         color: rgba(255, 255, 255, 0.25);
+         font-size: 2rem;
+         font-weight: 300;
+         line-height: 1.25;
+         text-align: center;
+         text-wrap: balance;
+      }
+
+      .content {
+         padding: 2rem;
+
+         width: 100vw;
+         height: 100vh;
+
+         position: relative;
+      }
+
+      .content__about {
+         width: 75%;
+
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+
+         color: rgba(255, 255, 255, 0.5);
+         font-size: 4rem;
+         font-weight: 300;
+         line-height: 1.25;
+         text-align: center;
+         text-wrap: balance;
+      }
+
+      /* format from here */
+
+      .projects {
+         padding: 2rem;
+
+         min-height: 100vh;
+
+         display: flex;
+         align-items: flex-start;
+         gap: 2rem;
+      }
+
+      .project {
+         padding: 2rem;
+
+         width: 100%;
+
+         display: flex;
+         flex-direction: column;
+         gap: 1rem;
+
+         /* background-color: rgba(255, 255, 255, 0.05); */
+         border: 1px solid rgba(255, 255, 255, 0.25);
+         backdrop-filter: blur(1rem);
+      }
+
+      .project__title {
+         color: rgba(255, 255, 255, 0.5);
+         font-size: 2rem;
+         font-weight: 300;
+         line-height: 1.25;
+      }
+
+      .project__description {
+         color: rgba(255, 255, 255, 0.25);
+         font-size: 1.5rem;
+         font-weight: 300;
+         line-height: 1.25;
+      }
+   </style>
+</head>
+
+<body>
+   <div class="landing">
+      <div class="landing__title">Hi, I'm Praneeth. I'm a computer science student at Georgia State University.</div>
+
+      <div class="landing__subtitle">I love building creative, meaningful projects that blend problem-solbing, design,
+         and real-world impact.</div>
+   </div>
+
+   <div class="content">
+      <div class="content__about first">
+         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam doloribus consequatur dolores ipsum placeat
+         maxime? Cum mollitia quibusdam, quasi exercitationem nesciunt inventore hic odio optio maiores nam, voluptatem
+         ullam voluptatibus.
+      </div>
+
+      <div class="content__about">
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus possimus sit earum incidunt. Sequi nostrum
+         similique aut? Illum debitis, consequuntur reprehenderit non minus hic atque sequi laborum labore accusantium
+         sapiente!
+      </div>
+
+      <div class="content__about">
+         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit necessitatibus, eaque tempora porro, voluptates
+         tempore eligendi ipsum architecto itaque omnis quod perspiciatis suscipit est exercitationem provident mollitia
+         eius, quam consequatur?
+      </div>
+   </div>
+
+   <div class="projects">
+      <div class="project">
+         <div class="project__title">
+            Hello World!
+         </div>
+         <div class="project__description">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis eos blanditiis tempore nostrum? In alias
+            debitis doloribus ut labore tempora eaque fuga exercitationem vero, ea culpa, obcaecati tempore optio.
+            Tenetur!
+         </div>
+      </div>
+      <div class="project">
+         <div class="project__title">
+            Hello World!
+         </div>
+         <div class="project__description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio facilis odit alias, magnam, neque ipsum
+            exercitationem atque nostrum in impedit quibusdam perferendis maiores veritatis modi illo obcaecati iusto,
+            debitis earum?
+         </div>
+      </div>
+      <div class="project">
+         <div class="project__title">
+            Hello World!
+         </div>
+         <div class="project__description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi aut similique perspiciatis nesciunt illum
+            earum, aperiam maxime reiciendis doloribus, excepturi labore dolor iure assumenda voluptatibus nulla sequi
+            minus facilis ratione!
+         </div>
+      </div>
+   </div>
+
+   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+   <script src="https://unpkg.com/lenis@1.3.15/dist/lenis.min.js"></script>
+
+   <script>
+      const lenis = new Lenis();
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(time => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
+
+      gsap.registerPlugin(ScrollTrigger, SplitText);
+
+      const HIDE = { opacity: 0, filter: 'blur(0.5rem)' };
+      const SHOW = { opacity: 1, filter: 'blur(0rem)' };
+
+      const fadeInOnScroll = (words, trigger, start, end) => {
+         gsap.set(words, HIDE);
+         gsap.to(words, {
+            ...SHOW,
+            stagger: { each: 0.05 },
+            scrollTrigger: { trigger, start, end, scrub: true }
+         });
+      }
+
+      const splitTitle = new SplitText('.landing__title', { type: 'words' });
+      const splitSubtitle = new SplitText('.landing__subtitle', { type: 'words' });
+
+      gsap.to([splitTitle.words, splitSubtitle.words], {
+         ...HIDE,
+         stagger: { each: 0.05, from: 'end' },
+         scrollTrigger: {
+            trigger: '.landing',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true,
+            pin: true
+         }
+      });
+
+      const first = document.querySelector('.first');
+      const firstSplit = new SplitText(first, { type: 'words' });
+      fadeInOnScroll(firstSplit.words, first, 'top 85%', 'center center');
+
+      const sections = gsap.utils.toArray('.content__about').slice(1);
+
+      const master = gsap.timeline({
+         scrollTrigger: {
+            trigger: first,
+            start: 'center center',
+            end: `+=${sections.length * 2000}`,
+            scrub: true,
+            pin: '.content'
+         }
+      });
+
+      master.to(firstSplit.words, {
+         ...HIDE,
+         stagger: { each: 0.05, from: 'end' },
+         duration: 1
+      });
+
+      sections.forEach(section => {
+         const split = new SplitText(section, { type: 'words' });
+         gsap.set(split.words, HIDE);
+
+         master
+            .to(split.words, { ...SHOW, stagger: { each: 0.05 }, duration: 1 })
+            .to(split.words, { duration: 0.5 })
+            .to(split.words, { ...HIDE, stagger: { each: 0.05, from: 'end' }, duration: 1 });
+      });
+   </script>
+</body>
+
+</html>
