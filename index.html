@@ -81,7 +81,7 @@
          position: relative;
       }
 
-      .content__about {
+      .content__text {
          width: 75%;
 
          position: absolute;
@@ -96,46 +96,6 @@
          text-align: center;
          text-wrap: balance;
       }
-
-      /* format from here */
-
-      .projects {
-         padding: 2rem;
-
-         min-height: 100vh;
-
-         display: flex;
-         align-items: flex-start;
-         gap: 2rem;
-      }
-
-      .project {
-         padding: 2rem;
-
-         width: 100%;
-
-         display: flex;
-         flex-direction: column;
-         gap: 1rem;
-
-         /* background-color: rgba(255, 255, 255, 0.05); */
-         border: 1px solid rgba(255, 255, 255, 0.25);
-         backdrop-filter: blur(1rem);
-      }
-
-      .project__title {
-         color: rgba(255, 255, 255, 0.5);
-         font-size: 2rem;
-         font-weight: 300;
-         line-height: 1.25;
-      }
-
-      .project__description {
-         color: rgba(255, 255, 255, 0.25);
-         font-size: 1.5rem;
-         font-weight: 300;
-         line-height: 1.25;
-      }
    </style>
 </head>
 
@@ -143,60 +103,27 @@
    <div class="landing">
       <div class="landing__title">Hi, I'm Praneeth. I'm a computer science student at Georgia State University.</div>
 
-      <div class="landing__subtitle">I love building creative, meaningful projects that blend problem-solbing, design,
+      <div class="landing__subtitle">I love building creative, meaningful projects that blend problem-solving, design,
          and real-world impact.</div>
    </div>
 
    <div class="content">
-      <div class="content__about first">
+      <div class="content__text first">
          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam doloribus consequatur dolores ipsum placeat
          maxime? Cum mollitia quibusdam, quasi exercitationem nesciunt inventore hic odio optio maiores nam, voluptatem
          ullam voluptatibus.
       </div>
 
-      <div class="content__about">
+      <div class="content__text">
          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus possimus sit earum incidunt. Sequi nostrum
          similique aut? Illum debitis, consequuntur reprehenderit non minus hic atque sequi laborum labore accusantium
          sapiente!
       </div>
 
-      <div class="content__about">
+      <div class="content__text">
          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit necessitatibus, eaque tempora porro, voluptates
          tempore eligendi ipsum architecto itaque omnis quod perspiciatis suscipit est exercitationem provident mollitia
          eius, quam consequatur?
-      </div>
-   </div>
-
-   <div class="projects">
-      <div class="project">
-         <div class="project__title">
-            Hello World!
-         </div>
-         <div class="project__description">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis eos blanditiis tempore nostrum? In alias
-            debitis doloribus ut labore tempora eaque fuga exercitationem vero, ea culpa, obcaecati tempore optio.
-            Tenetur!
-         </div>
-      </div>
-      <div class="project">
-         <div class="project__title">
-            Hello World!
-         </div>
-         <div class="project__description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio facilis odit alias, magnam, neque ipsum
-            exercitationem atque nostrum in impedit quibusdam perferendis maiores veritatis modi illo obcaecati iusto,
-            debitis earum?
-         </div>
-      </div>
-      <div class="project">
-         <div class="project__title">
-            Hello World!
-         </div>
-         <div class="project__description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi aut similique perspiciatis nesciunt illum
-            earum, aperiam maxime reiciendis doloribus, excepturi labore dolor iure assumenda voluptatibus nulla sequi
-            minus facilis ratione!
-         </div>
       </div>
    </div>
 
@@ -225,10 +152,10 @@
          });
       }
 
-      const splitTitle = new SplitText('.landing__title', { type: 'words' });
-      const splitSubtitle = new SplitText('.landing__subtitle', { type: 'words' });
+      const titleSplit = new SplitText('.landing__title', { type: 'words' });
+      const subtitleSplit = new SplitText('.landing__subtitle', { type: 'words' });
 
-      gsap.to([splitTitle.words, splitSubtitle.words], {
+      gsap.to([titleSplit.words, subtitleSplit.words], {
          ...HIDE,
          stagger: { each: 0.05, from: 'end' },
          scrollTrigger: {
@@ -244,7 +171,7 @@
       const firstSplit = new SplitText(first, { type: 'words' });
       fadeInOnScroll(firstSplit.words, first, 'top 85%', 'center center');
 
-      const sections = gsap.utils.toArray('.content__about').slice(1);
+      const sections = gsap.utils.toArray('.content__text').slice(1);
 
       const master = gsap.timeline({
          scrollTrigger: {
